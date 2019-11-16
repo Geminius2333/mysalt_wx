@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+        "mp-searchbar": "../../components/searchbar/searchbar",
+        "mp-dialog":"../../components/dialog/dialog"
+  },
+  "navigationBarBackgroundColor": "#0094ff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "首页",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+  
+}

@@ -1,0 +1,66 @@
+/* pages/main/main.wxss */
+
+.container{
+    padding: 0;
+}
+
+.page-body,.swiper{
+  width:100%;
+  
+}
+
+.swiper-img{
+  width: 100%;
+}
+
+.home-menu{
+  display: flex;
+  flex-direction: row;
+}
+
+.home-menu-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:25%;
+}
+
+.home-menu-item1{
+  background: cornflowerblue;
+}
+
+.home-menu-item2{
+  background: greenyellow;
+}
+
+.home-menu-item3{
+  background: hotpink;
+}
+
+.home-menu-item4{
+  background: lightskyblue;
+}
+
+.items{
+  display: flex;
+  flex-direction: row;
+}
+
+.item-image{
+  width:300rpx;
+  height: 300rpx;
+  margin-left: 10px;
+}
+
+.item-info{
+  margin-right: 10px;
+}
+
+.del-price{
+  text-decoration: line-through;
+  font-size: 12px;
+}
+
+.price{
+  color: red;
+}

@@ -15,7 +15,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    waitPay:"/resource/icon/mine/支付.jpg",
+    iconPath:{
+      waitPay:"/resource/icon/mine/支付.jpg",
+      waitDisp:"/resource/icon/mine/包裹.jpg"
+    }
   },
 
   /**
@@ -36,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log();
   },
 
   /**

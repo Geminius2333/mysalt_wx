@@ -1,0 +1,27 @@
+<!--pages/main/main.wxml-->
+<view class="container">
+  <view class="page-body">
+
+    <mp-searchbar></mp-searchbar>
+
+    <view class="page-section page-section-spacing swiper">
+      <swiper class="swiper" indicator-dots="{{homeSwiper.indicatorDots}}" autoplay="{{homeSwiper.autoplay}}" interval="{{homeSwiper.interval}}" 
+      duration="{{homeSwiper.duration}}" circular="{{homeSwiper.circular}}" style="height:{{homeSwiper.height}}">
+        <swiper-item wx:for="{{swiperImgs}}" wx:key="item.name">
+          <image class="swiper-img" src="{{item.url}}" mode="widthFit"></image>
+        </swiper-item>
+      </swiper>
+    </view>  
+    <!---->
+    <view class="items" wx:for="{{items}}" wx:key="{{item.id}}">
+      <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="item-info">
+        <view><text class="item-info-title">{{item.title}}</text></view>
+        <view><text class="del-price">￥666</text><text class="price">￥{{item.price}}</text></view>
+        <view><text>销量：{{item.sales}}</text></view>
+        <button bindtap="showDialog">点击我</button>
+      </view>
+
+    </view>
+  </view>
+</view>

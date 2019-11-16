@@ -1,4 +1,49 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
+  <view class="user-info">
+    <view><image class="user-info-img" src="https://s2.ax1x.com/2019/10/13/uxJaK1.md.jpg" mode="aspectFit"/></view>
+    <view><text id="user-name-text">千反田世美</text></view>
+  </view>
+  <view class="order">
+    <view style="padding:10px 0 10px 0"><text>我的订单</text></view>
+    <view class="order-menu" style="display:flex;flex-direction:row;">
+      <view class="order-menu-item">
+        <i class="icon iconfont icondd"></i>
+        <text class="order-menu-item-text">全部订单</text>
+      </view>
+      <view class="order-menu-item">
+        <i class="icon iconfont  icondaizhifu"></i>
+        <text  class="order-menu-item-text">待支付</text>
+      </view>
+      <view class="order-menu-item">
+        <i class="icon iconfont  icondaishouhuo"/>
+        <text  class="order-menu-item-text">待收货</text>
+      </view>
+      <view class="order-menu-item">
+        <i class="icon iconfont  icondaipinjia"/>
+        <text  class="order-menu-item-text">待评价</text>
+      </view>
+      <view class="order-menu-item">
+        <i class="icon iconfont  icontuihuanhuo"/>
+        <text  class="order-menu-item-text">售后</text>
+      </view>
+    </view>
+  </view>
+  <view style="height:25rpx;width:750rpx;background:#e3e3e3"></view>
+  <view class="menu-list" style="flex-direction:column;">
+    <view class="menu-list-item">
+      <i class="icon iconfont  iconzuji"/>我的足迹
+    </view>
+    <view class="menu-list-item">
+      <i class="icon iconfont  iconshouhuodizhi"/>我的地址
+    </view>
+    <view class="menu-list-item">
+      <i class="icon iconfont  iconshezhi"/>设置
+    </view>
+    <view class="menu-list-item ">
+      <i class="icon iconfont  iconbangzhu"/>我的帮助
+    </view>
+  </view>
+
   <button bindtap="getUser">获取用户</button>
 </view>
