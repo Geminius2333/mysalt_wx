@@ -28,7 +28,7 @@ Page({
       interval: 2000,
       duration: 500,
       height: "200px",
-      circular: true
+      circular: true,
     },
 
     menuItems: [{ class: "home-menu-item1", text: "按钮1" },
@@ -57,9 +57,7 @@ Page({
         var swiperHeight = 150 * screenHeight / 568;
         // console.log("new swiperHeight:"+swiperHeight);
         that.setData({
-          homeSwiper:{
-            height:swiperHeight+"px",
-          }
+          'homeSwiper.height':swiperHeight+"px",
         })
       }
     })

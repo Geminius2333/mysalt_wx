@@ -3,9 +3,8 @@
   <view class="page-body">
 
     <mp-searchbar></mp-searchbar>
-
     <view class="page-section page-section-spacing swiper">
-      <swiper class="swiper" indicator-dots="{{homeSwiper.indicatorDots}}" autoplay="{{homeSwiper.autoplay}}" interval="{{homeSwiper.interval}}" 
+      <swiper class="swiper" indicator-dots="{{homeSwiper.indicatorDots}}" autoplay="true" interval="{{homeSwiper.interval}}" 
       duration="{{homeSwiper.duration}}" circular="{{homeSwiper.circular}}" style="height:{{homeSwiper.height}}">
         <swiper-item wx:for="{{swiperImgs}}" wx:key="item.name">
           <image class="swiper-img" src="{{item.url}}" mode="widthFit"></image>
