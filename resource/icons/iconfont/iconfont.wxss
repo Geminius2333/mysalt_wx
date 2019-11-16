@@ -10,7 +10,7 @@
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 20px;
-  font-style: normal;
+  font-style: blod;
   color: #333333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

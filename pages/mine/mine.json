@@ -1,5 +1,9 @@
 {
-  "usingComponents": {}, 
+  "usingComponents": {
+    "mp-cells": "../../components/cells/cells",
+    "mp-cell": "../../components/cell/cell",
+    "mp-slideview": "../../components/slideview/slideview"
+  }, 
   "navigationBarBackgroundColor": "#0094ff",
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "我的",

@@ -15,26 +15,34 @@
   },
   "tabBar": {
     "color": "#000",
-    "selectedColor": "#1396DB",
+    "selectedColor": "#d4237a",
     "backgroundColor": "#eeeeee",
     "borderStyle": "white",
     "position": "bottom",
     "list": [
       {
         "pagePath": "pages/main/main",
-        "text": "首页"
+        "text": "首页",
+        "iconPath":"resource/icons/tabBar/主页.png",
+        "selectedIconPath":"resource/icons/tabBar/主页选中.png"
       },
       {
         "pagePath": "pages/sort/sort",
-        "text": "分类"
+        "text": "分类",
+        "iconPath": "resource/icons/tabBar/分类.png",
+        "selectedIconPath": "resource/icons/tabBar/分类选中.png"
       },
       {
         "pagePath": "pages/cart/cart",
-        "text": "购物车"
+        "text": "购物车",
+        "iconPath": "resource/icons/tabBar/购物车.png",
+        "selectedIconPath": "resource/icons/tabBar/购物车选中.png"        
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "个人中心"
+        "text": "个人中心",
+        "iconPath": "resource/icons/tabBar/我的.png",
+        "selectedIconPath": "resource/icons/tabBar/我的选中.png"
       }
     ]
   }, 

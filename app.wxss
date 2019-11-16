@@ -5,6 +5,7 @@
 
 .container {
   height: 100%;
+  background: #ededed;
   display: flex;
   flex-direction: column;
   align-items: center;
