@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    url:"http://192.168.137.1:8088/salt/",
   }
 })

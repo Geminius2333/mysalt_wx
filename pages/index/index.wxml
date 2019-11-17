@@ -1,6 +1,12 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
+    <form bindsubmit="userLogin">
+      <input focus type="number" name="phone" maxlength="11" minlength="11" placeholder="手机号" value="15558970280"/>
+      <input type="text" name="password"  password maxlength="50" minlength="6" placeholder="密码"/>
+      <button form-type="submit">登录</button>
+    </form>
+
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>

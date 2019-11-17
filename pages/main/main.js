@@ -1,6 +1,20 @@
 // pages/main/main.js
+const app = getApp();
 Page({
-
+  //获取商品信息
+  getPageInfo:function(){
+    wx.request({
+      url: app.globalData.url + 'goods',
+      success: res => {
+        var msg = res.data;
+        console.log(msg.code);
+        console.log(msg.data)
+        this.setData({
+          "pageInfo": msg.data,
+        });
+      }
+    })    
+  },
   /**
    * 页面的初始数据
    */
@@ -37,30 +51,37 @@ Page({
     { class: "home-menu-item4", text: "按钮4" }
     ],
     
+    //测试数据
     items: [{ id: 1, title: "一斤苹果", price: 23.33, sales: 520, image: "https://s2.ax1x.com/2019/10/15/KCfaff.jpg" },
     { id: 2, title: "一个大西瓜", price: 50.00, sales: 1000, image: "https://s2.ax1x.com/2019/10/15/KChGgU.jpg" },
     { id: 3, title: "一只可爱的小母猪", price: 888.88, sales: 6666, image: "https://s2.ax1x.com/2019/10/15/KCfj1O.jpg" }
-    ]
+    ],
+    //商品
+    pageInfo: null,
   },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    //设置swiper高度
     wx.getSystemInfo({
       success(res) {
         var screenWidth = res.screenWidth;
         var screenHeight = res.screenHeight;
-        // console.log("screenWidth:"+screenWidth);
-        // console.log("screenHeight:"+screenHeight);
         var swiperHeight = 150 * screenHeight / 568;
         // console.log("new swiperHeight:"+swiperHeight);
         that.setData({
           'homeSwiper.height':swiperHeight+"px",
         })
       }
-    })
+    });
+
+    //获取商品
+    that.getPageInfo();
+
   },
 
   /**
@@ -95,7 +116,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getPageInfo();
+    wx.stopPullDownRefresh();
   },
 
   /**

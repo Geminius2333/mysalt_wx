@@ -3,6 +3,28 @@
 const app = getApp()
 
 Page({
+  //用户登录
+  userLogin:function(e){
+    wx.request({
+      url: app.globalData.url+'user/login',
+      method:"GET",
+      data: e.detail.value,
+      success:res=>{
+        var msg = res.data;
+        //console.log(msg);
+        if(msg.flag==false){
+          console.log(msg.code);
+        }else{
+          wx.switchTab({
+            url: '../mine/mine',
+          })
+        }
+      }
+
+    })
+    console.log(e.detail);
+  },
+
   data: {
     motto: 'Hello World',
     userInfo: {},

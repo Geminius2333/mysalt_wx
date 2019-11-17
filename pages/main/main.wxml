@@ -11,7 +11,7 @@
         </swiper-item>
       </swiper>
     </view>  
-    <!---->
+    <!--测试数据-->
     <view class="items" wx:for="{{items}}" wx:key="{{item.id}}">
       <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
       <view class="item-info">
@@ -20,7 +20,16 @@
         <view><text>销量：{{item.sales}}</text></view>
         <button bindtap="showDialog">点击我</button>
       </view>
-
+    </view>
+    <!--实际-->
+    <view class="items" wx:for="{{pageInfo.list}}" wx:key="{{item.id}}">
+      <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="item-info">
+        <view><text class="item-info-title">{{item.title}}</text></view>
+        <view><text class="del-price">￥666</text><text class="price">￥{{item.price}}</text></view>
+        <view><text>销量：{{item.sales}}</text></view>
+        <button bindtap="showDialog">点击我</button>
+      </view>
     </view>
   </view>
 </view>

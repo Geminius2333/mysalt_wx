@@ -30,8 +30,8 @@
     </view>
   </view>
   <view style="height:25rpx;width:750rpx;background:#e3e3e3"></view>
-  <view class="menu-list" style="flex-direction:column;">
-    <view class="menu-list-item">
+  <view class="menu-list">
+    <!-- <view class="menu-list-item">
       <i class="icon iconfont  iconzuji"/>我的足迹
     </view>
     <view class="menu-list-item">
@@ -42,7 +42,24 @@
     </view>
     <view class="menu-list-item ">
       <i class="icon iconfont  iconbangzhu"/>我的帮助
-    </view>
+    </view> -->
+    <mp-cells>
+      <mp-cell link hover value="我的足迹">
+        <image class="cell-img" slot="title" src="{{icon}}"></image>
+      </mp-cell>
+      <mp-cell link hover value="我的地址">
+         <image class="cell-img" slot="title" src="{{icon}}" ></image>
+      </mp-cell>   
+      <mp-cell link hover value="设置" >
+        <image class="cell-img" slot="title" src="{{icon}}"></image>
+      </mp-cell>
+      <mp-cell link hover value="我的帮助">
+        <image class="cell-img" slot="title" src="{{icon}}"  ></image>
+      </mp-cell>  
+      <mp-cell link="true" hover url="../index/index" value="index" footer="说明文字">
+        <image slot="icon" src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+    </mp-cells>
   </view>
 
   <button bindtap="getUser">获取用户</button>

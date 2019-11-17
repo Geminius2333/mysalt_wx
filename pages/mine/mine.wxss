@@ -21,16 +21,11 @@
     align-items: unset;
 }
 
-.order-menu{
-
-}
-
 .order-menu-item{
   display: flex;
   flex-direction: column;
   width: 140rpx;
   padding:15px 0 15px 0;
-  background: #ffc0cb;
   text-align: center;
 }
 
@@ -39,9 +34,13 @@
 }
 
 .menu-list{
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  width:750rpx;
 }
 
+.cell-img{
+  margin-right: 16px;vertical-align: middle;width:20px; height: 20px;
+}
 .menu-list-item{
   width:700rpx;
   padding:10px 25rpx  10px 25rpx;

@@ -1,2 +1,20 @@
 <!--pages/sort/sort.wxml-->
-<text>pages/sort/sort.wxml</text>
+<view class=".container">
+    <!-- 左侧栏 -->
+    <view class="nav-left">
+        <view wx:for="{{goodsTypeList}}" wx:if="{{item.pid==0}}" wx:key="{{item.id}}" 
+            class="nav-left-items {{curNav == index+1 ? 'active' : ''}}" bindtap="switchRightTab" data-id="{{index+1}}">
+            {{item.name}}
+        </view>
+    </view>
+    <!-- 右侧栏 -->
+    <view class="nav-right" wx:for="{{goodsTypeList}}" wx:if="{{goodsType.pid==0&&curNav==index+1}}" wx:key="{{goodsType.id}}" wx:for-item="goodsType">
+        <view class="nav-right-items" wx:for="{{goodsTypeList}}" wx:if="{{item.pid==goodsType.id}}" wx:key="{{item.id}}">
+            <image src="../../resource/images/mine/user-info-bg.jpg"></image>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+      
+</view>
+      
+  
