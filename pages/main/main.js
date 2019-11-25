@@ -1,14 +1,42 @@
 // pages/main/main.js
 const app = getApp();
 Page({
+
+  //添加商品到购物车
+  addToCart:function(e){
+    //console.log(e);
+    wx.request({
+      url: app.globalData.url+'/cart/add',
+      method:'POST',
+      data: {"user": this.data.user.id,
+        "goods": e.target.dataset.goodsId,
+        "number": 1,
+        "addDate": new Date()},
+      success:res=>{
+        var msg = res.data;
+        //console.log(msg.data)
+        if(msg.flag){
+          wx.showToast({
+            title: '已加入购物车',
+            duration:500,
+          })
+        }
+      }
+    })
+  },
+
   //获取商品信息
   getPageInfo:function(){
+    var that = this;
+    that.setData({"appUrl":app.globalData.url})
+    console.log(that.data.appUrl);
     wx.request({
-      url: app.globalData.url + 'goods',
+      url: app.globalData.url+ '/goods',
       success: res => {
         var msg = res.data;
         console.log(msg.code);
         console.log(msg.data)
+        console.log(msg.data.list[6].goodsImgList[0].img)
         this.setData({
           "pageInfo": msg.data,
         });
@@ -19,6 +47,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user:null,
+    //
+    appUrl:null,
+    //
     dialogShow: false,
     dialogButtons: [{ text: '取消' }, { text: '确定' }],
     background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
@@ -65,6 +97,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({"appUrl":getApp().globalData.url})
     var that = this;
     //设置swiper高度
     wx.getSystemInfo({
@@ -79,8 +112,7 @@ Page({
       }
     });
 
-    //获取商品
-    that.getPageInfo();
+
 
   },
 
@@ -95,7 +127,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //获取商品
+    this.getPageInfo();
+    this.setData({user:app.globalData.user});
+    //console.log(this.data.user);
   },
 
   /**

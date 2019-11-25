@@ -1,34 +1,50 @@
 // pages/mine/mine.js
+const app = getApp();
 Page({
+  //跳转到注册页面
+  toRegister:function(){
+    wx.navigateTo({
+      url:'register/register',
+    })
+  },
 
-  getUser:function(){
-    wx.request({
-      url: 'http://localhost:8088/salt/user/test',
-      method:'GET',
-      success(res){
-        console.log(res.data);
-      }
-    }) 
+  //跳转到登录页面
+  toLogin:function(){
+    wx.navigateTo({
+      url:'login/login',
+    })
   },
 
   /**
    * 页面的初始数据
    */
   data: {
+    user :null,
+    appUrl:null,
+    pages:{
+      none:'',
+      recAddress: '../recAddress/recAddress',
+      setting:'',
+      histroy:'',
+      help:'',
+      orders:'',
+    },
     waitPay:"/resource/icons/mine/支付.jpg",
     iconPath:{
       waitPay:"/resource/icons/mine/支付.jpg",
       waitDisp:"/resource/icons/mine/包裹.jpg"
     },
     //menu-list
-    icon:"/resource/icons/mine/baoguo.png"
+    icon:"/resource/icons/mine/baoguo.png",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // this.setData({user:app.globalData.user});
+    // console.log(user);
+    this.setData({ appUrl: app.globalData.url});
   },
 
   /**
@@ -42,7 +58,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log();
+    this.setData({ user: app.globalData.user});
+    //console.log(user);
   },
 
   /**

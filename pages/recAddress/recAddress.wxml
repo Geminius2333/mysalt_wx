@@ -1,0 +1,22 @@
+<!--pages/mine/recAddress/recAddress.wxml-->
+<view class="container">
+  <view class="content">
+    <text wx:if="{{recAddressList == null}}">还没有收货地址哦</text>
+    <view class="content-item {{item.id==user.deftAddress?'content-item-default':''}}" wx:for="{{recAddressList}}">
+      <view class="content-item-text">
+        <text class="content-text-name">{{item.name}}</text>
+        <text class="content-text-phone">{{item.phone}}</text>
+        <i class="icon iconfont icondd content-item-icon" bindtap="toEdit"/>
+      </view>   
+      <view class="content-item-text">
+        <text class="">{{item.recAddressArea.city.province.name}}</text>
+        <text class="">{{item.recAddressArea.city.name}}</text>
+        <text class="">{{item.recAddressArea.name}}</text>
+        <text >{{item.address}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="bottom">
+    <button class="add-btn" bindtap="toAdd">添加新地址</button>
+  </view>
+</view>

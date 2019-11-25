@@ -1,11 +1,57 @@
 // pages/cart/cart.js
+var common = require('../../utils/common.js');
+const app = getApp();
 Page({
+  
+  addOrder:function(e){
+    console.log("添加order");
+  },
+
+  getCartList:function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.url+'/cart/user/'+app.globalData.user.id,
+      method:"GET",
+      success:res=>{
+        var msg = res.data;
+        console.log(msg);
+        that.setData({cartList:msg.data});
+      }
+    })
+  },
+
+  toLoginPage:function(e){
+    common.toLoginPage();
+  },
+
+  deleteCartItem:function(e){
+    console.log(e);
+  },
+
+  addNum:function(){
+    this.setData({"goodsNum":this.data.goodsNum+1});    
+  },
+  reduceNum:function(){
+    if(this.data.goodsNum>1)
+      this.setData({"goodsNum":this.data.goodsNum-1});
+    else{
+      wx.showToast({
+        title: '数量最小为1',
+        duration:1000,
+        icon:'none',
+      })
+    }
+  },
+
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    appUrl:null,
+    user:null,
+    goodsNum:1,
+    cartList:null,
   },
 
   /**
@@ -26,7 +72,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({user:app.globalData.user,appUrl:app.globalData.url});
+    if(this.data.user !=null)
+      this.getCartList();
   },
 
   /**

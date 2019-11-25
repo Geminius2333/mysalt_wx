@@ -6,7 +6,7 @@
 
 .page-body,.swiper{
   width:100%;
-  
+  padding-bottom: 5px;
 }
 
 .swiper-img{
@@ -44,6 +44,8 @@
 .items{
   display: flex;
   flex-direction: row;
+  padding-bottom: 5px;
+
 }
 
 .item-image{
@@ -53,7 +55,13 @@
 }
 
 .item-info{
-  margin-right: 10px;
+  background: white;
+  width: 400rpx;
+
+}
+
+.item-info view{
+  padding-bottom: 30rpx;
 }
 
 .del-price{
@@ -63,4 +71,9 @@
 
 .price{
   color: red;
+}
+
+.item-info .add-cart-btn{
+  background: #0094ff;
+  color: white;
 }

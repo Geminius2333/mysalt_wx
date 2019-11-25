@@ -2,6 +2,23 @@
 .container{
   padding-top: 0;
 }
+
+/* 登录框 */
+.login-view{
+  display: flex;
+  flex-direction: row;
+  width:750rpx;
+  height: 350rpx;
+  background: #88aeda;
+  align-items: center;
+  
+}
+
+.login-view .login-view-btn{
+   width: 100px;
+   height: 30px;
+}
+
 .user-info{
   display: flex;
   flex-direction:column;
@@ -12,9 +29,10 @@
   text-align: center;
 }
 
-.user-info-img{
+.user-info .user-info-img{
   width:150rpx;
   height:150rpx;
+  border-radius: 50%;
 }
 
 .order{

@@ -1,15 +1,20 @@
 {
   "pages": [
     "pages/mine/mine",
+    "pages/mine/login/login",
+    "pages/mine/register/register",
+    "pages/index/index",
+    "pages/recAddress/recAddress",
+    "pages/recAddress/add/add",
+    "pages/recAddress/edit/edit",
     "pages/cart/cart",
     "pages/sort/sort",
     "pages/main/main",
-    "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#0094ff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },

@@ -1,0 +1,60 @@
+/* pages/mine/recAddress/recAddress.wxss */
+.container{
+  padding: 0;
+}
+
+
+/* 内容 */
+.content{
+  width: 100%;
+  background: white;
+}
+
+.content .content-item{
+  padding:0 5px;
+  color: #837f7f;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.content .content-item:hover{
+  background: #e1e1e1;
+}
+
+.content .content-item.content-item-default{
+  border-left: 3px solid #ff0094;
+}
+
+.content .content-item-text{
+  font-size: 12px;
+  padding:5px;
+}
+
+.content .content-item-text .content-text-name{
+  color: black;
+  font-size: 15px;
+  font-style: bold;
+}
+
+.content .content-item-text .content-text-phone{
+  padding-left: 5px;
+}
+
+.content .content-item .content-item-icon{
+  right: 5px;
+  position: fixed;
+}
+
+
+/* 底部 */
+.bottom{
+  width: 100%;
+  bottom: 0px;  
+  position: fixed;
+  background:#ff0094;
+}
+
+.bottom .add-btn{
+  background-color: #ff0094;
+  color: white;
+  width: 750rpx;
+}

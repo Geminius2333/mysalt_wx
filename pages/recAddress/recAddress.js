@@ -1,45 +1,50 @@
-// pages/sort/sort.js
+// pages/mine/recAddress/recAddress.js
 const app = getApp();
 Page({
-  //switchRightTab
-  switchRightTab:function(e){
-    let tabId = e.target.dataset.id;
-    console.log(e.target.dataset);
-    this.setData({
-      curNav:tabId,
+
+  toEdit:function(){
+    console.log("跳转到编辑收货地址页面");
+    wx.navigateTo({
+      url: 'edit/edit',
     })
   },
-  //获取分类
-  getGoodsType:function(){
+
+  toAdd:function(){
+    console.log("跳转到添加收货地址页面");
+    wx.navigateTo({
+      url: 'add/add',
+    })
+  },
+
+  getRecAddress:function(){
     var that = this;
     wx.request({
-      url: app.globalData.url+'/goods/goodsType',
-      data: {},
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function(res){
-        // success
+      url: that.data.appUrl+'/recAddress/user/'+that.data.user.id,
+      method:'GET',
+      success:res=>{
+        //console.log(res);  
         var msg = res.data;
-        that.setData({
-          "goodsTypeList":msg.data
-        });
-        console.log(that.data.goodsTypeList);
+        that.setData({recAddressList:msg.data});
+        console.log(msg.data);
       }
     })
   },
+
   /**
    * 页面的初始数据
    */
   data: {
-    goodsTypeList:null,
-    curNav:1,
+    recAddressList:null,
+    user:null,
+    appUrl:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({ appUrl: app.globalData.url,user:app.globalData.user});
+
   },
 
   /**
@@ -53,7 +58,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getGoodsType();
+    console.log(this.data.user);
+    console.log(this.data.appUrl);
+    this.getRecAddress();
   },
 
   /**

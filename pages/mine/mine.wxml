@@ -1,8 +1,15 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
-  <view class="user-info">
-    <view><image class="user-info-img" src="https://s2.ax1x.com/2019/10/13/uxJaK1.md.jpg" mode="aspectFit"/></view>
-    <view><text id="user-name-text">千反田世美</text></view>
+  <view class="login-view" wx:if="{{user == null}}">
+    <button type="primary" class="login-view-btn" bindtap="toLogin">登录</button>
+    <button class="login-view-btn" bindtap="toRegister">注册</button>
+  </view>
+  <view class="user-info" wx:if="{{user != null}}">
+    <view>
+    <!-- <image class="user-info-img" src="https://s2.ax1x.com/2019/10/13/uxJaK1.md.jpg" mode="aspectFill"/> -->
+    <image class="user-info-img" src="{{appUrl+user.img}}" mode="aspectFill"></image>
+    </view>
+    <view><text id="user-name-text">{{user.username}}</text></view>
   </view>
   <view class="order">
     <view style="padding:10px 0 10px 0"><text>我的订单</text></view>
@@ -44,23 +51,18 @@
       <i class="icon iconfont  iconbangzhu"/>我的帮助
     </view> -->
     <mp-cells>
-      <mp-cell link hover value="我的足迹">
-        <image class="cell-img" slot="title" src="{{icon}}"></image>
-      </mp-cell>
-      <mp-cell link hover value="我的地址">
+      <mp-cell link hover url="{{user==null?pages.none:pages.recAddress}}" value="我的地址">
          <image class="cell-img" slot="title" src="{{icon}}" ></image>
       </mp-cell>   
       <mp-cell link hover value="设置" >
         <image class="cell-img" slot="title" src="{{icon}}"></image>
       </mp-cell>
+      <mp-cell link hover value="我的足迹">
+        <image class="cell-img" slot="title" src="{{icon}}"></image>
+      </mp-cell>
       <mp-cell link hover value="我的帮助">
         <image class="cell-img" slot="title" src="{{icon}}"  ></image>
       </mp-cell>  
-      <mp-cell link="true" hover url="../index/index" value="index" footer="说明文字">
-        <image slot="icon" src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
-      </mp-cell>
     </mp-cells>
   </view>
-
-  <button bindtap="getUser">获取用户</button>
 </view>

@@ -1,45 +1,18 @@
-// pages/sort/sort.js
-const app = getApp();
+// pages/recAddress/edit/edit.js
 Page({
-  //switchRightTab
-  switchRightTab:function(e){
-    let tabId = e.target.dataset.id;
-    console.log(e.target.dataset);
-    this.setData({
-      curNav:tabId,
-    })
-  },
-  //获取分类
-  getGoodsType:function(){
-    var that = this;
-    wx.request({
-      url: app.globalData.url+'/goods/goodsType',
-      data: {},
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function(res){
-        // success
-        var msg = res.data;
-        that.setData({
-          "goodsTypeList":msg.data
-        });
-        console.log(that.data.goodsTypeList);
-      }
-    })
-  },
+
   /**
    * 页面的初始数据
    */
   data: {
-    goodsTypeList:null,
-    curNav:1,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -53,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getGoodsType();
+
   },
 
   /**
