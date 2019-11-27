@@ -4,6 +4,7 @@
     "pages/mine/login/login",
     "pages/mine/register/register",
     "pages/index/index",
+    "pages/order/order",
     "pages/recAddress/recAddress",
     "pages/recAddress/add/add",
     "pages/recAddress/edit/edit",

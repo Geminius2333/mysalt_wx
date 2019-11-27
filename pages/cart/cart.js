@@ -2,47 +2,210 @@
 var common = require('../../utils/common.js');
 const app = getApp();
 Page({
-  
-  addOrder:function(e){
-    console.log("添加order");
+  toOrderPage:function(e){
+    console.log("跳转到order页面");
+  },
+  //更新数据库cart
+  updateCartList:function(){
+    var cartList = this.data.cartList;
+    var json = new Array();
+    for(let i=0;i<cartList.length;i++){
+      json.push({id:cartList[i].id,number:cartList[i].number,checked:cartList[i].checked});
+    }
+    console.log(json);
+    wx.request({
+      url: app.globalData.url+'/cart/update',
+      data: {json},
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        var msg = res.data;
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
   },
 
+  /**
+   * @param {string} id 购物车id
+   */
+  deleteCart:function(id){
+    var that = this;
+    wx.showModal({
+      title: '注意',
+      content: '确定移出购物车吗？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.url + '/cart/delete/' + id,
+            method: 'POST', 
+            success: function (res) {
+              console.log(res.data);
+              that.getCartList();
+            },
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    });
+    //this.getCartList();
+  },
+  // 获取购物车list
   getCartList:function(){
     var that = this;
     wx.request({
       url: app.globalData.url+'/cart/user/'+app.globalData.user.id,
       method:"GET",
       success:res=>{
-        var msg = res.data;
+        let msg = res.data;
         console.log(msg);
         that.setData({cartList:msg.data});
       }
     })
   },
-
-  toLoginPage:function(e){
+  // 跳转到登录页
+  toLoginPageClick:function(e){
     common.toLoginPage();
   },
-
-  deleteCartItem:function(e){
-    console.log(e);
+  // 商品移出购物车
+  deleteCartItemClick:function(e){
+    let dataset = e.target.dataset;
+    console.log("商品移出购物车："+dataset.id);
+    this.deleteCart(dataset.id);
+    this.updateCountPrice();
+  },
+  // 更新总价
+  updateCountPrice:function(){
+    var countPrice = 0;
+    console.log("当前countPrice："+this.data.countPrice);
+    for(let i in this.data.cartList){
+      let cart = this.data.cartList[i];
+      if(cart.checked){
+        if (cart.cartGoods.goodsDiscount == null || cart.cartGoods.goodsDiscount.isActive == 0){
+          countPrice = countPrice + cart.number * cart.cartGoods.price;
+        }
+        else if (cart.cartGoods.goodsDiscount.isActive == 1){
+          countPrice = countPrice + cart.number * cart.cartGoods.goodsDiscount.price;
+        }
+      }
+    }
+    this.setData({countPrice:countPrice});
+    console.log("当前countPrice:"+this.data.countPrice);
+  },
+  //checkbox全选
+  checkboxCheckAll:function(e){
+    let flag = this.data.checkAll;
+    //console.log("checkAll："+ flag);
+    let cartList = this.data.cartList;
+    if(flag==false){
+      for(let i in cartList){
+        let key = "cartList["+i+"].checked";
+        this.setData({[key]:true});
+      }
+      this.setData({checkAll:true});
+      console.log("判断为ture");
+    }
+    else{
+      for (let i in cartList) {
+        let key = "cartList[" + i + "].checked";
+        this.setData({ [key]: false});
+      }
+      this.setData({checkAll:false});
+      console.log("判断为false");
+    }
+    console.log(this.data.cartList);
+    console.log(this.data.checkAll);
+    this.updateCountPrice();
   },
 
-  addNum:function(){
-    this.setData({"goodsNum":this.data.goodsNum+1});    
+  // checkbox单项点击选择
+  checkboxChange:function(e){
+    var values = e.detail.value;
+    console.log("选中的值："+values);
+    if(values.length == this.data.cartList.length){
+      this.setData({checkAll:true});
+    }else{
+      this.setData({checkAll:false});
+    }
+    for(let i=0;i<this.data.cartList.length;i++){
+      if(values.length>0){
+        for (let index in values) {
+          console.log("value:"+values[index]);
+          var key = "cartList[" + i + "].checked";
+          if (i == values[index]) {
+            this.setData({ [key]: true });
+            // console.log("true i:"+i);
+            break;//如果选中则立即跳出循环
+          }
+          else {
+            this.setData({ [key]: false });
+            // console.log("false i:"+i);
+          }
+        }
+      }else{
+        for(let i in this.data.cartList){
+          var key = "cartList[" + i + "].checked";
+          this.setData({[key]:false});
+        }
+        this.setData({checkAll:false});
+      }
+    }
+    console.log(this.data.cartList);
+    this.updateCountPrice();
   },
-  reduceNum:function(){
-    if(this.data.goodsNum>1)
-      this.setData({"goodsNum":this.data.goodsNum-1});
+  //输入框失去焦点
+  inputBlur:function(e){
+    var value = e.detail.value;
+    var index = e.target.dataset.index;
+    if(value==""){
+      var key = "cartList[" + index + "].number";
+      this.setData({ [key]: 1 });
+      this.updateCountPrice();
+    }
+  },
+  //输入框修改商品数量
+  inputChange:function(e){
+    var index = e.target.dataset.index;
+    var value = e.detail.value;
+    var key = "cartList["+index+"].number";
+    this.setData({[key]:value});
+    this.updateCountPrice();
+  },
+  // 增加商品数量
+  addNumClick:function(e){
+    var index = e.target.dataset.index;
+    // console.log("购物车index:"+index);
+    var number = this.data.cartList[index].number;
+    var key = "cartList["+index+"].number";
+    this.setData({[key]:number+1});   
+    // console.log("购物车当前数量number:" + this.data.cartList[index].number); 
+    this.updateCountPrice();
+  },
+  // 减少商品数量
+  reduceNumClick:function(e){
+    var index = e.target.dataset.index;
+    // console.log("购物车index:"+index);
+    var number = this.data.cartList[index].number;
+    var key = "cartList[" + index + "].number";
+    if(number > 1){
+      this.setData({ [key]: number-1 });
+      // console.log("购物车当前数量number:" + this.data.cartList[index].number); 
+    }
     else{
       wx.showToast({
         title: '数量最小为1',
         duration:1000,
         icon:'none',
-      })
+      });
+      // console.log("购物车当前数量number:" + this.data.cartList[index].number); 
     }
+    this.updateCountPrice();
   },
-
 
   /**
    * 页面的初始数据
@@ -52,6 +215,8 @@ Page({
     user:null,
     goodsNum:1,
     cartList:null,
+    countPrice:0.00,
+    checkAll:false,
   },
 
   /**
@@ -81,7 +246,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    if(this.data.user!=null)
+      this.updateCartList();
   },
 
   /**

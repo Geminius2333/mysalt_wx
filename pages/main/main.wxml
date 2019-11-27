@@ -12,7 +12,7 @@
       </swiper>
     </view>  
     <!--测试数据-->
-    <view class="items" wx:for="{{items}}" wx:key="{{item.id}}">
+    <!-- <view class="items" wx:for="{{items}}" wx:key="{{item.id}}">
       <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
       <view class="item-info">
         <view><text class="item-info-title">{{item.title}}</text></view>
@@ -20,15 +20,19 @@
         <view><text>销量：{{item.sales}}</text></view>
         <button class="add-cart-btn" bindtap="addToCart" data-goods-id="{{item.id}}">加入购物车</button>
       </view>
-    </view>
+    </view> -->
     <!--实际-->
     <view class="items" wx:if="{{item.status==1}}" wx:for="{{pageInfo.list}}" wx:key="{{item.id}}">
       <image class="item-image" src="{{appUrl+item.goodsImgList[0].img}}" mode="aspectFill"></image>
       <view class="item-info">
         <view><text class="item-info-title">{{item.title}}</text></view>
-        <view><text class="del-price" >￥{{item.price}}</text><text wx:if="{{item.goodsDiscount.isActive==1}}" class="price">￥{{item.goodsDiscount.price}}</text></view>
+        <view>
+          <text class="del-price" wx:if="{{item.goodsDiscount.isActive==1}}" >￥{{item.price}}</text>
+          <text wx:if="{{item.goodsDiscount.isActive==1}}" class="price">￥{{item.goodsDiscount.price}}</text>
+          <text wx:if="{{item.goodsDiscount.isActive!=1}}" class="price">￥{{item.price}}</text>
+        </view>
         <view><text>销量：{{item.sales}}</text></view>
-        <button class="add-cart-btn" wx:if="{{user != null}}" bindtap="addToCart">加入购物车</button>
+        <button class="add-cart-btn" wx:if="{{user != null}}" bindtap="addToCart" data-goods-id="{{item.id}}">加入购物车</button>
       </view>
     </view>
   </view>

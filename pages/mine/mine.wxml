@@ -12,7 +12,7 @@
     <view><text id="user-name-text">{{user.username}}</text></view>
   </view>
   <view class="order">
-    <view style="padding:10px 0 10px 0"><text>我的订单</text></view>
+    <view style="padding:10px 0 10px 0"bindtap="toOrderPage"><text>我的订单</text></view>
     <view class="order-menu" style="display:flex;flex-direction:row;">
       <view class="order-menu-item">
         <i class="icon iconfont icondd"></i>

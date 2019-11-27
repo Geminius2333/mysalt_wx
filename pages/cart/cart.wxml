@@ -1,37 +1,50 @@
 <!--pages/cart/cart.wxml-->
+<wxs module="Fix" src="../../utils/fix.wxs"></wxs>
 <view class="container">
   <!-- 未登录 -->
   <view class="login-hint" wx:if="{{user == null}}">
     <text class="hint-text">亲，还没有登录哦</text>
-    <button class="login-btn" type="primary" bindtap="toLoginPage">点击登录</button>  
+    <button class="login-btn" type="primary" bindtap="toLoginPageClick">点击登录</button>  
   </view>
-  <!-- 购物车 -->
-  <view class="cart-item" wx:for="{{cartList}}" wx:key="{{item.id}}" wx:for-item="item" wx:for-index="index">
-    <view></view>  
-    <view>
-      <image class="cart-item-img" src="{{appUrl+item.cartGoods.goodsImgList[0].img}}" mode="aspectFill"></image></view>
-    <view class="cart-item-info">
-      <view class="cart-item-info-list">
-        <text>{{item.cartGoods.name}}</text>
-      </view>
-      <view class="cart-item-info-list" >
-        <text class="cart-item-info-price">{{item.cartGoods.price}}</text>
-      </view>
-      <view  class="cart-item-info-list">
-        <icon  type="info" color="red" bindtap="reduceNum" ></icon>
-        <input class="cart-item-info-num"  value="{{item.number}}" type="number"></input>
-        <icon type="info" color="blue" bindtap="addNum"></icon>
-        <icon class="cart-item-info-deletebtn" type="cancel" color="red" bindtap="deleteCartItem"></icon>
-      </view>
-    </view>
-  </view>
-  <view class="order-info">
+  <scroll-view scroll-y="true">
+      <!-- 购物车 -->
+      <checkbox-group class="checkbox-group" bindchange="checkboxChange">
+        <view class="cart-item" wx:for="{{cartList}}" wx:key="{{cart.id}}" wx:for-item="cart" wx:for-index="index">
+          <checkbox value="{{index}}" checked="{{cart.checked}}"></checkbox>
+          <view>
+            <image class="cart-item-img" src="{{appUrl+cart.cartGoods.goodsImgList[0].img}}" mode="aspectFill"></image>
+          </view>
+          <view class="cart-item-info">
+            <view class="cart-item-info-list">
+              <text>{{cart.cartGoods.name}}</text>
+            </view>
+            <view class="cart-item-info-list">
+              <text class="cart-item-info-price"
+                wx:if="{{cart.cartGoods.goodsDiscount.isActive!=1}}">￥{{cart.cartGoods.price}}</text>
+              <text class="cart-item-info-price"
+                wx:if="{{cart.cartGoods.goodsDiscount.isActive==1}}">￥{{cart.cartGoods.goodsDiscount.price}}</text>
+            </view>
+            <view class="cart-item-info-list">
+              <icon type="info" color="red" bindtap="reduceNumClick" data-index="{{index}}"></icon>
+              <input class="cart-item-info-num" value="{{cart.number}}" type="number" bindinput="inputChange"
+                bindblur="inputBlur" data-index="{{index}}"></input>
+              <icon type="info" color="blue" bindtap="addNumClick" data-index="{{index}}"></icon>
+              <icon class="cart-item-info-deletebtn" type="cancel" color="red" bindtap="deleteCartItemClick"
+                data-id="{{cart.id}}"></icon>
+            </view>
+          </view>
+        </view>
+      </checkbox-group>
+  </scroll-view>
+  <view class="order-info" wx:if="{{user!=null}}">
     <view class="order-info-1">
-      <checkbox class="order-info-checkbox">全选</checkbox>
-      <text class="order-info-price">合计：￥0.00</text>
+      <checkbox-group bindchange="checkboxCheckAll">
+        <checkbox class="order-info-checkbox" value="{{checkAll}}" checked="{{checkAll}}">全选</checkbox>
+      </checkbox-group>
+      <text class="order-info-price">合计：{{Fix.toFix(countPrice,2)}}</text>
     </view>
     <view class="order-info-2">
-      <text class="order-info-text" bindtap="addOrder">去结算</text>
+      <text class="order-info-text" bindtap="toOrderPage">去结算</text>
     </view>
   </view>
 </view>

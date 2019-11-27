@@ -1,6 +1,27 @@
 // pages/mine/mine.js
 const app = getApp();
 Page({
+
+  //跳转到订单页面
+  toOrderPage:function(){
+    console.log(this.data.user);
+    if(this.data.user==null){
+      wx.showToast({title:"还没有登录！",icon:"none",duration:500});
+    }
+    else{
+      wx.navigateTo({
+        url: '/pages/order/order',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+      })
+    }
+
+  },
+
   //跳转到注册页面
   toRegister:function(){
     wx.navigateTo({
@@ -42,7 +63,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.setData({user:app.globalData.user});
+     this.setData({user:app.globalData.user});
     // console.log(user);
     this.setData({ appUrl: app.globalData.url});
   },
