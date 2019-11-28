@@ -1,1 +1,9 @@
 /* pages/recAddress/edit/edit.wxss */
+
+.container{
+    padding:0;
+}
+
+.main{
+    width:750rpx;
+}

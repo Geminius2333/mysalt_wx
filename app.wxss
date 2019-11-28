@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import "weui.wxss";
 @import "./components/dialog/dialog.wxss";
 @import "./components/searchbar/searchbar.wxss";
 @import "./resource/icons/iconfont/iconfont.wxss";

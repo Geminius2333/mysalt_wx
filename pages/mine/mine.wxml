@@ -12,7 +12,7 @@
     <view><text id="user-name-text">{{user.username}}</text></view>
   </view>
   <view class="order">
-    <view style="padding:10px 0 10px 0"bindtap="toOrderPage"><text>我的订单</text></view>
+    <view style="padding:10px 0 10px 0;border-bottom: solid 1px #dddddd;"bindtap="toOrderPage"><text>我的订单</text></view>
     <view class="order-menu" style="display:flex;flex-direction:row;">
       <view class="order-menu-item">
         <i class="icon iconfont icondd"></i>
@@ -52,16 +52,20 @@
     </view> -->
     <mp-cells>
       <mp-cell link hover url="{{user==null?pages.none:pages.recAddress}}" value="我的地址">
-         <image class="cell-img" slot="title" src="{{icon}}" ></image>
+        <!-- <image class="cell-img" slot="title" src="{{icon}}" ></image> -->
+        <mp-icon extClass="cell-icon" slot="icon" icon="location" color="black" size="{{25}}"></mp-icon>
       </mp-cell>   
       <mp-cell link hover value="设置" >
-        <image class="cell-img" slot="title" src="{{icon}}"></image>
+        <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
+        <mp-icon extClass="cell-icon" slot="icon" icon="setting" color="black" size="{{25}}"></mp-icon>
       </mp-cell>
       <mp-cell link hover value="我的足迹">
-        <image class="cell-img" slot="title" src="{{icon}}"></image>
+        <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
+        <mp-icon extClass="cell-icon" slot="icon" icon="time" color="black" size="{{25}}"></mp-icon>
       </mp-cell>
       <mp-cell link hover value="我的帮助">
-        <image class="cell-img" slot="title" src="{{icon}}"  ></image>
+        <!-- <image class="cell-img" slot="title" src="{{icon}}"  ></image> -->
+        <mp-icon extClass="cell-icon" slot="icon" icon="help" color="black" size="{{25}}"></mp-icon>
       </mp-cell>  
     </mp-cells>
   </view>

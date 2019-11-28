@@ -1,2 +1,35 @@
 <!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<wxs module="Fix" src="../../utils/fix.wxs"></wxs>
+<view class="container">
+    <!-- 收货地址 -->
+    <view>
+        <view><button></button></view>
+    </view>
+    <!-- 商品显示 -->
+    <view>
+        
+
+    </view>
+    <!-- 订单信息 -->
+    <view class="order-info">
+        <view class="order-info-item">
+            <text>商品总金额：</text>
+            <text class="" selectable="false" space="false" decode="false">￥{{countPrice}}</text>
+        </view>
+        <view class="order-info-item">
+            <text>配送费用：</text>
+            <text class="" selectable="false" space="false" decode="false">￥0.00</text>
+        </view>
+          
+    </view>
+
+    <!-- 底部 -->
+    <view class="order-bottom">
+        <view class="order-bottom-1">
+            <text class="order-bottom-price">合计：{{Fix.toFix(countPrice,2)}}</text>
+        </view>
+        <view class="order-bottom-2">
+            <text class="order-bottom-btn" bindtap="toOrderPage">提交订单</text>
+        </view>
+    </view>
+</view>

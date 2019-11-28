@@ -61,7 +61,8 @@
 }
 
 .item-info view{
-  padding-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  padding-left: 10rpx;
 }
 
 .del-price{

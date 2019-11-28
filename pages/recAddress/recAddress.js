@@ -2,6 +2,73 @@
 const app = getApp();
 Page({
 
+  //请求数据库更新
+  updataUserDeftAddress: function () {
+    let user = this.data.user;
+    let param = { "id": user.id, "deftAddress": user.deftAddress };
+    wx.request({
+      url: app.globalData.url + '/user/update/deftAddress',
+      data: { param },
+      method: 'POST',
+      success: function (res) {
+        // success
+        let msg = res.data;
+       // console.log(msg);
+      }
+    })
+  },
+  //删除收货地址
+  deleteRecAddress:function(e){
+    let id = e.target.dataset.id;
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除当前收货地址吗？',
+      success(res) {
+        if(res.confirm) {
+          console.log("删除收货地址："+id);
+          if(id == that.data.user.deftAddress){
+            wx.showToast({title:"当前为默认地址！",icon:'none'});
+          }else{
+            wx.request({
+              url: app.globalData.url+'/recAddress/delete/'+id,
+              data: {},
+              method: 'POST', 
+              success: function(res){
+                let msg = res.data;
+                console.log(msg);
+                that.getRecAddress();
+              },
+            })
+          }
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
+  //跳转编辑页面
+  toEditPage:function(e){
+    //console.log(e)
+    let index = e.currentTarget.dataset.index;
+    let recAddress = this.data.recAddressList[index];
+    wx.navigateTo({
+      url: 'edit/edit',
+      success: function(res){
+        // success
+        res.eventChannel.emit('recAddress', { data: recAddress});
+      },
+    })
+  },
+
+  changeDeftAddress:function(e){
+    console.log(e);
+    let deftAddress = e.detail.value;
+    this.setData({ "user.deftAddress":deftAddress});
+    console.log(this.data.user);
+  },
+
   toEdit:function(){
     console.log("跳转到编辑收货地址页面");
     wx.navigateTo({
@@ -43,8 +110,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ appUrl: app.globalData.url,user:app.globalData.user});
-
   },
 
   /**
@@ -58,6 +123,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({ appUrl: app.globalData.url, user: app.globalData.user });
     console.log(this.data.user);
     console.log(this.data.appUrl);
     this.getRecAddress();
@@ -67,7 +133,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.updataUserDeftAddress();
   },
 
   /**

@@ -1,10 +1,33 @@
 <!--pages/recAddress/add/add.wxml-->
-<text>pages/recAddress/add/add.wxml</text>
-<view class="section">
-  <view class="section__title">省市区选择器</view>
-  <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-    <view class="picker">
-      当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
-    </view>
-  </picker>
+<view class="container">
+  <mp-toptips delay="1000" msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+  <view class="main">
+    <mp-from-page>
+      <mp-form id="form" >
+        <mp-cells>
+          <mp-cell  title="收货人" ext-class="">
+            <input name="name" data-field="name" class="weui-input" placeholder="请输入收货人姓名" bindinput="formInputChange" />
+          </mp-cell>
+          <mp-cell  title="手机号" ext-class="">
+            <input name="phone" data-field="phone" class="weui-input" placeholder="请输入手机号" bindinput="formInputChange" />
+          </mp-cell>
+          <mp-cell  title="所在地址" ext-class="">
+            <picker data-field="area" mode="region" bindchange="bindRegionChange" value="{{region}}">
+              <view class="picker">
+                {{region[0]}}，{{region[1]}}，{{region[2]}}
+              </view>
+            </picker>
+          </mp-cell>
+          <mp-cell prop="address" title="详细地址" ext-class="">
+            <input name="address" data-field="address" class="weui-input" placeholder="请输入街道小区楼层房间号" bindinput="formInputChange" />
+          </mp-cell>
+        </mp-cells>
+      </mp-form>
+      <view slot="button">
+        <button class="weui-btn" type="primary" formType="submit" bindtap="submitForm">确定</button>
+       </view>
+    </mp-from-page>
+  </view>
+
 </view>
+

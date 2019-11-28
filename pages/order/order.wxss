@@ -1,1 +1,56 @@
 /* pages/order/order.wxss */
+
+
+
+.order-info{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: 750rpx;
+}
+
+.order-info .order-info-item{
+    width:730rpx;
+    padding:30rpx 10rpx;
+    border-bottom: solid 1px #d3d3d3;
+}
+
+
+.order-bottom{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 80rpx;
+  z-index: 10;
+}
+.order-bottom .order-bottom-1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width:600rpx;
+  height: 80rpx;
+  background-color: white;
+}
+
+.order-bottom-1 .order-bottom-checkbox{
+  width: 440rpx;
+  padding-left: 10rpx;
+}
+.order-bottom-1 .order-bottom-price{
+  width:150rpx;
+  color: red;
+}
+
+.order-bottom .order-bottom-2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #111111;
+  width: 150rpx;
+  color: white;
+  height: 80rpx;
+}

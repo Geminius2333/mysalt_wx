@@ -14,10 +14,7 @@
   padding:0 5px;
   color: #837f7f;
   border-bottom: 1px solid #d3d3d3;
-}
-
-.content .content-item:hover{
-  background: #e1e1e1;
+  border-left: solid 3px #aaaaaa;
 }
 
 .content .content-item.content-item-default{
@@ -26,9 +23,8 @@
 
 .content .content-item-text{
   font-size: 12px;
-  padding:5px;
+  padding:15rpx;
 }
-
 .content .content-item-text .content-text-name{
   color: black;
   font-size: 15px;
@@ -40,10 +36,13 @@
 }
 
 .content .content-item .content-item-icon{
-  right: 5px;
-  position: fixed;
+  font-size: 15px;
+
 }
 
+.content-item-edit .edit-label{
+  margin-left: 180rpx;
+}
 
 /* 底部 */
 .bottom{

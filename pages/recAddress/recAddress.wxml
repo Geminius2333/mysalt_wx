@@ -2,19 +2,38 @@
 <view class="container">
   <view class="content">
     <text wx:if="{{recAddressList == null}}">还没有收货地址哦</text>
-    <view class="content-item {{item.id==user.deftAddress?'content-item-default':''}}" wx:for="{{recAddressList}}">
-      <view class="content-item-text">
-        <text class="content-text-name">{{item.name}}</text>
-        <text class="content-text-phone">{{item.phone}}</text>
-        <i class="icon iconfont icondd content-item-icon" bindtap="toEdit"/>
-      </view>   
-      <view class="content-item-text">
-        <text class="">{{item.recAddressArea.city.province.name}}</text>
-        <text class="">{{item.recAddressArea.city.name}}</text>
-        <text class="">{{item.recAddressArea.name}}</text>
-        <text >{{item.address}}</text>
-      </view>
-    </view>
+    <radio-group bindchange="changeDeftAddress">
+          <view class="content-item {{item.id==user.deftAddress?'content-item-default':''}}" wx:for="{{recAddressList}}">
+            <view class="content-item-text">
+              <text class="content-text-name">{{item.name}}</text>
+              <text class="content-text-phone">{{item.phone}}</text>
+            </view>
+            <view class="content-item-text content-item-text-border">
+              <text class="">{{item.recAddressArea.city.province.name}}</text>
+              <text class="">{{item.recAddressArea.city.name}}</text>
+              <text class="">{{item.recAddressArea.name}}</text>
+              <text>{{item.address}}</text>
+            </view>
+            <view class="content-item-edit">
+              <label>
+                <radio class="" value="{{item.id}}" checked="{{item.id==user.deftAddress?true:false}}"></radio>
+                <text>{{item.id==user.deftAddress?'默认':'选择'}}</text>
+              </label>
+              <label class="edit-label"  bindtap="toEditPage" data-id="{{item.id}}" data-index="{{index}}">
+                <mp-icon icon="pencil" color="black" size="{{20}}"></mp-icon>
+                <text>编辑</text>
+              </label>
+              <label class="edit-label" bindtap="deleteRecAddress" data-id="{{item.id}}">
+                <mp-icon icon="delete" color="black" size="{{20}}" ></mp-icon>
+                <text >删除</text>        
+              </label>
+              <!-- <i class="icon iconfont icondd content-item-icon" >编辑</i> -->
+
+              <!-- <i class="icon iconfont icondd content-item-icon" >删除</i> -->
+            </view>
+          </view>
+    </radio-group>
+      
   </view>
   <view class="bottom">
     <button class="add-btn" bindtap="toAdd">添加新地址</button>
