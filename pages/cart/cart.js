@@ -2,8 +2,36 @@
 var common = require('../../utils/common.js');
 const app = getApp();
 Page({
+  //跳转到添加订单页面
   toOrderPage:function(e){
     console.log("跳转到order页面");
+    let orderDetailList = new Array();
+    let cartList = this.data.cartList;
+    //console.log(cartList);
+    for(let i = 0;i<cartList.length;i++){
+      if(cartList[i].checked == true){
+        orderDetailList.push(cartList[i]);
+      }
+    };
+    //console.log(orderDetailList);
+    this.setData({orderDetailList:orderDetailList});
+    if(orderDetailList.length < 1){
+      wx.showToast({title:"还没有选择商品",icon:'none',duration:1000});
+    }else{
+      wx.navigateTo({
+        url: '/pages/order/add/add',
+        success: function (res) {
+          // success
+          res.eventChannel.emit('orderDetailList', { data: orderDetailList });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
+    }
   },
   //更新数据库cart
   updateCartList:function(){
@@ -11,8 +39,8 @@ Page({
     var json = new Array();
     for(let i=0;i<cartList.length;i++){
       json.push({id:cartList[i].id,number:cartList[i].number,checked:cartList[i].checked});
-    }
-    console.log(json);
+    };
+   // console.log(json);
     wx.request({
       url: app.globalData.url+'/cart/update',
       data: {json},
@@ -21,12 +49,6 @@ Page({
       success: function(res){
         var msg = res.data;
       },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-      }
     })
   },
 
@@ -65,6 +87,7 @@ Page({
         let msg = res.data;
         console.log(msg);
         that.setData({cartList:msg.data});
+        this.updateCountPrice();
       }
     })
   },
@@ -217,6 +240,7 @@ Page({
     cartList:null,
     countPrice:0.00,
     checkAll:false,
+    orderDetailList:null,
   },
 
   /**

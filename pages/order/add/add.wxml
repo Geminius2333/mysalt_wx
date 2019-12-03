@@ -1,0 +1,62 @@
+<!--pages/order/add/add.wxml-->
+<wxs module="Fix" src="../../../utils/fix.wxs"></wxs>
+<view class="container">
+    <!-- 收货地址 -->
+    <view class="rec-address" bindtap="toRecAddressPage">
+        <mp-icon icon="location" color="gray" size="{{20}}" extClass="rec-address-icon"></mp-icon>
+        <view class="rec-address-content">
+            <view class="rec-address-item-text">
+                <text class="rec-address-text-name">{{recAddress.name}}</text>
+                <text class="rec-address-text-phone">{{recAddress.phone}}</text>
+            </view>
+            <view class="rec-address-item-text rec-address-item-text-border">
+                <text class="">{{recAddress.recAddressArea.city.province.name}}</text>
+                <text class="">{{recAddress.recAddressArea.city.name}}</text>
+                <text class="">{{recAddress.recAddressArea.name}}</text>
+                <text>{{recAddress.address}}</text>
+            </view>
+        </view>
+    </view>
+    <!-- 商品显示 -->
+    <view class="cart">
+        <view class="cart-item" wx:for="{{cartList}}" wx:key="{{cart.id}}" wx:for-item="cart" wx:for-index="index">
+            <view>
+                <image class="cart-item-img" src="{{appUrl+cart.cartGoods.goodsImgList[0].img}}" mode="aspectFill"></image>
+            </view>
+            <view class="cart-item-info">
+                <view class="cart-item-info-list">
+                    <text>{{cart.cartGoods.name}}</text>
+                </view>
+                <view class="cart-item-info-list">
+                    <text class="cart-item-info-price"
+                        wx:if="{{cart.cartGoods.goodsDiscount.isActive!=1}}">￥{{cart.cartGoods.price}}</text>
+                    <text class="cart-item-info-price"
+                        wx:if="{{cart.cartGoods.goodsDiscount.isActive==1}}">￥{{cart.cartGoods.goodsDiscount.price}}</text>
+                    <text class="cart-item-info-num">×{{cart.number}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 订单信息 -->
+    <view class="order-info">
+        <view class="order-info-item">
+            <text>商品总金额：</text>
+            <text class="text-price" selectable="false" space="false" decode="false">￥{{Fix.toFix(goodsPrice,2)}}</text>
+        </view>
+        <view class="order-info-item">
+            <text>配送费用：</text>
+            <text class="text-price" selectable="false" space="false" decode="false">￥{{Fix.toFix(logisticsPrice,2)}}</text>
+        </view>
+
+    </view>
+
+    <!-- 底部 -->
+    <view class="order-bottom">
+        <view class="order-bottom-1">
+            <text class="order-bottom-price">合计：￥{{Fix.toFix(countPrice,2)}}</text>
+        </view>
+        <view class="order-bottom-2">
+            <text class="order-bottom-btn" bindtap="addOrder">提交订单</text>
+        </view>
+    </view>
+</view>

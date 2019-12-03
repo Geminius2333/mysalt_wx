@@ -3,19 +3,19 @@ const app = getApp();
 Page({
 
   //跳转到订单页面
-  toOrderPage:function(){
+  toOrderPage:function(e){
     console.log(this.data.user);
+    let nav = e.currentTarget.dataset.nav;
     if(this.data.user==null){
       wx.showToast({title:"还没有登录！",icon:"none",duration:500});
     }
     else{
       wx.navigateTo({
-        url: '/pages/order/order',
+         url:'/pages/order/order',
+        // url: '/pages/order/add/add',
         success: function (res) {
           // success
-        },
-        fail: function () {
-          // fail
+          res.eventChannel.emit('nav', { data: nav });
         },
       })
     }
@@ -48,7 +48,7 @@ Page({
       setting:'',
       histroy:'',
       help:'',
-      orders:'',
+      orders:'../order/order',
     },
     waitPay:"/resource/icons/mine/支付.jpg",
     iconPath:{

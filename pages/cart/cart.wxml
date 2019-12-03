@@ -25,10 +25,10 @@
                 wx:if="{{cart.cartGoods.goodsDiscount.isActive==1}}">￥{{cart.cartGoods.goodsDiscount.price}}</text>
             </view>
             <view class="cart-item-info-list">
-              <icon type="info" color="red" bindtap="reduceNumClick" data-index="{{index}}"></icon>
+              <i class="iconfont iconreduce" bindtap="reduceNumClick" data-index="{{index}}"></i>
               <input class="cart-item-info-num" value="{{cart.number}}" type="number" bindinput="inputChange"
                 bindblur="inputBlur" data-index="{{index}}"></input>
-              <icon type="info" color="blue" bindtap="addNumClick" data-index="{{index}}"></icon>
+              <i class="iconfont iconadd" bindtap="addNumClick" data-index="{{index}}"></i>
               <icon class="cart-item-info-deletebtn" type="cancel" color="red" bindtap="deleteCartItemClick"
                 data-id="{{cart.id}}"></icon>
             </view>
@@ -41,7 +41,7 @@
       <checkbox-group bindchange="checkboxCheckAll">
         <checkbox class="order-info-checkbox" value="{{checkAll}}" checked="{{checkAll}}">全选</checkbox>
       </checkbox-group>
-      <text class="order-info-price">合计：{{Fix.toFix(countPrice,2)}}</text>
+      <text class="order-info-price">合计：￥{{Fix.toFix(countPrice,2)}}</text>
     </view>
     <view class="order-info-2">
       <text class="order-info-text" bindtap="toOrderPage">去结算</text>

@@ -4,8 +4,8 @@
 
     <mp-searchbar></mp-searchbar>
     <view class="page-section page-section-spacing swiper">
-      <swiper class="swiper" indicator-dots="{{homeSwiper.indicatorDots}}" autoplay="true" interval="{{homeSwiper.interval}}" 
-      duration="{{homeSwiper.duration}}" circular="{{homeSwiper.circular}}" style="height:{{homeSwiper.height}}">
+      <swiper class="swiper" indicator-dots="{{homeSwiper.indicatorDots}}" autoplay="true" interval="{{homeSwiper.interval}}"
+        duration="{{homeSwiper.duration}}" circular="{{homeSwiper.circular}}" style="height:{{homeSwiper.height}}">
         <swiper-item wx:for="{{swiperImgs}}" wx:key="item.name">
           <image class="swiper-img" src="{{item.url}}" mode="widthFit"></image>
         </swiper-item>
@@ -22,7 +22,7 @@
       </view>
     </view> -->
     <!--实际-->
-    <view class="items" wx:if="{{item.status==1}}" wx:for="{{pageInfo.list}}" wx:key="{{item.id}}">
+    <view class="items" wx:if="{{item.status==1}}" wx:for="{{pageInfo.list}}" wx:key="{{item.id}}" data-goods-id="{{item.id}}" bindtap="toGoodsPage">
       <image class="item-image" src="{{appUrl+item.goodsImgList[0].img}}" mode="aspectFill"></image>
       <view class="item-info">
         <view><text class="item-info-title">{{item.title}}</text></view>

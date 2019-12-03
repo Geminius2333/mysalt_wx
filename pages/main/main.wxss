@@ -44,7 +44,8 @@
 .items{
   display: flex;
   flex-direction: row;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
+  background: white;
 
 }
 

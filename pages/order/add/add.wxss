@@ -1,0 +1,139 @@
+/* pages/order/add/add.wxss */
+
+.container{
+  padding:0;
+}
+
+/* 收货地址 */
+.rec-address{
+  width: 100%;
+  background: white;
+  border-bottom: solid 1px #d3d3d3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.rec-address-icon{
+  padding:10rpx;
+}
+.rec-address-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.rec-address-item-text{
+  font-size: 12px;
+  padding:15rpx;
+}
+.rec-address .rec-address-item-text .rec-address-text-name{
+  color: black;
+  font-size: 15px;
+  font-style: bold;
+}
+
+.rec-address .rec-address-item-text .rec-address-text-phone{
+  padding-left: 5px;
+}
+
+
+.order-info{
+  display: flex;
+  flex-direction: column;
+  background: white;
+  width: 750rpx;
+}
+
+.order-info .order-info-item{
+  width:730rpx;
+  padding:30rpx 10rpx;
+  border-bottom: solid 1px #d3d3d3;
+}
+
+.text-price{
+  color: red;
+}
+
+/* 商品 */
+.cart{
+  margin-bottom: 10rpx;
+}
+.cart-item{
+  background: white;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width:730rpx;
+  border-bottom: solid 1px #d3d3d3;
+  padding: 0 10rpx;
+
+}
+
+.cart-item-img{
+  width:80px;
+  height: 80px;
+  padding:10px 5px;
+}
+
+.cart-item-info{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 5px;
+  width: 100%;
+}
+
+.cart-item-info .cart-item-info-list{
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: space-between;
+
+}
+
+.cart-item-info .cart-item-info-list .cart-item-info-price{
+  color: red;
+}
+
+.cart-item-info .cart-item-info-list .cart-item-info-num{
+}
+
+/* 底部 */
+.order-bottom{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 90rpx;
+  z-index: 10;
+}
+.order-bottom .order-bottom-1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width:580rpx;
+  background-color: white;
+  padding:0 10rpx;
+}
+
+.order-bottom-1 .order-bottom-checkbox{
+  width: 440rpx;
+  padding-left: 10rpx;
+}
+.order-bottom-1 .order-bottom-price{
+  width:150rpx;
+  color: red;
+}
+
+.order-bottom .order-bottom-2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #111111;
+  width: 130rpx;
+  color: white;
+  padding:0 10rpx;
+}

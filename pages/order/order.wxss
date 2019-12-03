@@ -1,56 +1,102 @@
 /* pages/order/order.wxss */
+.container{
+    padding:0;
+}
 
-
-
-.order-info{
+/* 顶部导航栏 */
+.nav-top{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background: white;
+    align-items: center;
+}
+
+.nav-top .nav-top-item{
+    width:130rpx;
+    padding: 20rpx 10rpx;
+    text-align: center;
+    color: #666;
+}
+
+.nav-top .nav-top-item.active{
+    color: black;
+    border-bottom: solid 3px black;
+}
+
+/* 订单 */
+.orders{
     width: 750rpx;
 }
 
-.order-info .order-info-item{
-    width:730rpx;
-    padding:30rpx 10rpx;
-    border-bottom: solid 1px #d3d3d3;
+.orders .orders-item{
+    padding:20rpx;
+    background: white;
+    margin-bottom: 15rpx;
 }
 
+.orders-item .orders-top{
+    border-bottom: solid 1px #eee;
+    color:#bababa;
+    font-size: small;
+}
 
-.order-bottom{
+.orders-top .orders-top-status{
+    position: absolute;
+    right: 10px;
+}
+
+.orders-item .orders-detail{
+    border-bottom: solid 1px #eee;   
+    display: flex;
+    flex-direction: row;
+}
+
+.orders-detail-item-img{
+  width:80px;
+  height: 80px;
+  padding:10px 5px;
+}
+
+.orders-detail-item-info{
   display: flex;
-  flex-direction: row;
-  position: fixed;
-  bottom: 0px;
+  flex-direction: column;
+  padding: 10px 5px;
   width: 100%;
-  height: 80rpx;
-  z-index: 10;
-}
-.order-bottom .order-bottom-1{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  width:600rpx;
-  height: 80rpx;
-  background-color: white;
 }
 
-.order-bottom-1 .order-bottom-checkbox{
-  width: 440rpx;
-  padding-left: 10rpx;
+.orders-detail-item-info .orders-detail-item-info-list{
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: space-between;
+
 }
-.order-bottom-1 .order-bottom-price{
-  width:150rpx;
+
+.orders-detail-item-info .orders-detail-item-info-list .orders-detail-item-info-price{
   color: red;
 }
 
-.order-bottom .order-bottom-2{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: #111111;
-  width: 150rpx;
-  color: white;
-  height: 80rpx;
+.orders-bottom{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+}
+
+.orders-bottom .orders-bottom-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.orders-bottom-item-btn-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.orders-bottom-item-btn{
+    border:solid 1px #666;
+    padding:0 10rpx;
+    font-size: small;
+    margin: 0 10rpx;
+
 }

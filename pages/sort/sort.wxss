@@ -51,6 +51,6 @@ page{
 }
 
 .nav-right-items image{
-    width:187rpx;
+    width:160rpx;
     height: 60px;
 }

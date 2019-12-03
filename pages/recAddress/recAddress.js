@@ -19,7 +19,8 @@ Page({
   },
   //删除收货地址
   deleteRecAddress:function(e){
-    let id = e.target.dataset.id;
+    //console.log(e)
+    let id = e.currentTarget.dataset.id;
     let that = this;
     wx.showModal({
       title: '提示',

@@ -1,0 +1,68 @@
+<!--pages/goods/goods.wxml-->
+<view class="container">
+    <view class="goods-head">
+        <swiper class="swiper" indicator-dots autoplay interval="2000" duration="500" circular style="height:500rpx">
+            <swiper-item wx:for="{{goods.goodsImgList}}" wx:for-item="goodsImg" wx:key="goodsImg.id">
+                <image class="swiper-img" src="{{appUrl+goodsImg.img}}" mode="widthFit"></image>
+            </swiper-item>
+        </swiper>
+        <view class="head-info">
+            <view class="info-normal info-title">
+                <text>{{goods.title}}</text>
+            </view>
+            <view class="info-normal info-price">
+                <text>￥{{goods.price}}</text>
+            </view>
+            <view class="info-other">
+                <text>销量：{{goods.sales}}</text>
+                <text>库存：{{goods.number}}</text>
+            </view>
+        </view>
+        <view class="head-info">
+            <view class="info-buy-text">
+                <text>已选 {{buyNum}}</text>
+            </view>
+            <view class="column-view">
+                <text style="font-size: small;color: #999;">购买数量</text>
+                <view class="row-view info-buy-num">
+                    <view>
+                        <i class="iconfont iconreduce" bindtap="changeBuyNum" data-num="-1"></i>
+                    </view>
+                    <input class="info-buy-num-input" type="number" value="{{buyNum}}" />
+                    <view>
+                        <i class="iconfont iconadd" bindtap="changeBuyNum" data-num="1"></i>
+                    </view>
+                </view>
+            </view>
+              
+        </view>
+    </view>
+    <view class="goods-body">
+       <view  class="goods-body-nav">
+           <view class="nav-item {{curNav==index?'active':''}}" wx:for="{{goodsNav}}" bindtap="changeNav" data-nav="{{index}}">
+                <text>{{item}}</text>
+           </view>
+       </view>
+        <view wx:if="{{curNav==0}}">
+            <text>{{goods.description}}</text>
+        </view>   
+        <view wx:if="{{curNav==1}}">
+            <text>评论</text>
+        </view>      
+    </view>
+
+    <view class="goods-bottom">
+        <view class="column-view bottom-normal" bindtap="toHelpPage">
+            <mp-icon icon="help"></mp-icon>
+            帮助
+        </view>    
+        <view class="column-view bottom-normal" bindtap="toCartTab">
+            <mp-icon icon="shop"></mp-icon>
+            购物车
+        </view>
+        <view class="bottom-normal bottom-cart" bindtap="addToCart"> 加入购物车</view>
+        <view class="bottom-normal bottom-buy"  bindtap="addOrder"> 立即购买 </view>
+    </view>
+    
+</view>
+  

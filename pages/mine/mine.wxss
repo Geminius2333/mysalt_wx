@@ -36,8 +36,18 @@
 }
 
 .order{
-    align-items: unset;
+  align-items: unset;
+  width: 750rpx;
 }
+.order-head{
+  background: white;
+}
+.order-menu{
+  justify-content: center;
+  display:flex;
+  flex-direction:row;
+}
+
 
 .order-menu-item{
   display: flex;

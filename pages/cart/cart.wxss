@@ -56,12 +56,15 @@
 
 .cart-item-info .cart-item-info-list .cart-item-info-num{
   background: #d3d3d3;
-  width:50px;
+  width: 30px;
   padding-left: 10px;
+  margin: 0 10px;
+
 }
 
 .cart-item-info .cart-item-info-list .cart-item-info-deletebtn{
-  margin-left: 100rpx;
+    position: absolute;
+    right: 10px;
 }
 
 .order-info{
@@ -70,25 +73,23 @@
   position: fixed;
   bottom: 0px;
   width: 100%;
-  height: 80rpx;
+  height: 90rpx;
   z-index: 10;
 }
 .order-info .order-info-1{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width:600rpx;
-  height: 80rpx;
   background-color: white;
 }
 
 .order-info-1 .order-info-checkbox{
-  width: 440rpx;
   padding-left: 10rpx;
 }
 .order-info-1 .order-info-price{
-  width:150rpx;
+  width:180rpx;
   color: red;
 }
 
@@ -100,5 +101,4 @@
   background-color: #111111;
   width: 150rpx;
   color: white;
-  height: 80rpx;
 }

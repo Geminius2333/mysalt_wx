@@ -43,6 +43,18 @@ Page({
       }
     })    
   },
+
+  toGoodsPage:function(e){
+    let goodsId = e.currentTarget.dataset.goodsId;
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/goods/goods',
+      success: function(res){
+        // success
+        res.eventChannel.emit('goodsId', { data: goodsId});
+      },
+    })
+  },
   /**
    * 页面的初始数据
    */

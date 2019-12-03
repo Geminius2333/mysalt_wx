@@ -1,18 +1,58 @@
 // pages/order/order.js
+const app = getApp();
 Page({
+  //请求获取orders
+  getOrdersList:function(){
+    let that = this;
+    let user  = this.data.user;
+    let ordersDetailList = new Array();
+    wx.request({
+      url: app.globalData.url+'/orders/user/'+user.id,
+      data: {},
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      success: function(res){
+        // success
+        let msg = res.data;
+        console.log(msg);
+        that.setData({ordersList:msg.data});
+      },
+    })
+  },
+
+
+  //切换topbar
+  switchNavTop:function(e){
+    //console.log(e)
+    let curNav = e.target.dataset.nav;
+    this.setData({curNav:curNav});
+  },
 
   /**
    * 页面的初始数据
    */
   data: {
-    countPrice:0.00,
+    appUrl:null,
+    user:null,
+    navTop:['全部','待付款','待发货','待收货','待评价'],
+    curNav:0,
+    ordesList:{},
+    ordersDetailList:{},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ appUrl: app.globalData.url});
+    let that = this;
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.on('nav', function (data) {
+      let nav = data.data;
+      if(nav != null || nav != undefined){
+        that.setData({ curNav: nav });
+        console.log("nav:" + nav);
+      }
+    });
   },
 
   /**
@@ -26,7 +66,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({user:app.globalData.user});
+    this.getOrdersList();
   },
 
   /**

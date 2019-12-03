@@ -1,35 +1,48 @@
 <!--pages/order/order.wxml-->
-<wxs module="Fix" src="../../utils/fix.wxs"></wxs>
 <view class="container">
-    <!-- 收货地址 -->
-    <view>
-        <view><button></button></view>
+    <!-- 顶部导航栏 -->
+    <view class="nav-top">
+        <view class="nav-top-item {{curNav==index?'active':''}}" wx:for="{{navTop}}" wx:for-item="navTop" wx:key="{{index}}"
+            bindtap="switchNavTop" data-nav="{{index}}">
+            {{navTop}}           
+        </view>              
     </view>
-    <!-- 商品显示 -->
-    <view>
-        
-
-    </view>
-    <!-- 订单信息 -->
-    <view class="order-info">
-        <view class="order-info-item">
-            <text>商品总金额：</text>
-            <text class="" selectable="false" space="false" decode="false">￥{{countPrice}}</text>
-        </view>
-        <view class="order-info-item">
-            <text>配送费用：</text>
-            <text class="" selectable="false" space="false" decode="false">￥0.00</text>
-        </view>
-          
-    </view>
-
-    <!-- 底部 -->
-    <view class="order-bottom">
-        <view class="order-bottom-1">
-            <text class="order-bottom-price">合计：{{Fix.toFix(countPrice,2)}}</text>
-        </view>
-        <view class="order-bottom-2">
-            <text class="order-bottom-btn" bindtap="toOrderPage">提交订单</text>
-        </view>
+    <!-- 内容盒子 -->
+    <view class="orders" wx:for="{{navTop}}" wx:if="{{curNav==navIndex}}" wx:key="{{navIndex}}" wx:for-index="navIndex"> 
+        <view class="orders-item"  wx:for="{{ordersList}}" wx:for-item="orders" wx:for-index="ordersIndex"  wx:key="{{orders.id}}" wx:if="{{navIndex==0||orders.status==navIndex}}" >
+            <view class="orders-top">
+                <text class="orders-top-id">订单编号：{{orders.id}}</text>
+                <text class="orders-top-status">{{navTop[orders.status]}}</text>
+            </view>
+            <view class="orders-detail" wx:for="{{orders.ordersDetailList}}" 
+                wx:for-index="ordersDetailIndex" wx:key="{{item.id}}">
+                <view>
+                    <image class="orders-detail-item-img" src="{{appUrl+item.ordersDetailGoods.goodsImgList[0].img}}" mode="aspectFill"></image>
+                </view>
+                <view class="orders-detail-item-info">
+                    <view class="orders-detail-item-info-list">
+                        <text>{{item.ordersDetailGoods.title}}</text>
+                    </view>
+                    <view class="orders-detail-item-info-list">
+                        <text class="orders-detail-item-info-price">￥{{item.price}}</text>
+                    </view>
+                    <view class="orders-detail-item-info-list">
+                        <text>数量：{{item.number}}</text>
+                    </view>
+                </view>
+            </view>         
+            <view class="orders-bottom">
+                <view></view>
+                <view  class="orders-bottom-item">
+                    <view></view>
+                    <view class="orders-bottom-item-btn-list">
+                        <view class="orders-bottom-item-btn">取消</view>
+                        <view class="orders-bottom-item-btn">支付</view>
+                    </view>
+                </view>
+            </view>
+              
+        </view>        
     </view>
 </view>
+  
