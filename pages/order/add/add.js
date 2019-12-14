@@ -4,6 +4,7 @@ Page({
 
   //请求添加订单
   addOrder:function(e){
+    let that = this;
     //订单详细列表
     let orderDetailList = new Array();
     for(let i=0;i<this.data.cartList.length;i++){
@@ -29,6 +30,7 @@ Page({
         // success
         let msg = res.data;
         console.log(msg);
+        that.toOrdersPage();
       },
     })
 

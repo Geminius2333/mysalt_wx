@@ -1,6 +1,28 @@
 // pages/order/order.js
 const app = getApp();
 Page({
+
+  //请求更新orders
+  updateOrdersStatus:function(e){
+    let that = this;
+    let id = e.currentTarget.dataset.id;
+    let status = e.currentTarget.dataset.status;
+    wx.request({
+      url: app.globalData.url+'/orders/update',
+      method: 'POST', 
+      header:{
+        'content-type':'application/x-www-form-urlencoded'
+      },
+      data:{id:id,status:status},
+      success: function(res){
+        // success
+        let msg = res.data;
+        console.log(msg);
+        that.getOrdersList();
+      },
+    })
+  },
+
   //请求获取orders
   getOrdersList:function(){
     let that = this;
@@ -19,6 +41,16 @@ Page({
     })
   },
 
+  //跳转到评价页面
+  toCommentPage:function(e){
+    console.log("跳转到评论页面");
+    wx.navigateTo({
+      url: '',
+      success: function(res){
+        // success
+      },
+    })
+  },
 
   //切换topbar
   switchNavTop:function(e){
@@ -34,6 +66,7 @@ Page({
     appUrl:null,
     user:null,
     navTop:['全部','待付款','待发货','待收货','待评价'],
+    ordersBtn:['取消','立即支付','','确认收货','评价','售后'],
     curNav:0,
     ordesList:{},
     ordersDetailList:{},

@@ -1,2 +1,12 @@
 <!--pages/mine/help/help.wxml-->
-<text>pages/mine/help/help.wxml</text>
+<view class="container">
+    <view class="help-item">
+        <view class="item-title">
+            关于我们
+        </view>
+        <view class="item-detail">
+            盐巴商城。。。。
+        </view>
+    </view>
+      
+</view>

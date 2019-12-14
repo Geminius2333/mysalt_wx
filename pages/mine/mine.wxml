@@ -6,7 +6,7 @@
   </view>
   <view class="user-info" wx:if="{{user != null}}">
     <view>
-    <image class="user-info-img" src="{{appUrl+user.img}}" mode="aspectFill"></image>
+    <image  wx:if="{{user.img!=null}}"class="user-info-img" src="{{appUrl+user.img}}" mode="aspectFill"></image>
     </view>
     <view><text id="user-name-text">{{user.username}}</text></view>
   </view>
@@ -43,18 +43,19 @@
         <!-- <image class="cell-img" slot="title" src="{{icon}}" ></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="location" color="black" size="{{25}}"></mp-icon>
       </mp-cell>   
-      <mp-cell link hover value="设置" >
+      <mp-cell link hover url="{{user==null?pages.none:pages.setting}}" value="设置" >
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="setting" color="black" size="{{25}}"></mp-icon>
       </mp-cell>
-      <mp-cell link hover value="我的足迹">
+      <mp-cell link hover url="{{user==null?pages.none:pages.history}}" value="我的足迹">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="time" color="black" size="{{25}}"></mp-icon>
       </mp-cell>
-      <mp-cell link hover value="我的帮助">
+      <mp-cell link hover url="{{user==null?pages.none:pages.help}}" value="我的帮助">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"  ></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="help" color="black" size="{{25}}"></mp-icon>
       </mp-cell>  
     </mp-cells>
   </view>
+  <button bindtap="wxPay">测试支付</button>
 </view>

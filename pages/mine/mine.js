@@ -1,6 +1,22 @@
 // pages/mine/mine.js
 const app = getApp();
 Page({
+  //测试微信支付请求
+  wxPay:function(){
+    wx.requestPayment({
+      timeStamp: new Date(),
+      nonceStr: '12345',
+      package: 'prepay_id=123456',
+      signType: 'MD5',
+      paySign: '',
+      success(res) {
+        console.log(res)
+       },
+      fail(res) { 
+        console.log(res)
+      }
+    })
+  },
 
   //跳转到订单页面
   toOrderPage:function(e){
@@ -45,9 +61,9 @@ Page({
     pages:{
       none:'',
       recAddress: '../recAddress/recAddress',
-      setting:'',
-      histroy:'',
-      help:'',
+      setting:'/pages/mine/setting/setting',
+      history:'/pages/mine/history/history',
+      help:'/pages/mine/help/help',
       orders:'../order/order',
     },
     waitPay:"/resource/icons/mine/支付.jpg",

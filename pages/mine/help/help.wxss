@@ -1,1 +1,5 @@
 /* pages/mine/help/help.wxss */
+.container{
+    padding: 0;
+    background: white;
+}
