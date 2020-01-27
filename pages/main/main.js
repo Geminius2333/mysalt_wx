@@ -44,14 +44,34 @@ Page({
     })    
   },
 
+  toSearchPage:function(e){
+    //const query = wx.createSelectorQuery();
+    
+    wx.navigateTo({
+      url: '/pages/search/search',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
+
   toGoodsPage:function(e){
-    let goodsId = e.currentTarget.dataset.goodsId;
-    console.log(e)
+    // let goodsId = e.currentTarget.dataset.goodsId;
+    let index = e.currentTarget.dataset.index;
+    let goods = this.data.pageInfo.list[index];
+    // console.log(goods);
+    // console.log(e);
     wx.navigateTo({
       url: '/pages/goods/goods',
       success: function(res){
         // success
-        res.eventChannel.emit('goodsId', { data: goodsId});
+        res.eventChannel.emit('goods', goods);
       },
     })
   },

@@ -1,1 +1,8 @@
 /* pages/mine/setting/setting.wxss */
+.container{
+    padding: 0;
+}
+
+.container .menu-list-view{
+    width: 750rpx;
+}

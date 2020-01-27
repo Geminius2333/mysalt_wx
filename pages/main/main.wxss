@@ -1,12 +1,31 @@
 /* pages/main/main.wxss */
-
+text{ 
+  overflow: hidden;
+  word-break: keep-all;
+  word-wrap: break-word;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
 .container{
     padding: 0;
+}
+
+.search-view{
+  padding: 10rpx 0;
+  background: white;
+  text-align: center;
+  margin: 10rpx;
+  border-radius: 30px;
+  color: #999;
 }
 
 .page-body,.swiper{
   width:100%;
   padding-bottom: 5px;
+  text-align: center;
+
 }
 
 .swiper-img{
@@ -41,12 +60,21 @@
   background: lightskyblue;
 }
 
-.items{
+.goods-view{
   display: flex;
   flex-direction: row;
-  margin-bottom: 5px;
-  background: white;
+  flex-wrap:wrap;
+}
 
+
+.items{
+  display: flex;
+  flex-direction: column;
+  width: 365rpx;
+  margin: 5rpx;
+  background: white;
+  align-items: center;
+  text-align: center;
 }
 
 .item-image{
@@ -57,14 +85,9 @@
 
 .item-info{
   background: white;
-  width: 400rpx;
 
 }
 
-.item-info view{
-  padding-bottom: 20rpx;
-  padding-left: 10rpx;
-}
 
 .del-price{
   text-decoration: line-through;

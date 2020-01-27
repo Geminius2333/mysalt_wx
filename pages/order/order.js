@@ -43,11 +43,16 @@ Page({
 
   //跳转到评价页面
   toCommentPage:function(e){
+    let index = e.currentTarget.dataset;
+    // console.log(index)
+    let ordersDetail = this.data.ordersList[index.ordersIndex].ordersDetailList[index.ordersDetailIndex];
+    console.log(ordersDetail)
     console.log("跳转到评论页面");
     wx.navigateTo({
-      url: '',
+      url: 'comment/comment',
       success: function(res){
         // success
+        res.eventChannel.emit('ordersDetail',ordersDetail);
       },
     })
   },

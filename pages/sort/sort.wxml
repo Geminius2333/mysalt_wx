@@ -10,7 +10,7 @@
     <!-- 右侧栏 -->
     <view class="nav-right" wx:for="{{goodsTypeList}}" wx:if="{{goodsType.pid==0&&curNav==index+1}}" wx:key="{{goodsType.id}}" wx:for-item="goodsType">
         <view class="nav-right-items" wx:for="{{goodsTypeList}}" wx:if="{{item.pid==goodsType.id}}" wx:key="{{item.id}}">
-            <image src="../../resource/images/mine/user-info-bg.jpg"></image>
+            <image src="{{appUrl+item.img}}"></image>
             <text>{{item.name}}</text>
         </view>
     </view>

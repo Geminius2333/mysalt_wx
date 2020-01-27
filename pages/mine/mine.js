@@ -1,19 +1,74 @@
 // pages/mine/mine.js
+const utilPay = require('../../utils/beePay.js');
 const app = getApp();
 Page({
   //测试微信支付请求
   wxPay:function(){
-    wx.requestPayment({
-      timeStamp: new Date(),
-      nonceStr: '12345',
-      package: 'prepay_id=123456',
-      signType: 'MD5',
-      paySign: '',
-      success(res) {
-        console.log(res)
-       },
-      fail(res) { 
-        console.log(res)
+    // var shop_no = "20191024308978649d";//小蜜蜂支付的门店号
+    // var outTradeNo = shop_no + Date.parse(new Date());
+    // var payinfo = {
+    //   "Method": "PrePay",
+    //   "ShopNo": "20191024308978649d",//门店号
+    //   "NonceStr": Date.parse(new Date()),
+    //   "OutTradeNo": "123456789",//订单号
+    //   "TotalAmount": "10",//金额单位：分
+    //   "ChannelType": "WX",//支付渠道
+    //   "OpenId": "o0Rq-4ihlwkZEktbh_eo-z7S0s9M",//openId
+    //   "SubAppId": "wxe97214b81562b89d",//小程序appid
+    // };
+    // utilPay.beePay({
+    //   "secret": "wD7Ct61VJePUad1KyA2Iz5EYKLO2b8",//支付秘钥
+    //   "success": function (res) {
+    //     console.log(res);
+    //   },
+    //   "fail": function (res) {
+    //     console.log(res);
+    //   },
+    //   "payinfo": payinfo
+    // });
+
+    // var shop_no = "20191024308978649d";//门店号，小蜜蜂服务平台分配 
+    // var outTradeNo = shop_no + Date.parse(new Date());
+    // wx.navigateToMiniProgram({
+    //   appId: 'wx113f2407af0ed4da',
+    //   path: 'pages/pay/index',
+    //   extraData: {
+    //     "shop_no": shop_no,
+    //     "secret": "wD7Ct61VJePUad1KyA2Iz5EYKLO2b8",//支付秘钥，小蜜蜂服务平台分配 
+    //     "totalAmount": 0.1 * 100, //金额单位：分
+    //     "outTradeNo": outTradeNo
+    //   },
+    //   envVersion: 'release',
+    //   success(res) {
+    //     // 打开成功
+    //     console.log(res);
+    //   }
+    // })
+
+    wx.scanCode({
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    });
+    wx.request({
+      url: 'https://www.baidu.com',
+      data: {},
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
       }
     })
   },

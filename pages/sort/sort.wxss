@@ -46,11 +46,13 @@ page{
 
 .nav-right-items{
     width: 187rpx;
-    height: 120px;        /* 每个item设置高度是120px */ 
+    /* height: 120px;        每个item设置高度是120px  */
     text-align: center;   /* 设置图片下方的提示文字居中显示 */
+    margin-bottom: 10rpx;
+
 }
 
 .nav-right-items image{
     width:160rpx;
-    height: 60px;
+    height: 80px;
 }

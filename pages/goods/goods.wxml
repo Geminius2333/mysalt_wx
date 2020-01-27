@@ -1,9 +1,10 @@
 <!--pages/goods/goods.wxml-->
+<wxs module="DateFormat" src="../../utils/dateFormat.wxs"></wxs>
 <view class="container">
     <view class="goods-head">
         <swiper class="swiper" indicator-dots autoplay interval="2000" duration="500" circular style="height:500rpx">
             <swiper-item wx:for="{{goods.goodsImgList}}" wx:for-item="goodsImg" wx:key="goodsImg.id">
-                <image class="swiper-img" src="{{appUrl+goodsImg.img}}" mode="widthFit"></image>
+                <image class="swiper-img" src="{{appUrl+goodsImg.img}}" mode="aspectFit"></image>
             </swiper-item>
         </swiper>
         <view class="head-info">
@@ -28,7 +29,7 @@
                     <view>
                         <i class="iconfont iconreduce" bindtap="changeBuyNum" data-num="-1"></i>
                     </view>
-                    <input class="info-buy-num-input" type="number" value="{{buyNum}}" />
+                    <input class="info-buy-num-input"  type="number" value="{{buyNum}}" bindinput="buyNumIput" />
                     <view>
                         <i class="iconfont iconadd" bindtap="changeBuyNum" data-num="1"></i>
                     </view>
@@ -39,7 +40,7 @@
     </view>
     <view class="goods-body">
        <view  class="goods-body-nav">
-           <view class="nav-item {{curNav==index?'active':''}}" wx:for="{{goodsNav}}" bindtap="changeNav" data-nav="{{index}}">
+           <view class="nav-item {{curNav==index?'active':''}}" wx:for="{{goodsNav}}" wx:key="{{index}}" bindtap="changeNav" data-nav="{{index}}">
                 <text>{{item}}</text>
            </view>
        </view>
@@ -47,7 +48,33 @@
             <text>{{goods.description}}</text>
         </view>   
         <view wx:if="{{curNav==1}}">
-            <text>评论</text>
+            <view class="comment-view" wx:for="{{commentList}}" wx:key="{{comment.id}}" wx:for-item="comment">
+                <view class="comment-top">
+                    <view class="comment-top-left">
+                        <image class="comment-user-img" src="{{comment.isAnonymous==false?appUrl+comment.commentUser.img:appUrl+'/img/user/1.jpg'}}"></image>
+                    </view>
+                    <view class="comment-top-right">
+                        <view class="comment-top-right-item">
+                            <text>{{comment.isAnonymous==false?comment.commentUser.username:'匿名用户'}}</text>
+                            <!-- <text>评分：{{comment.score}}</text> -->
+                            <view>
+                                <mp-icon type="field" icon="star" color="red" wx:for="{{comment.score}}" wx:key="{{index}}"></mp-icon>
+                                <mp-icon type="outline" icon="star" color="red" wx:for="{{5-comment.score}}" wx:key="{{index}}"></mp-icon>
+                            </view>
+                        </view>
+                        <view class="comment-top-right-item">
+                            <text class="comment-post-time">{{DateFormat.getLocalDate(comment.postTime)}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="comment-content">
+                    {{comment.comment}}
+                </view>
+                <view class="comment-bottom">
+                    图片
+                </view>
+            </view>
+            <text>没有更多数据了</text>
         </view>      
     </view>
 

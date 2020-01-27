@@ -70,6 +70,34 @@ Page({
       });
     }
   },
+  //请求获取商品评论
+  getGoodsComment:function(){
+    let that = this;
+    let goods = this.data.goods.id;
+    wx.request({
+      url: app.globalData.url+'/comment/goods/'+goods,
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        // success
+        let msg = res.data;
+        console.log(msg)
+        that.setData({commentList:msg.data.commentList,commentCount:msg.data.commentCount});
+        if(that.data.commetnCount>999){
+          that.setData({['goodsNav[1]']:"商品评论（999+）"})
+        }else{
+          let str = "商品评论（"+that.data.commentCount+"）";
+          that.setData({['goodsNav[1]']:str})
+        }
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
   
   //请求获取商品信息
   getGoodsInfo:function(){
@@ -92,6 +120,17 @@ Page({
         // complete
       }
     })
+  },
+
+  buyNumIput:function(e){
+    let num = e.detail.value;
+    if(num==""){
+      num = 0
+    }
+    if(num>99){
+      num=99
+    }
+    this.setData({buyNum:num})
   },
 
   // 更改商品数量
@@ -146,7 +185,6 @@ Page({
   data: {
     user:null,
     appUrl:null,
-    goodsId:null,
     goods:{},
     goodsNav:['商品详情','商品评论'],
     curNav:0,
@@ -160,10 +198,10 @@ Page({
     this.setData({appUrl:app.globalData.url});
     let that = this;
     const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('goodsId', function (data) {
-      let goodsId = data.data;
-      that.setData({ goodsId: goodsId });
-      console.log(goodsId);
+    eventChannel.on('goods', function (data) {
+      let goods = data;
+      that.setData({ goods: goods });
+      console.log(goods);
     });
 
   },
@@ -180,7 +218,8 @@ Page({
    */
   onShow: function () {
     this.setData({user:app.globalData.user});
-    this.getGoodsInfo();
+    //this.getGoodsInfo();
+    this.getGoodsComment();
   },
 
   /**

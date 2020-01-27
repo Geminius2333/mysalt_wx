@@ -1,0 +1,35 @@
+<!--pages/searchResult/searchResult.wxml-->
+<view class="container">
+    <view class="page-top">
+        <view class="search-view" bindtap="toSearchPage">
+            <mp-icon icon="search" color="#999"></mp-icon>搜索商品
+        </view>
+        <view bindtap="changeDesc">⬇</view>
+    </view>
+    <view class="page-body">
+        <view class="menu-list">
+            <view class="menu-item {{selectMenu== 1?'active':''}}"  bindtap="selectMenuList" data-index="1" data-sort="id">默认</view>
+            <view class="menu-item {{selectMenu== 2?'active':''}}"  bindtap="selectMenuList" data-index="2" data-sort="orderBySales">销量</view>
+            <view class="menu-item {{selectMenu== 3?'active':''}}"  bindtap="selectMenuList" data-index="3" data-sort="orderByPrice">价格</view>
+        </view>
+        <view class="goods-list" wx:if="{{goodsList!=null}}">
+            <view class="goods-item" wx:if="{{item.status==1}}" wx:for="{{goodsList}}" wx:key="{{item.id}}" data-index="{{index}}"
+                data-goods-id="{{item.id}}" bindtap="toGoodsPage">
+                <image class="goods-image" src="{{appUrl+item.goodsImgList[0].img}}" mode="aspectFill"></image>
+                <view class="goods-info">
+                    <view><text class="goods-info-title">{{item.title}}</text></view>
+                    <view>
+                        <text class="del-price" wx:if="{{item.goodsDiscount.isActive==1}}">￥{{item.price}}</text>
+                        <text wx:if="{{item.goodsDiscount.isActive==1}}" class="price">￥{{item.goodsDiscount.price}}</text>
+                        <text wx:if="{{item.goodsDiscount.isActive!=1}}" class="price">￥{{item.price}}</text>
+                    </view>
+                    <!-- <view><text>销量：{{item.sales}}</text></view> -->
+                    <!-- <button class="add-cart-btn" wx:if="{{user != null}}" bindtap="addToCart" data-goods-id="{{item.id}}">加入购物车</button> -->
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{goodsList==null}}">
+            没有结果
+        </view>
+    </view>
+</view>

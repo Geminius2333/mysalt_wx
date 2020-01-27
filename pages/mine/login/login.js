@@ -3,6 +3,70 @@
 const app = getApp()
 
 Page({
+  //测试函数
+  testA:function(){
+    wx.getSetting({
+      success: function (res) {
+        console.log(res)
+        if (!res.authSetting['scope.userInfo']) {
+          console.log("获取用户信息权限")
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success: function (res) {
+              console.log(res)
+              wx.getUserInfo({
+                success: function (res) {
+                  console.log(res)
+                },
+                fail: function () {
+                  // fail
+                },
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
+  //微信登录
+  loginByWx:function(){
+    wx.login({
+      success: function(res){
+        // success
+        var code = res.code;
+        console.log(code);
+        if(code){
+          //发送code到服务器
+          wx.request({
+            url: app.globalData.url+"/wx/login",
+            data: code,
+            method: 'POST',
+            success: function(res){
+              // success
+              console.log(res)
+              //
+
+              //
+            },
+            fail: function() {
+              // fail
+              console.log("发送code失败:"+res.data);
+            },
+          })
+        }
+
+      },
+      fail: function() {
+        // fail
+        console.log("获取code失败："+res.errorMsg);
+      },
+      complete: function() {
+        // complete
+      }
+    });
+  },
+
   toRegister:function(){
     wx.navigateTo({
       url: '../register/register',

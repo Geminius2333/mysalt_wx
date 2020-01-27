@@ -41,19 +41,19 @@
     <mp-cells>
       <mp-cell link hover url="{{user==null?pages.none:pages.recAddress}}" value="我的地址">
         <!-- <image class="cell-img" slot="title" src="{{icon}}" ></image> -->
-        <mp-icon extClass="cell-icon" slot="icon" icon="location" color="black" size="{{25}}"></mp-icon>
+        <mp-icon extClass="cell-icon" slot="icon" icon="location" color="#ff0094" size="{{25}}"></mp-icon>
       </mp-cell>   
       <mp-cell link hover url="{{user==null?pages.none:pages.setting}}" value="设置" >
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
-        <mp-icon extClass="cell-icon" slot="icon" icon="setting" color="black" size="{{25}}"></mp-icon>
+        <mp-icon extClass="cell-icon" slot="icon" icon="setting" color="#0094ff" size="{{25}}"></mp-icon>
       </mp-cell>
       <mp-cell link hover url="{{user==null?pages.none:pages.history}}" value="我的足迹">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
-        <mp-icon extClass="cell-icon" slot="icon" icon="time" color="black" size="{{25}}"></mp-icon>
+        <mp-icon extClass="cell-icon" slot="icon" icon="time" color="#9400ff" size="{{25}}"></mp-icon>
       </mp-cell>
       <mp-cell link hover url="{{user==null?pages.none:pages.help}}" value="我的帮助">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"  ></image> -->
-        <mp-icon extClass="cell-icon" slot="icon" icon="help" color="black" size="{{25}}"></mp-icon>
+        <mp-icon extClass="cell-icon" slot="icon" icon="help" color="green" size="{{25}}"></mp-icon>
       </mp-cell>  
     </mp-cells>
   </view>

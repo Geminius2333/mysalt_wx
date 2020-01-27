@@ -4,7 +4,7 @@ Page({
   //switchRightTab
   switchRightTab:function(e){
     let tabId = e.target.dataset.id;
-    console.log(e.target.dataset);
+    // console.log(e.target.dataset);
     this.setData({
       curNav:tabId,
     })
@@ -33,13 +33,14 @@ Page({
   data: {
     goodsTypeList:null,
     curNav:1,
+    appUrl:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({appUrl:app.globalData.url});   
   },
 
   /**

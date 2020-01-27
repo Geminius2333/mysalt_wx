@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+        "mp-dialog": "../components/dialog/dialog",
+        "mp-cells": "../../components/cells/cells",
+        "mp-cell": "../../components/cell/cell"
+  },
+  "navigationBarTitleText": "设置"
 }

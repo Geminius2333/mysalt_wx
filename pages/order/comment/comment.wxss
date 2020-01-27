@@ -1,0 +1,19 @@
+/* pages/order/comment/comment.wxss */
+.container{
+    padding:0;
+    background: white;
+}
+
+/* 商品信息 */
+
+.goods-view{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.goods-view .goods-img{
+    width: 160rpx;
+    height: 160rpx;
+}

@@ -1,2 +1,15 @@
 <!--pages/mine/setting/setting.wxml-->
-<text>pages/mine/setting/setting.wxml</text>
+<view class="container">
+    <view class="menu-list-view">
+        <mp-cells ext-class="my-cells">
+            <mp-cell value="个人信息" link hover></mp-cell>
+            <mp-cell value="密码修改" link hover></mp-cell>
+            <mp-cell value="清除缓存" bindtap="clearStorage"></mp-cell>
+            <mp-cell value="退出" hover bindtap="loginOut"></mp-cell>
+        </mp-cells>
+    </view>
+    <mp-dialog title="注意" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+        <view>确认清除吗</view>
+    </mp-dialog>
+
+</view>

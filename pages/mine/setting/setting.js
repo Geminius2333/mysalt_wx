@@ -1,11 +1,37 @@
 // pages/mine/setting/setting.js
+const app = getApp();
 Page({
+
+  clearStorage:function(e){
+    this.setData({dialogShow:true});
+    wx.clearStorageSync();
+    
+  },
+
+  loginOut:function(e){
+    console.log(e)
+    app.globalData.user = null;
+    console.log(app.globalData.user)
+    wx.navigateBack({
+      delta: 1, // 回退前 delta(默认为1) 页面
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    dialogShow: false,
+    buttons: [{ text: '取消' }, { text: '确定' }],
   },
 
   /**

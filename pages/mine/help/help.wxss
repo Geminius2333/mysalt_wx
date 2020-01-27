@@ -3,3 +3,19 @@
     padding: 0;
     background: white;
 }
+
+.help-item{
+    margin:0 10rpx;
+    width: 730rpx;
+}
+
+.item-title{
+    padding: 10rpx 0;
+}
+
+.item-detail{
+    color: #555;
+    font-size: 12px;
+    padding-bottom: 10rpx;
+
+}

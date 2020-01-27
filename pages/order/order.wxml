@@ -30,7 +30,8 @@
                     </view>
                     <view class="orders-detail-item-info-list">
                         <text>数量：{{item.number}}</text>
-                        <mp-icon icon="sticker" color="coral" size="{{18}}" wx:if="{{orders.ordersStatus.status=='待评价'}}" bindtap="toCommentPage">
+                        <mp-icon icon="sticker"data-orders-index="{{ordersIndex}}" data-orders-detail-index="{{ordersDetailIndex}}" 
+                            color="coral" size="{{20}}" wx:if="{{orders.ordersStatus.status=='待评价'}}" bindtap="toCommentPage">
                         </mp-icon>
                         <!-- <view class="orders-bottom-item-btn" wx:if="{{orders.ordersStatus.status=='待评价'}}">评价</view> -->
                     </view>

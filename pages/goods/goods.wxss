@@ -44,12 +44,14 @@
     color: #999;
 }
 .head-info .info-buy-text{
-    padding: 10rpx;
-    border-bottom: solid 1px #333333;
+    padding: 10rpx 0;
+    border-bottom: solid 1px #eeeeee;
+
 }
 
 .row-view.info-buy-num{
     padding: 10rpx 0;
+    align-items: center;
 }
 
 .head-info .info-buy-num-input{
@@ -75,6 +77,53 @@
     border-bottom: solid 3px black;
     color: black;
 }
+/* 评论开始 */
+.comment-view{
+    display: flex;
+    flex-direction: column;
+    /* background: #d3d3d3; */
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.comment-view .comment-top{
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px #eeeeee;
+}
+
+.comment-view .comment-top .comment-user-img{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 45px;
+}
+
+.comment-view .comment-top .comment-top-right{
+    width: 100%;
+}
+
+.comment-view .comment-top .comment-top-right .comment-top-right-item{
+   display: flex;
+   justify-content: space-between;
+   font-size: 15px;
+   padding: 5rpx;
+
+}
+
+.comment-post-time{
+    color: #999999;
+    font-size: 12px;
+}
+
+.comment-view .comment-content{
+    margin:5px;
+    font-size: 13px;
+}
+
+
+
+/* 评论结束 */
+
 
 /* 底部 */
 .goods-bottom{
@@ -89,23 +138,22 @@
 }
 
 .goods-bottom .bottom-normal{
-    padding:15rpx;
+    padding:0 15rpx;
     font-size: small;
-    width: 125rpx;
+    width: 120rpx;
     text-align: center;
 }
 
 .goods-bottom .bottom-cart{
-    background: #9400ff;
+    background: #ff9400;
     color: white;
-    width: 180rpx;
-    margin-right: 15rpx;
+    width: 200rpx;
     padding: 20rpx 15rpx;
 }
 
 .goods-bottom .bottom-buy{
     padding: 20rpx 15rpx;
-    background: red;
+    background: #ff5555;
     color: white;
-    width: 180rpx;
+    width: 200rpx;
 }

@@ -2,7 +2,10 @@
 <view class="container">
   <view class="page-body">
 
-    <mp-searchbar></mp-searchbar>
+    <view class="search-view" bindtap="toSearchPage">
+        <mp-icon icon="search" color="#999"></mp-icon>搜索商品
+    </view>
+    <!-- <mp-searchbar bindfocus="toSearchPage" cancel="{{false}}"></mp-searchbar> -->
     <view class="page-section page-section-spacing swiper">
       <swiper class="swiper" indicator-dots="{{homeSwiper.indicatorDots}}" autoplay="true" interval="{{homeSwiper.interval}}"
         duration="{{homeSwiper.duration}}" circular="{{homeSwiper.circular}}" style="height:{{homeSwiper.height}}">
@@ -21,19 +24,23 @@
         <button class="add-cart-btn" bindtap="addToCart" data-goods-id="{{item.id}}">加入购物车</button>
       </view>
     </view> -->
-    <!--实际-->
-    <view class="items" wx:if="{{item.status==1}}" wx:for="{{pageInfo.list}}" wx:key="{{item.id}}" data-goods-id="{{item.id}}" bindtap="toGoodsPage">
-      <image class="item-image" src="{{appUrl+item.goodsImgList[0].img}}" mode="aspectFill"></image>
-      <view class="item-info">
-        <view><text class="item-info-title">{{item.title}}</text></view>
-        <view>
-          <text class="del-price" wx:if="{{item.goodsDiscount.isActive==1}}" >￥{{item.price}}</text>
-          <text wx:if="{{item.goodsDiscount.isActive==1}}" class="price">￥{{item.goodsDiscount.price}}</text>
-          <text wx:if="{{item.goodsDiscount.isActive!=1}}" class="price">￥{{item.price}}</text>
+    <text>--🎈浏览商品--</text>
+    <view class="goods-view">
+      <view class="items" wx:if="{{item.status==1}}" wx:for="{{pageInfo.list}}" wx:key="{{item.id}}" data-index="{{index}}"
+        data-goods-id="{{item.id}}" bindtap="toGoodsPage">
+        <image class="item-image" src="{{appUrl+item.goodsImgList[0].img}}" mode="aspectFill"></image>
+        <view class="item-info">
+          <view><text class="item-info-title">{{item.title}}</text></view>
+          <view>
+            <text class="del-price" wx:if="{{item.goodsDiscount.isActive==1}}">￥{{item.price}}</text>
+            <text wx:if="{{item.goodsDiscount.isActive==1}}" class="price">￥{{item.goodsDiscount.price}}</text>
+            <text wx:if="{{item.goodsDiscount.isActive!=1}}" class="price">￥{{item.price}}</text>
+          </view>
+          <!-- <view><text>销量：{{item.sales}}</text></view> -->
+          <!-- <button class="add-cart-btn" wx:if="{{user != null}}" bindtap="addToCart" data-goods-id="{{item.id}}">加入购物车</button> -->
         </view>
-        <view><text>销量：{{item.sales}}</text></view>
-        <button class="add-cart-btn" wx:if="{{user != null}}" bindtap="addToCart" data-goods-id="{{item.id}}">加入购物车</button>
       </view>
     </view>
   </view>
+  <text>-----没有更多了哦-----</text>
 </view>

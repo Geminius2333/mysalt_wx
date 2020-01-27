@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    help:{title:'关于我们',detail:'盐巴商城'}
   },
 
   /**

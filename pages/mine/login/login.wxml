@@ -1,6 +1,6 @@
 <!--login.wxml-->
 <view class="container">
-  <view class="title"><text>Welcome</text></view>
+  <view class="title"><text>用户登录</text></view>
   <view class="userinfo">
     <form bindsubmit="userLogin">
       <label>手机号：</label>
@@ -11,10 +11,11 @@
     </form>
 
     <button type="warn" bindtap="toRegister">注册</button>
-    <button type="primary">微信登录</button>
-
+    <button type="primary" bindtap="loginByWx">微信登录</button>
+    <button bindtap="testA" open-type="getUserInfo">测试</button>
     <!-- ------ -->
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
