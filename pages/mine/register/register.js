@@ -59,17 +59,15 @@ Page({
     let reg = /^1[3|4|5|6|7|8]\d{9}$/; ;
     if(reg.test(phone)){
       wx.request({
-        url: app.globalData.url + '/sms?phone=' + phone,
+        url: app.globalData.url + '/vcode/sms',
         method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-        header: {
-          "Cookie": sessionId
-        }, // 设置请求的 header
+        data:{phone:phone,receiverType:1,type:0},
         success: function (res) {
           // success
           wx.showToast({
             title: "已发送",
             duration: 500,
-            icon: 'none'
+            icon: 'success'
           })
         },
       });
@@ -97,19 +95,21 @@ Page({
   //验证码计时开始
   startSetInter:function(){
     let that = this;
-    that.data.setInter = setInterval(function(){
-      that.setData({time:that.data.time-1,vcodeText:that.data.time-1+'s'});
-      console.log(that.data.time);
+    let time = that.data.time;
+    that.data.interval = setInterval(function(){
+      time = time-1;
+      that.setData({time:time,vcodeText:that.data.time-1+'s'});
+      console.log("时间："+that.data.time);
       if(that.data.time-1<0){
         that.clearInter();
         that.setData({vcodeText:'获取验证码',vcodeBtn:'getVcode',time:60});
       }
-    },1000);
+    },1000,time);
   },
   //关闭计时器
   clearInter:function(){
     let that = this;
-    clearInterval(that.data.setInter);
+    clearInterval(that.data.interval);
   },
 
   //验证函数
@@ -175,6 +175,22 @@ Page({
       }
     }
   },
+
+  toLoginPage:function(){
+    wx.navigateTo({
+      url: '/pages/mine/login/login',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
+
   /**
    * 页面的初始数据
    */
@@ -184,7 +200,7 @@ Page({
     vcodeBtn:'getVcode',
     vcodeText:'获取验证码',
     submitBtn:true,
-    setInter:'',
+    interval:'',
     time:60,
   },
 
@@ -200,28 +216,28 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getSession();
+    // this.getSession();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    clearInterval(this.data.interval);
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.interval);
   },
 
   /**

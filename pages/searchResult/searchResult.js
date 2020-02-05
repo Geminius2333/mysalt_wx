@@ -2,8 +2,6 @@
 const app = getApp();
 Page({
 
-
-
   getSearchList:function(){
     let keyword = this.data.keyword;
     let sales = this.data.orderBysales;

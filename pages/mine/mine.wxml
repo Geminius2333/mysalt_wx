@@ -4,7 +4,7 @@
     <button type="primary" class="login-view-btn" bindtap="toLogin">登录</button>
     <button class="login-view-btn" bindtap="toRegister">注册</button>
   </view>
-  <view class="user-info" wx:if="{{user != null}}">
+  <view class="user-info" wx:if="{{user != null}}" bindtap="toUserInfo">
     <view>
     <image  wx:if="{{user.img!=null}}"class="user-info-img" src="{{appUrl+user.img}}" mode="aspectFill"></image>
     </view>
@@ -43,13 +43,13 @@
         <!-- <image class="cell-img" slot="title" src="{{icon}}" ></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="location" color="#ff0094" size="{{25}}"></mp-icon>
       </mp-cell>   
-      <mp-cell link hover url="{{user==null?pages.none:pages.setting}}" value="设置" >
-        <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
-        <mp-icon extClass="cell-icon" slot="icon" icon="setting" color="#0094ff" size="{{25}}"></mp-icon>
-      </mp-cell>
       <mp-cell link hover url="{{user==null?pages.none:pages.history}}" value="我的足迹">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="time" color="#9400ff" size="{{25}}"></mp-icon>
+      </mp-cell>
+      <mp-cell link hover url="{{user==null?pages.none:pages.setting}}" value="设置">
+        <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
+        <mp-icon extClass="cell-icon" slot="icon" icon="setting" color="#0094ff" size="{{25}}"></mp-icon>
       </mp-cell>
       <mp-cell link hover url="{{user==null?pages.none:pages.help}}" value="我的帮助">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"  ></image> -->

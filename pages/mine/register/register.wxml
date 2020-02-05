@@ -3,7 +3,7 @@
     <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
     <view class="page-body">
         <mp-form id="form">
-            <mp-cells title="注册">
+            <mp-cells>
                 <mp-cell  title="手机号" ext-class="weui-cell_vcode">
                     <input bindinput="formInputChange" data-field="phone"  class="weui-input" placeholder="请输入手机号" />
                     <view slot="footer" class="weui-vcode-btn" bindtap="{{vcodeBtn}}">{{vcodeText}}</view>
@@ -11,10 +11,6 @@
                 <mp-cell title="验证码">
                     <input bindinput="formInputChange"  data-field="vcode" class="weui-input" placeholder="请输入验证码" />
                 </mp-cell>
-                <!-- <mp-cell  title="验证码" ext-class=" weui-cell_vcode">
-                    <input bindinput="formInputChange" data-field="vcode" class="weui-input" placeholder="请输入验证码" />
-                    <image slot="footer" class="weui-vcode-img" src="../images/vcode.jpg" style="width: 108px"></image>
-                </mp-cell> -->
                 <mp-cell  title="密码">
                     <input bindinput="formInputChange" bindblur="formInputBlur" type="password" data-field="password" class="weui-input" placeholder="请输入密码" />
                 </mp-cell>
@@ -22,11 +18,8 @@
                     <input bindinput="formInputChange" bindblur="formInputBlur" type="password" data-field="cpassword" class="weui-input" placeholder="确认密码" />
                 </mp-cell>
             </mp-cells>
-            <view class="weui-btn-area">
-                <button class="weui-btn" type="primary" bindtap="submitForm" disabled="{{submitBtn}}">确定</button>
-            </view>
-            <view slot="footer">已用账号？去登陆</view>
+            <view class="btn btn-to-login" slot="footer"  bindtap="toLoginPage">已有账号？去登陆</view>
         </mp-form>
-
     </view>
+    <button class="btn" type="primary" bindtap="submitForm" disabled="{{submitBtn}}">确定</button>
 </view>

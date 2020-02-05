@@ -1,20 +1,27 @@
 /**login.wxss**/
-page{
-  background: #0094ff;
-  background:linear-gradient(to bottom right,#6cc8b9,50%,#3879cd);
-}
 
 .container{
-  padding-top:50px;
+  padding:0;
 }
 
-.title{
-  font-size: 30px;
-  color: #f0229a;
+.login-view{
+  width: 750rpx;
 }
 
-
-.userinfo {
+.btn{
+  margin: 10rpx 0;
+}
+.btn.btn-switch-login{
+  padding: 10rpx 0;
+  color: #ff0094;
+}
+.btn.btn-login{
+  background: #0094ff;
+}
+.btn.btn-register{
+  background: #ff9400;
+}
+/* .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +39,7 @@ page{
 
 /* --- */
 
-.userinfo-avatar {
+/* .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
@@ -45,4 +52,4 @@ page{
 
 .usermotto {
   margin-top: 200px;
-}
+} */ 

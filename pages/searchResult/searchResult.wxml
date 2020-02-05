@@ -4,7 +4,10 @@
         <view class="search-view" bindtap="toSearchPage">
             <mp-icon icon="search" color="#999"></mp-icon>搜索商品
         </view>
-        <view bindtap="changeDesc">⬇</view>
+        <view bindtap="changeDesc">
+            <view wx:if="{{desc==0}}">🔺</view>
+            <view wx:if="{{desc==1}}">🔻</view>
+        </view>
     </view>
     <view class="page-body">
         <view class="menu-list">

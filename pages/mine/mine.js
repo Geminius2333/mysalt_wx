@@ -1,9 +1,45 @@
 // pages/mine/mine.js
 const utilPay = require('../../utils/beePay.js');
+const md5 = require('../../utils/md5.js');
 const app = getApp();
 Page({
   //测试微信支付请求
   wxPay:function(){
+    console.log("支付")
+    //paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111)
+    let timeStamp = "1490840662";
+    let nonceStr = '5K8264ILTKCH16CQ2502SI8ZNMTM67VS';
+    let package1 = 'prepay_id=wx2017033010242291fcfe0db70013231072';
+    let appId = "wx426b3015555a46be";
+    let key = "8934e7d15453e97507ef794cf7b0519d";
+    let str = "appId="+appId+
+              "&nonceStr="+nonceStr+
+              "&package="+package1+
+              "&signType=MD5"+
+              "&timeStamp="+timeStamp
+              +"&key="+key;
+    let paySign = md5.hexMD5(str).toUpperCase();
+    // console.log(paySign)
+    wx.requestPayment({
+      timeStamp: timeStamp,
+      nonceStr: nonceStr,
+      package: package1,
+      signType: 'MD5',
+      paySign: paySign,
+      success: function(res){
+        // success
+        console.log(res)
+      },
+      fail: function(res) {
+        // fail
+        console.log(res)
+      },
+      complete: function() {
+        // complete
+      }
+    })
+
+
     // var shop_no = "20191024308978649d";//小蜜蜂支付的门店号
     // var outTradeNo = shop_no + Date.parse(new Date());
     // var payinfo = {
@@ -44,33 +80,6 @@ Page({
     //     console.log(res);
     //   }
     // })
-
-    wx.scanCode({
-      success: function(res){
-        // success
-      },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-      }
-    });
-    wx.request({
-      url: 'https://www.baidu.com',
-      data: {},
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function(res){
-        // success
-      },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-      }
-    })
   },
 
   //跳转到订单页面
@@ -91,6 +100,21 @@ Page({
       })
     }
 
+  },
+
+  toUserInfo:function(){
+    wx.navigateTo({
+      url: 'setting/userInfo/userInfo',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
   },
 
   //跳转到注册页面
@@ -120,6 +144,7 @@ Page({
       history:'/pages/mine/history/history',
       help:'/pages/mine/help/help',
       orders:'../order/order',
+      userInfo:'/pages/mine/setting/userInfo/userInfo'
     },
     waitPay:"/resource/icons/mine/支付.jpg",
     iconPath:{

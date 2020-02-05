@@ -1,5 +1,10 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-toptips": "../components/toptips/toptips",
+    "mp-cells": "../components/cells/cells",
+    "mp-cell": "../components/cell/cell",
+    "mp-form": "../components/form/form"
+  },
   "navigationBarTitleText": "登录",
   "navigationBarBackgroundColor": "#52a1c3"
 }

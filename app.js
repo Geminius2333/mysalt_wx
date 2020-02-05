@@ -38,6 +38,6 @@ App({
     //本地
     url:"https://127.0.0.1:8088/salt",
     //服务器
-    //url:"https://geminiussalt.top:8088/salt"
+    // url:"https://geminiussalt.top:8088/salt"
   }
 })

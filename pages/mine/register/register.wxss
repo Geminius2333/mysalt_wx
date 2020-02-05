@@ -1,1 +1,13 @@
 /* pages/mine/register/register.wxss */
+.container{
+    padding: 0;
+}
+
+.btn{
+    margin-top: 20rpx;
+}
+
+.btn.btn-to-login{
+    padding: 10rpx 0;
+    color: #ff0094;
+}

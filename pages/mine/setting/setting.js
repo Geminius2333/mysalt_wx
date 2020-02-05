@@ -2,27 +2,32 @@
 const app = getApp();
 Page({
 
-  clearStorage:function(e){
-    this.setData({dialogShow:true});
-    wx.clearStorageSync();
-    
+  tapDialogButton:function(e){
+    // console.log(e)
+    let index = e.detail.index;
+    if(index==0){
+      console.log("取消！")
+    }else if(index==1){
+      //dialogId 0为清除缓存 1为退出登录
+      if(this.data.dialogId==0)
+        wx.clearStorageSync();
+      else
+        this.loginOut();
+    }
+    this.setData({ dialogShow: false })
   },
 
-  loginOut:function(e){
-    console.log(e)
+  showDialog:function(e){
+    let dialogText = e.currentTarget.dataset.dialogText;
+    let dialogId = e.currentTarget.dataset.dialogId;
+    this.setData({dialogShow:true,dialogText:dialogText,dialogId:dialogId}); 
+  },
+
+  loginOut:function(){
     app.globalData.user = null;
-    console.log(app.globalData.user)
-    wx.navigateBack({
-      delta: 1, // 回退前 delta(默认为1) 页面
-      success: function(res){
-        // success
-      },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-      }
+    // console.log(app.globalData.user)
+    wx.switchTab({
+      url: '/pages/mine/mine'
     })
   },
 
@@ -30,15 +35,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user:null,
+    appUrl:null,
     dialogShow: false,
+    dialogText:"Dialog文本",
+    dialogId:0,
     buttons: [{ text: '取消' }, { text: '确定' }],
+    pages:{
+      none:'',
+      userInfo:"userInfo/userInfo",
+      updatePassword:"updatePassword/updatePassword",
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -52,7 +66,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({ appUrl: app.globalData.url, user: app.globalData.user });
   },
 
   /**
