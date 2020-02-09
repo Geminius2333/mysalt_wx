@@ -125,10 +125,10 @@ Page({
   buyNumIput:function(e){
     let num = e.detail.value;
     if(num==""){
-      num = 0
+      num = 1
     }
-    if(num>99){
-      num=99
+    if(num>100){
+      num=100
     }
     this.setData({buyNum:num})
   },
@@ -140,7 +140,7 @@ Page({
     let goodsNum = this.data.goods.number;
     //console.log(e);
     //console.log(goodsNum);
-    if(buyNum+num>0 && buyNum+num<=goodsNum){
+    if(buyNum+num>0 && buyNum+num<=goodsNum && buyNum+num<=100){
       this.setData({ buyNum: buyNum + num });
     }
     else if(buyNum+num<=0){
@@ -152,6 +152,11 @@ Page({
     else if(buyNum+num>goodsNum){
       wx.showToast({
         title:'数量超过库存',
+        icon:'none'
+      })
+    }else if(buyNum+num>100){
+      wx.showToast({
+        title:'单次限量100',
         icon:'none'
       })
     }

@@ -1,4 +1,5 @@
 <!--pages/order/order.wxml-->
+<wxs module="Orders" src="../../utils/orders.wxs"></wxs>
 <view class="container">
     <!-- 顶部导航栏 -->
     <view class="nav-top">
@@ -9,52 +10,65 @@
     </view>
     <!-- 内容盒子 -->
     <view class="orders" wx:for="{{navTop}}" wx:if="{{curNav==navIndex}}" wx:key="{{navIndex}}" wx:for-index="navIndex"> 
-        <view class="orders-item"  wx:for="{{ordersList}}" wx:for-item="orders" wx:for-index="ordersIndex"  
-                wx:key="{{orders.id}}" wx:if="{{navIndex==0||orders.status==navIndex}}" >
-            <view class="orders-top">
-                <text class="orders-top-id">订单编号：{{orders.id}}</text>
-                <text class="orders-top-status">{{orders.status > 0 ? navTop[orders.status] : orders.ordersStatus.status}}</text>
+        <view wx:if="{{ordersList!=null}}">
+            <view class="none-img-view" wx:if="{{ordersList.length==0 || Orders.showNoneImg(navIndex,ordersList)}}">
+                <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit" />
+                没有订单
             </view>
-            <view class="orders-detail" wx:for="{{orders.ordersDetailList}}" 
-                wx:for-index="ordersDetailIndex" wx:key="{{item.id}}">
-                <view>
-                    <image class="orders-detail-item-img" src="{{appUrl+item.ordersDetailGoods.goodsImgList[0].img}}" 
-                        mode="aspectFill"></image>
-                </view>
-                <view class="orders-detail-item-info">
-                    <view class="orders-detail-item-info-list">
-                        <text>{{item.ordersDetailGoods.title}}</text>
+        </view>
+        <view  wx:for="{{ordersList}}" wx:for-item="orders" wx:for-index="ordersIndex"  
+                wx:key="{{orders.id}}"  >
+            <block  wx:if="{{navIndex==0||orders.status==navIndex}}">
+                <view class="orders-item">
+                    <view class="orders-top">
+                        <text class="orders-top-id">订单编号：{{orders.id}}</text>
+                        <text class="orders-top-status">{{orders.status > 0 ? navTop[orders.status] : orders.ordersStatus.status}}</text>
                     </view>
-                    <view class="orders-detail-item-info-list">
-                        <text class="orders-detail-item-info-price">￥{{item.price}}</text>
-                    </view>
-                    <view class="orders-detail-item-info-list">
-                        <text>数量：{{item.number}}</text>
-                        <mp-icon icon="sticker"data-orders-index="{{ordersIndex}}" data-orders-detail-index="{{ordersDetailIndex}}" 
-                            color="coral" size="{{20}}" wx:if="{{orders.ordersStatus.status=='待评价'}}" bindtap="toCommentPage">
-                        </mp-icon>
-                        <!-- <view class="orders-bottom-item-btn" wx:if="{{orders.ordersStatus.status=='待评价'}}">评价</view> -->
-                    </view>
-                </view>
-            </view>         
-            <view class="orders-bottom">
-                <view></view>
-                <view  class="orders-bottom-item">
-                    <view></view>
-                    <view class="orders-bottom-item-btn-list">
-                        <view class="orders-bottom-item-btn"  data-status="{{-1}}" data-id="{{orders.id}}" 
-                            bindtap="{{orders.status==1?'updateOrdersStatus':'toOrdersDetailPage'}}">
-                            {{orders.status==1?'取消':'查看详情'}}
+                    <view class="orders-detail" wx:for="{{orders.ordersDetailList}}" wx:for-index="ordersDetailIndex" wx:key="{{item.id}}">
+                        <view>
+                            <image class="orders-detail-item-img" src="{{appUrl+item.ordersDetailGoods.goodsImgList[0].img}}"
+                                mode="aspectFill"></image>
                         </view>
-                        <view wx:if="{{orders.status!=-1 && orders.status!=2 && orders.status!=4}}"  data-status="{{orders.status+1}}" 
-                                data-id="{{orders.id}}" bindtap="updateOrdersStatus" class="orders-bottom-item-btn">
-                             {{ordersBtn[orders.status]}}
+                        <view class="orders-detail-item-info">
+                            <view class="orders-detail-item-info-list">
+                                <text>{{item.ordersDetailGoods.title}}</text>
+                            </view>
+                            <view class="orders-detail-item-info-list">
+                                <text class="orders-detail-item-info-price">￥{{item.price}}</text>
+                            </view>
+                            <view class="orders-detail-item-info-list">
+                                <text>数量：{{item.number}}</text>
+                                <mp-icon icon="sticker" data-orders-index="{{ordersIndex}}" data-orders-detail-index="{{ordersDetailIndex}}"
+                                    color="coral" size="{{20}}" wx:if="{{orders.ordersStatus.status=='待评价'&& item.isComment==0}}" bindtap="toCommentPage">
+                                </mp-icon>
+                                <!-- <view class="orders-bottom-item-btn" wx:if="{{orders.ordersStatus.status=='待评价'}}">评价</view> -->
+                            </view>
                         </view>
                     </view>
+                    <view class="orders-bottom">
+                        <view></view>
+                        <view class="orders-bottom-item">
+                            <view></view>
+                            <view class="orders-bottom-item-btn-list">
+                                <view class="orders-bottom-item-btn" data-status="{{-1}}" data-id="{{orders.id}}"
+                                    bindtap="{{orders.status==1?'updateOrdersStatus':'toOrdersDetailPage'}}">
+                                    {{orders.status==1?'取消':'查看详情'}}
+                                </view>
+                                <view wx:if="{{orders.status!=-1 && orders.status!=2 && orders.status!=4}}"
+                                    data-status="{{orders.status+1}}" data-id="{{orders.id}}" bindtap="showDialog"
+                                    class="orders-bottom-item-btn">
+                                    {{ordersBtn[orders.status]}}
+                                </view>
+                            </view>
+                        </view>
+                    </view>
                 </view>
-            </view>
-              
-        </view>        
+            </block>
+        </view>  
     </view>
+
+    <mp-dialog title="注意" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+        <view>确认更新状态吗</view>
+    </mp-dialog>
 </view>
   

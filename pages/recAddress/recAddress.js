@@ -8,7 +8,7 @@ Page({
     let param = { "id": user.id, "deftAddress": user.deftAddress };
     wx.request({
       url: app.globalData.url + '/user/update/deftAddress',
-      data: { param },
+      data: param,
       method: 'POST',
       success: function (res) {
         // success
@@ -17,6 +17,7 @@ Page({
       }
     })
   },
+
   //删除收货地址
   deleteRecAddress:function(e){
     //console.log(e)
@@ -81,6 +82,9 @@ Page({
     console.log("跳转到添加收货地址页面");
     wx.navigateTo({
       url: 'add/add',
+      success:function(res){
+        
+      }
     })
   },
 
@@ -92,8 +96,13 @@ Page({
       success:res=>{
         //console.log(res);  
         var msg = res.data;
-        that.setData({recAddressList:msg.data});
-        console.log(msg.data);
+        let recAddressList = msg.data;
+        that.setData({recAddressList:recAddressList});
+        console.log(recAddressList);
+        if (recAddressList.length == 1) {
+          app.globalData.user.deftAddress = recAddressList[0].id;
+          this.setData({ user: app.globalData.user });
+        }
       }
     })
   },
@@ -125,23 +134,26 @@ Page({
    */
   onShow: function () {
     this.setData({ appUrl: app.globalData.url, user: app.globalData.user });
-    console.log(this.data.user);
-    console.log(this.data.appUrl);
+    // console.log(this.data.user);
+    // console.log(this.data.appUrl);
     this.getRecAddress();
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.updataUserDeftAddress();
+    if(this.data.user.deftAddress != '' || this.data.user.deftAddress != null)
+      this.updataUserDeftAddress();
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    if (this.data.user.deftAddress != '' || this.data.user.deftAddress != null)
+      this.updataUserDeftAddress();
   },
 
   /**

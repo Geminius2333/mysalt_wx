@@ -36,14 +36,14 @@ Page({
   //更新数据库cart
   updateCartList:function(){
     var cartList = this.data.cartList;
-    var json = new Array();
+    var jsonCartList = new Array();
     for(let i=0;i<cartList.length;i++){
-      json.push({id:cartList[i].id,number:cartList[i].number,checked:cartList[i].checked});
+      jsonCartList.push({id:cartList[i].id,number:cartList[i].number,checked:cartList[i].checked});
     };
    // console.log(json);
     wx.request({
       url: app.globalData.url+'/cart/update',
-      data: {json},
+      data: jsonCartList,
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function(res){
@@ -149,7 +149,7 @@ Page({
   // checkbox单项点击选择
   checkboxChange:function(e){
     var values = e.detail.value;
-    console.log("选中的值："+values);
+    // console.log("选中的值："+values);
     if(values.length == this.data.cartList.length){
       this.setData({checkAll:true});
     }else{

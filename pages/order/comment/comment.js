@@ -4,6 +4,27 @@ import icon from "../../../components/icon/icon";
 const app = getApp();
 Page({
 
+  updateOrdersDetailIsComment:function(){
+    let ordersDetail = this.data.ordersDetail;
+    wx.request({
+      url: app.globalData.url+'/ordersDetail/updateIsComment',
+      data: ordersDetail.id,
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        // success
+        let msg = res.data;
+        console.log(msg);
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+    
+  },
 
   addComment:function(e){
     let that = this;
@@ -18,6 +39,7 @@ Page({
         // success
         let msg = res.data;
         console.log(msg)
+        that.updateOrdersDetailIsComment();
         wx.navigateBack({
           delta: 1, // 回退前 delta(默认为1) 页面
           success: function(res){

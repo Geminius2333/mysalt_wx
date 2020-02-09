@@ -14,6 +14,7 @@
 .btn.btn-switch-login{
   padding: 10rpx 0;
   color: #ff0094;
+  text-align: right;
 }
 .btn.btn-login{
   background: #0094ff;

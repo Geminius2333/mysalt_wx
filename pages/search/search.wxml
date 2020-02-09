@@ -1,5 +1,6 @@
 <!--pages/search/search.wxml-->
 <view class="container">
+        <mp-toptips msg="{{error}}" type="error" delay="1000" show="{{error}}"></mp-toptips>
     <!-- 搜索框 -->
     <view class="search-input-view">
         <input class="search-input" bindinput="inputChange" placeholder="请输入要搜索的内容" value="{{keyword}}"/>
@@ -18,8 +19,7 @@
                  data-index="{{index}}">
                 {{item}}
             </view>
-        
         </view>
-         <text wx:if="{{searchArray.length>0}}">长按单项删除</text>
     </view>
+    <view class="bottom-tip" wx:if="{{searchArray.length>0}}">长按单项删除</view>
 </view>

@@ -4,7 +4,7 @@ import WxValidate from "../../../utils/WxValidate.js";
 const app = getApp();
 Page({
 
-  //添加收货地址请求
+  //添加收货地址
   addRecAddress:function(){
     this.setData({'formData.user': this.data.user.id});
     let json = this.data.formData;
@@ -16,7 +16,7 @@ Page({
       success: function(res){
         // success
         let msg = res.data;
-        console.log(msg);
+        console.log(msg); 
         wx.navigateBack();
       },
     })

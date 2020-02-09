@@ -4,7 +4,7 @@
     <view class="goods-head">
         <swiper class="swiper" indicator-dots autoplay interval="2000" duration="500" circular style="height:500rpx">
             <swiper-item wx:for="{{goods.goodsImgList}}" wx:for-item="goodsImg" wx:key="goodsImg.id">
-                <image class="swiper-img" src="{{appUrl+goodsImg.img}}" mode="aspectFit"></image>
+                <image class="swiper-img" src="{{appUrl+goodsImg.img}}" mode="aspectFill"></image>
             </swiper-item>
         </swiper>
         <view class="head-info">
@@ -25,13 +25,15 @@
             </view>
             <view class="column-view">
                 <text style="font-size: small;color: #999;">购买数量</text>
-                <view class="row-view info-buy-num">
-                    <view>
-                        <i class="iconfont iconreduce" bindtap="changeBuyNum" data-num="-1"></i>
+                <view class="row-view info-buy-num" >
+                    <view class="buy-view {{buyNum==1?'disabled':''}}" bindtap="{{buyNum==1?'':'changeBuyNum'}}" data-num="-1">
+                        <i class="iconfont iconreduce"  ></i>
                     </view>
-                    <input class="info-buy-num-input"  type="number" value="{{buyNum}}" bindinput="buyNumIput" />
-                    <view>
-                        <i class="iconfont iconadd" bindtap="changeBuyNum" data-num="1"></i>
+                    <view class="buy-view buy-input-view">
+                        <input class="info-buy-num-input" type="number" value="{{buyNum}}" bindinput="buyNumIput" />
+                    </view>
+                    <view class="buy-view {{buyNum==100?'disabled':''}}" bindtap="{{buyNum==100?'':'changeBuyNum'}}" data-num="1">
+                        <i class="iconfont iconadd"  ></i>
                     </view>
                 </view>
             </view>
@@ -44,9 +46,16 @@
                 <text>{{item}}</text>
            </view>
        </view>
+       <!-- 商品详细 -->
         <view wx:if="{{curNav==0}}">
-            <text>{{goods.description}}</text>
+            <view class="goods-description-view" wx:if="{{goods.description != null && goods.description != ''}}">
+                {{goods.description}}
+            </view>
+            <view class="goods-description-view" wx:else="{{goods.description != null && goods.description != ''}}">
+                <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit"/>
+            </view>
         </view>   
+        <!-- 评论 -->
         <view wx:if="{{curNav==1}}">
             <view class="comment-view" wx:for="{{commentList}}" wx:key="{{comment.id}}" wx:for-item="comment">
                 <view class="comment-top">

@@ -10,7 +10,7 @@ var DateFormat = {
     },
     getLocalDate:function(date){
         var localDate = getDate(date)
-        console.log(localDate)
+        // console.log(localDate)
         return localDate.toLocaleString();
     }
 }

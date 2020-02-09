@@ -1,6 +1,28 @@
 // pages/order/add/add.js
 const app = getApp();
 Page({
+  //删除购物车
+  deleteCartList:function(){
+    let cartList = this.data.cartList;
+
+    wx.request({
+      url: app.globalData.url+'/cart/delete',
+      data: cartList,
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        // success
+        let msg = res.data;
+        console.log(msg);
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
 
   //请求添加订单
   addOrder:function(e){
@@ -19,17 +41,18 @@ Page({
       user:this.data.user.id,
       status:1,
       recAddress:this.data.recAddress.id,
-      orderDetailList:orderDetailList,
     };  
     console.log(orders);
     wx.request({
       url: app.globalData.url+'/orders/add',
-      data: {ordersJson:orders},
+      data: {orders:orders,orderDetailList:orderDetailList},
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       success: function(res){
         // success
         let msg = res.data;
         console.log(msg);
+        if(msg.flag)
+          that.deleteCartList();
         that.toOrdersPage();
       },
     })
@@ -50,8 +73,7 @@ Page({
     wx.navigateTo({
       url: '/pages/recAddress/recAddress',
       success: function(res){
-        // success
-        
+        // success   
       },
     })
   },

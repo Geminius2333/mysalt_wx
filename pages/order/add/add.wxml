@@ -3,7 +3,7 @@
 <view class="container">
     <!-- 收货地址 -->
     <view class="rec-address" bindtap="toRecAddressPage">
-        <mp-icon icon="location" color="gray" size="{{20}}" extClass="rec-address-icon"></mp-icon>
+        <mp-icon icon="location" color="#ff0094" size="{{20}}" extClass="rec-address-icon"></mp-icon>
         <view class="rec-address-content">
             <view class="rec-address-item-text">
                 <text class="rec-address-text-name">{{recAddress.name}}</text>

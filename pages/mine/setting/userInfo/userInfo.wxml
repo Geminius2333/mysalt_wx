@@ -1,10 +1,11 @@
 <!--pages/mine/setting/userInfo/userInfo.wxml-->
 <view class="container">
+    <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
     <view class="main">
         <mp-form id="form" rules="{{rules}}" models="{{formData}}"> 
             <mp-cells title="" footer="">
                 <mp-cell title="头像" ext-class="user-img-cell">
-                    <image slot="footer" wx:if='{{user}}' class="user-img" src="{{appUrl+user.img}}"></image>
+                    <image slot="footer" wx:if='{{user}}' class="user-img" src="{{appUrl+user.img}}" bindtap="chooseImage"></image>
                 </mp-cell>
                 <mp-cell prop="qq" title="用户名" ext-class="">
                     <input bindinput="formInputChange" data-field="username" class="weui-input" value="{{user.username}}"
@@ -22,10 +23,10 @@
                 <mp-cell prop="mobile" title="手机号" ext-class="{{vcodeFlag?'weui-cell_vcode':''}}">
                     <input bindinput="formInputChange" data-field="phone" class="weui-input" value="{{user.phone}}" 
                         placeholder="请输入手机号" disabled="{{disabled}}"/>
-                    <view slot="footer" class="weui-vcode-btn" wx:if="{{vcodeFlag}}">获取验证码</view>
+                    <view slot="footer" class="weui-vcode-btn" bindtap="{{vcodeBtn}}" wx:if="{{vcodeFlag}}">{{vcodeText}}</view>
                 </mp-cell>
                 <mp-cell prop="" title="验证码" ext-class="" wx:if="{{vcodeFlag}}">
-                    <input bindinput="formInputChange" data-field="gender" class="weui-input" 
+                    <input bindinput="formInputChange" data-field="vcode" class="weui-input" 
                         placeholder="修改手机号后需要填此项" />
                 </mp-cell>
             </mp-cells>
@@ -35,8 +36,8 @@
             <mp-cell link hover value="我的地址" url="/pages/recAddress/recAddress"></mp-cell>
         </mp-cells>
 
-        <button bindtap="switchDisabled">修改信息</button>
-        <button bindtap="submitForm" type="primary">修改信息</button>
+        <button class="btn btn-switch-disabled" bindtap="switchDisabled">{{disabled?'修改信息':'返回'}}</button>
+        <button class="btn" bindtap="submitForm" type="primary" wx:if="{{disabled == false}}">提交</button>
     </view>
 </view >
 

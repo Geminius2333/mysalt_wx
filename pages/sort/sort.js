@@ -1,6 +1,25 @@
 // pages/sort/sort.js
 const app = getApp();
 Page({
+
+  toSearchResult:function(e){
+    // console.log(e);
+    let index = e.currentTarget.dataset.index;
+    let goodsType = this.data.goodsTypeList[index];
+    wx.navigateTo({
+      url: '/pages/searchResult/searchResult',
+      success: function(res){
+        // success
+        res.eventChannel.emit('searchGoodsType', goodsType);
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
   //switchRightTab
   switchRightTab:function(e){
     let tabId = e.target.dataset.id;

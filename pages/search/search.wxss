@@ -67,3 +67,9 @@
     width: 216rpx;
     margin: 10rpx;
 }
+
+.bottom-tip{
+    color: #ff0094;
+    font-size: 10px;
+    text-align: center;
+}

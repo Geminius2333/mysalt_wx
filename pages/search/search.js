@@ -51,17 +51,21 @@ Page({
   searchSubmit:function(e){
     let searchArray = this.data.searchArray;
     let keyword = this.data.keyword;
-    let index = searchArray.indexOf(keyword);
-    // console.log("index=="+index)
-    if(index>=0)
-      searchArray.splice(index,1);
-    if(searchArray.length>8){
-      searchArray.pop();
+    if(keyword == null){
+      this.setData({error:'请输入搜索内容'});
+    }else{
+      let index = searchArray.indexOf(keyword);
+      // console.log("index=="+index)
+      if (index >= 0)
+        searchArray.splice(index, 1);
+      if (searchArray.length > 8) {
+        searchArray.pop();
+      }
+      searchArray.unshift(keyword);
+      this.setData({ searchArray: searchArray });
+      console.log(this.data.searchArray)
+      this.toSearchResultPage(keyword);
     }
-    searchArray.unshift(keyword);
-    this.setData({searchArray:searchArray});
-    console.log(this.data.searchArray)
-    this.toSearchResultPage(keyword);
   },
 
   //保存到本地

@@ -7,17 +7,20 @@ Page({
     let sales = this.data.orderBysales;
     let price = this.data.orderByPrice;
     let desc = this.data.desc;
+    let type = 0;
+    if(this.data.goodsType != null)
+      type = this.data.goodsType.id;
     let that = this;
     wx.request({
       url: app.globalData.url + '/goods/search',
-      data: { keyword,sales,price,desc },
+      data: { keyword,sales,price,desc,type:type },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
         // success
         let msg = res.data;
-        console.log(msg);
         that.setData({ goodsList: msg.data });
+        console.log(that.data.goodsList);
       },
       fail: function () {
         // fail
@@ -127,8 +130,19 @@ Page({
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('searchKeyword',function(data){
       let keyword = data;
-      console.log(data);
+      // console.log(data);
+      wx.setNavigationBarTitle({
+        title: data,
+      })
       that.setData({keyword:keyword});
+    })
+    eventChannel.on('searchGoodsType',function(data){
+      let goodsType = data;
+      // console.log(data);
+      wx.setNavigationBarTitle({
+        title: goodsType.name,
+      })
+      that.setData({goodsType:goodsType,keyword:''});
     })
     this.setData({appUrl:app.globalData.url,user:app.globalData.user})
   },

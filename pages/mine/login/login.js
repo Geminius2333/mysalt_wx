@@ -56,6 +56,7 @@ Page({
     console.log(e)
     let that = this;
     let formData = this.data.formData;
+    this.setData({'formData.loginByPhone':this.data.loginByPhone})
     wx.request({
       url: app.globalData.url + '/user/login',
       method: "POST",
@@ -129,7 +130,7 @@ Page({
     this.setData({
       [`formData.${field}`]: value
     });
-    console.log(this.data.formData);
+    // console.log(this.data.formData);
   },
 
   //跳转到注册
@@ -153,7 +154,7 @@ Page({
     vcodeBtn:'getVcode',
     vcodeText:'获取验证码',
     formData:{
-      phone:'15558970280',
+      phone:'15558970281',
     },
     wxUserInfo:{},
     hasUserInfo: false,

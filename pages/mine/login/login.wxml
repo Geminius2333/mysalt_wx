@@ -5,14 +5,14 @@
     <mp-form id="loginForm" rules="{{rules}}" models="{{formData}}">
       <mp-cells>
         <mp-cell title="手机号" ext-class="{{loginByPhone?'weui-cell_vcode':''}}">
-          <input bindinput="formInputChange" data-field="phone" class="weui-input" value="15558970280" placeholder="请输入手机号" />
+          <input bindinput="formInputChange" data-field="phone" class="weui-input" value="15558970281" placeholder="请输入手机号" />
           <view slot="footer" class="weui-vcode-btn" bindtap="{{vcodeBtn}}" wx:if="{{loginByPhone}}">{{vcodeText}}</view>
         </mp-cell>
         <mp-cell title="验证码" wx:if="{{loginByPhone}}">
           <input bindinput="formInputChange" data-field="vcode" class="weui-input" placeholder="请输入验证码" />
         </mp-cell>
         <mp-cell title="密码" wx:else="{{loginByPhone}}">
-          <input bindinput="formInputChange" type="password" data-field="password"
+          <input bindinput="formInputChange" type="password" data-field="password" value="123456"
             class="weui-input" placeholder="请输入密码" />
         </mp-cell>
       </mp-cells>

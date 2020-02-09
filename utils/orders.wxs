@@ -1,0 +1,33 @@
+var Orders = {
+    showNoneImg:function(navIndex,jsonOrdersList) {
+        var str = JSON.stringify(jsonOrdersList);
+        var ordersList = JSON.parse(str);
+        var flag = true;
+
+        for(var i = 0;i < ordersList.length;i++){
+            if (ordersList[i].status == navIndex || navIndex==0) {
+                flag = false;
+                break;
+            } 
+        }
+        //forEach
+        // ordersList.some(function(orders){
+        //     if (orders.status == navIndex || navIndex==0) {
+        //         flag = false;
+        //     }
+        // });
+        // console.log(flag);
+        return flag;
+
+    },
+    test:function(args){
+        // console.log(JSON.stringify(args));
+        return args;
+    }
+
+}
+
+module.exports={
+    showNoneImg:Orders.showNoneImg,
+    test:Orders.test
+}

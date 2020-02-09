@@ -1,12 +1,32 @@
 // pages/order/order.js
 const app = getApp();
 Page({
+  //点击对话框按钮
+  tapDialogButton: function (e) {
+    let index = e.detail.index;
+    if (index == 0) {
+      console.log("取消！")
+    } else if (index == 1) {
+      this.updateOrdersStatus();
+    }
+    this.setData({ dialogShow: false })
+  },
 
-  //请求更新orders
-  updateOrdersStatus:function(e){
-    let that = this;
+  //弹出对话框
+  showDialog:function(e) {
     let id = e.currentTarget.dataset.id;
     let status = e.currentTarget.dataset.status;
+    this.setData({
+      dialogShow: true,
+      formData:{"id":id,"status":status}
+    })
+  },
+
+  //请求更新orders
+  updateOrdersStatus:function(){
+    let that = this;
+    let id = this.data.formData.id;
+    let status = this.data.formData.status;
     wx.request({
       url: app.globalData.url+'/orders/update',
       method: 'POST', 
@@ -75,6 +95,8 @@ Page({
     curNav:0,
     ordesList:{},
     ordersDetailList:{},
+    dialogShow: false,
+    buttons: [{ text: '取消' }, { text: '确定' }],
   },
 
   /**

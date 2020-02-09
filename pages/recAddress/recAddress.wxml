@@ -1,7 +1,10 @@
 <!--pages/mine/recAddress/recAddress.wxml-->
 <view class="container">
   <view class="content">
-    <text wx:if="{{recAddressList == null}}">还没有收货地址哦</text>
+    <view class="none-img-view"wx:if="{{recAddressList.length == 0}}">
+      <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit"/>
+      没有收获地址
+    </view>
     <radio-group bindchange="changeDeftAddress">
           <view class="content-item {{item.id==user.deftAddress?'content-item-default':''}}" wx:for="{{recAddressList}}">
             <view class="content-item-text">

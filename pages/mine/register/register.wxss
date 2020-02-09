@@ -10,4 +10,5 @@
 .btn.btn-to-login{
     padding: 10rpx 0;
     color: #ff0094;
+    text-align: right;
 }
