@@ -12,6 +12,7 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": true,
+		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -22,7 +23,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.3",
+	"libVersion": "2.10.1",
 	"appid": "wxe97214b81562b89d",
 	"projectname": "salt_app",
 	"debugOptions": {
@@ -30,9 +31,7 @@
 	},
 	"isGameTourist": false,
 	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {
-		"qywx_simulator_plugin": "1.2.0"
-	},
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

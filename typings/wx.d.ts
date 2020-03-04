@@ -1492,6 +1492,4 @@ declare var wx: {
                     
     setClipboardData(obj: {
         /**
-         * 需要设置的内容
-         */
-        data: 
+         * 需要

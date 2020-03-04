@@ -146,7 +146,8 @@ Page({
     goods:null,
     commentFontCount:0,
     formData:{
-      isAnonymous:false
+      isAnonymous:false,
+      score:5
     },
     appUrl:null,
   },

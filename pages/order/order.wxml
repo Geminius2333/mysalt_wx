@@ -12,7 +12,7 @@
     <view class="orders" wx:for="{{navTop}}" wx:if="{{curNav==navIndex}}" wx:key="{{navIndex}}" wx:for-index="navIndex"> 
         <view wx:if="{{ordersList!=null}}">
             <view class="none-img-view" wx:if="{{ordersList.length==0 || Orders.showNoneImg(navIndex,ordersList)}}">
-                <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit" />
+                <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
                 没有订单
             </view>
         </view>

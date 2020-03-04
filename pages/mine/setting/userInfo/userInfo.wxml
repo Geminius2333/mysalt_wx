@@ -5,7 +5,7 @@
         <mp-form id="form" rules="{{rules}}" models="{{formData}}"> 
             <mp-cells title="" footer="">
                 <mp-cell title="头像" ext-class="user-img-cell">
-                    <image slot="footer" wx:if='{{user}}' class="user-img" src="{{appUrl+user.img}}" bindtap="chooseImage"></image>
+                    <image slot="footer" wx:if='{{user}}' class="user-img" src="{{newUserImg==''?appUrl+user.img:newUserImg}}" bindtap="{{disabled?'':'chooseImage'}}"></image>
                 </mp-cell>
                 <mp-cell prop="qq" title="用户名" ext-class="">
                     <input bindinput="formInputChange" data-field="username" class="weui-input" value="{{user.username}}"

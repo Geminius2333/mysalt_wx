@@ -52,10 +52,10 @@
                 {{goods.description}}
             </view>
             <view class="goods-description-view" wx:else="{{goods.description != null && goods.description != ''}}">
-                <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit"/>
+                <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit"/>
             </view>
         </view>   
-        <!-- 评论 -->
+        <!-- 评价 -->
         <view wx:if="{{curNav==1}}">
             <view class="comment-view" wx:for="{{commentList}}" wx:key="{{comment.id}}" wx:for-item="comment">
                 <view class="comment-top">

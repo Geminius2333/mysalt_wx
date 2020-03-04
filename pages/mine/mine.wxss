@@ -18,7 +18,6 @@
 
 .login-view .login-view-btn{
    width: 100px;
-   height: 30px;
 }
 
 .user-info{
@@ -53,7 +52,8 @@
 .order-menu-item{
   display: flex;
   flex-direction: column;
-  width: 140rpx;
+  /* width: 140rpx; */
+  width: 180rpx;
   padding:15px 0 15px 0;
   text-align: center;
 }
@@ -77,4 +77,8 @@
   width:700rpx;
   padding:10px 25rpx  10px 25rpx;
   border-bottom: #d3d3d3 solid 1px;
+}
+
+.order-menu-icon{
+  font-size: 20px;
 }

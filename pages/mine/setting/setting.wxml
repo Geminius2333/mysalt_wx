@@ -4,6 +4,7 @@
         <mp-cells ext-class="my-cells">
             <mp-cell value="个人信息" link hover url="{{user==null?pages.none:pages.userInfo}}"></mp-cell>
             <mp-cell value="密码修改" link hover url="{{user==null?pages.none:pages.updatePassword}}"></mp-cell>
+            <mp-cell value="绑定微信"  hover></mp-cell>
             <mp-cell value="清除缓存" bindtap="showDialog" data-dialog-text="这将会清除本地缓存！" data-dialog-id="0" ></mp-cell>
             <mp-cell value="退出" hover bindtap="showDialog" data-dialog-text="确定退出当前账号！" data-dialog-id="1"></mp-cell>
         </mp-cells>

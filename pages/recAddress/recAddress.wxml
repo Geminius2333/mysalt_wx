@@ -2,7 +2,7 @@
 <view class="container">
   <view class="content">
     <view class="none-img-view"wx:if="{{recAddressList.length == 0}}">
-      <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit"/>
+      <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit"/>
       没有收获地址
     </view>
     <radio-group bindchange="changeDeftAddress">

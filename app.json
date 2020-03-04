@@ -16,7 +16,7 @@
     "pages/recAddress/add/add",
     "pages/recAddress/edit/edit",
     "pages/cart/cart",
-    "pages/sort/sort",
+    "pages/category/category",
     "pages/goods/goods",
     "pages/searchResult/searchResult",
     "pages/search/search",
@@ -32,7 +32,7 @@
   "tabBar": {
     "color": "#000",
     "selectedColor": "#d4237a",
-    "backgroundColor": "#eeeeee",
+    "backgroundColor": "#fff",
     "borderStyle": "white",
     "position": "bottom",
     "list": [
@@ -43,7 +43,7 @@
         "selectedIconPath":"resource/icons/tabBar/主页选中.png"
       },
       {
-        "pagePath": "pages/sort/sort",
+        "pagePath": "pages/category/category",
         "text": "分类",
         "iconPath": "resource/icons/tabBar/分类.png",
         "selectedIconPath": "resource/icons/tabBar/分类选中.png"

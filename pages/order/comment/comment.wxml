@@ -1,8 +1,5 @@
 <!--pages/order/comment/comment.wxml-->
 <view class="container">
-    <view>
-        <button type="primary" bindtap="addComment">发布</button>
-    </view>
     <!-- 商品信息 -->
     <view class="goods-view">
         <image class="goods-img" src="{{appUrl+goods.goodsImgList[0].img}}"
@@ -13,16 +10,14 @@
     <view class="comment-cotent">
         <mp-form id="form" rules="{{rules}}" models="{{formData}}">
             <mp-cells>
-                <mp-cell>
-                    <view class="weui-cells weui-cells_after-title">
-                        <view class="weui-cell weui-cell_switch">
-                            <view class="weui-cell__bd">是否匿名</view>
-                            <view class="weui-cell__ft">
-                                <switch bindchange="formSwitchChange" data-field="isAnonymous"  />
-                            </view>
+                <!-- <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_switch">
+                        <view class="weui-cell__bd">是否匿名</view>
+                        <view class="weui-cell__ft">
+                            <switch bindchange="formSwitchChange" data-field="isAnonymous"  />
                         </view>
                     </view>
-                </mp-cell>
+                </view> -->
                 <mp-cell title="商品评分" ext-class="">
                     <radio-group class="radio-group" bindchange="radioChange">
                         <radio class="radio" wx:for-items="{{[1,2,3,4,5]}}" wx:key="{{index}}" value="{{item}}" checked="{{index==4}}">
@@ -40,15 +35,21 @@
                             </view>
                         </view>
                      </view>
-                </mp-cell>
-                <mp-cell>
                     <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" bindselect="chooseImage" binddelete="deleteImage"
                         upload="{{uplaodFile}}" select="selectFiles" files="{{files}}" max-count="4" delete="{{true}}">
                     </mp-uploader>
                 </mp-cell>
+
             </mp-cells>
         </mp-form>
 
+    </view>
+    <view class="comment-bottom">
+        <view class="comment-bottom-item comment-bottom-left">
+            <switch bindchange="formSwitchChange" data-field="isAnonymous" />
+            是否匿名
+        </view>
+        <view class="comment-bottom-item comment-bottom-right" bindtap="addComment">立即评价</view>
     </view>
 
 </view>

@@ -2,6 +2,27 @@
 const app =getApp();
 Page({
 
+  uploadUserImg:function(){
+    let newUserImg = this.data.newUserImg;
+    wx.uploadFile({
+      url: app.globalData.url+'/user/userInfo/img',
+      filePath:newUserImg,
+      name:'userImg',
+      // header: {}, // 设置请求的 header
+      // formData: {}, // HTTP 请求中其他额外的 form data
+      success: function(res){
+        // success
+        console.log(res);
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
+
   submitForm:function(){
     let that = this;
     let id = this.data.user.id;
@@ -78,13 +99,34 @@ Page({
   },
 
   chooseImage:function(e){
+    let that = this;
     wx.chooseImage({
       count: 1, // 最多可以选择的图片张数，默认9
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function(res){
         // success
-        console.log(res)
+        console.log(res);
+        let tempFiles = res.tempFiles;
+        that.setData({newUserImg:tempFiles[0].path});
+        wx.uploadFile({
+          url: app.globalData.url+'/user/userInfo/img',
+          filePath:tempFiles[0].path,
+          name:'userImg',
+          // header: {}, // 设置请求的 header
+          // formData: {}, // HTTP 请求中其他额外的 form data
+          success: function(res){
+            // success
+            console.log(res)
+          },
+          fail: function(res) {
+            // fail
+            console.log(res)
+          },
+          complete: function() {
+            // complete
+          }
+        })
       },
       fail: function() {
         // fail
@@ -143,6 +185,7 @@ Page({
     formData:{},
     genders: ["未知", "男", "女"],
     genderIndex: 0,
+    newUserImg:'',
     
   },
 

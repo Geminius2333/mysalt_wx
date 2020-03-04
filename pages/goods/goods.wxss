@@ -175,11 +175,11 @@
     background: #ff9400;
     color: white;
     width: 200rpx;
-    padding: 20rpx 15rpx;
+    padding: 22rpx 15rpx;
 }
 
 .goods-bottom .bottom-buy{
-    padding: 20rpx 15rpx;
+    padding: 22rpx 15rpx;
     background: #ff5555;
     color: white;
     width: 200rpx;

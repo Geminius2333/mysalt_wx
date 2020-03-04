@@ -3,14 +3,14 @@
 <view class="container">
   <!-- 未登录 -->
   <view class="login-hint" wx:if="{{user == null}}">
-    <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit" />
+    <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
     <button class="login-btn" type="primary" bindtap="toLoginPageClick">点击登录</button>  
   </view>
   <scroll-view scroll-y="true">
       <!-- 购物车 -->
       <checkbox-group class="checkbox-group" bindchange="checkboxChange">
         <view wx:if="{{cartList.length==0}}" class="none-img-view">
-          <image class="none-img" src="/resource/images/没有相关.png" mode="aspectFit" />
+          <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
           购物车是空的
         </view>
         <view class="cart-item" wx:for="{{cartList}}" wx:key="{{cart.id}}" wx:for-item="cart" wx:for-index="index">

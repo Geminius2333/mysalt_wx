@@ -3,6 +3,8 @@ const utilPay = require('../../utils/beePay.js');
 const md5 = require('../../utils/md5.js');
 const app = getApp();
 Page({
+
+
   //测试微信支付请求
   wxPay:function(){
     console.log("支付")
@@ -144,7 +146,8 @@ Page({
       history:'/pages/mine/history/history',
       help:'/pages/mine/help/help',
       orders:'../order/order',
-      userInfo:'/pages/mine/setting/userInfo/userInfo'
+      userInfo:'/pages/mine/setting/userInfo/userInfo',
+      logs:'/pages/logs/logs'
     },
     waitPay:"/resource/icons/mine/支付.jpg",
     iconPath:{
@@ -168,7 +171,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**

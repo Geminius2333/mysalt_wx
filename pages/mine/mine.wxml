@@ -15,25 +15,25 @@
     <view class="order-menu">
 
       <view class="order-menu-item" bindtap="toOrderPage" data-nav="1">
-        <i class="icon iconfont icondd"></i>
+        <i class="icon iconfont order-menu-icon iconqianbao"></i>
         <text class="order-menu-item-text">待付款</text>
       </view>
       <view class="order-menu-item" bindtap="toOrderPage" data-nav="2">
-        <i class="icon iconfont  icondaizhifu"></i>
+        <i class="icon iconfont order-menu-icon  icondaifahuo"></i>
         <text  class="order-menu-item-text">待发货</text>
       </view>
       <view class="order-menu-item" bindtap="toOrderPage" data-nav="3">
-        <i class="icon iconfont  icondaishouhuo"/>
+        <i class="icon iconfont order-menu-icon  iconwuliu"></i>
         <text  class="order-menu-item-text">待收货</text>
       </view>
       <view class="order-menu-item" bindtap="toOrderPage" data-nav="4">
-        <i class="icon iconfont  icondaipinjia"/>
+        <i class="icon iconfont order-menu-icon  iconhuodong"></i>
         <text  class="order-menu-item-text">待评价</text>
       </view>
-      <view class="order-menu-item">
-        <i class="icon iconfont  icontuihuanhuo"/>
+      <!-- <view class="order-menu-item">
+        <i class="icon iconfont  iconluntan" bindtap="toOrderPage" data-nav="0"></i>
         <text  class="order-menu-item-text">售后</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <view style="height:25rpx;width:750rpx;background:#e3e3e3"></view>
@@ -55,6 +55,7 @@
         <!-- <image class="cell-img" slot="title" src="{{icon}}"  ></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="help" color="green" size="{{25}}"></mp-icon>
       </mp-cell>  
+      <mp-cell link hover url="{{pages.logs}}" value="日志" wx:if="{{true}}"></mp-cell>
     </mp-cells>
   </view>
   <button bindtap="wxPay">测试支付</button>

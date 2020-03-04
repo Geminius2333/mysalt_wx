@@ -70,7 +70,7 @@ Page({
       });
     }
   },
-  //请求获取商品评论
+  //请求获取商品评价
   getGoodsComment:function(){
     let that = this;
     let goods = this.data.goods.id;
@@ -84,9 +84,9 @@ Page({
         console.log(msg)
         that.setData({commentList:msg.data.commentList,commentCount:msg.data.commentCount});
         if(that.data.commetnCount>999){
-          that.setData({['goodsNav[1]']:"商品评论（999+）"})
+          that.setData({['goodsNav[1]']:"商品评价（999+）"})
         }else{
-          let str = "商品评论（"+that.data.commentCount+"）";
+          let str = "商品评价（"+that.data.commentCount+"）";
           that.setData({['goodsNav[1]']:str})
         }
       },
@@ -161,12 +161,25 @@ Page({
       })
     }
   },
+
+  saveHistory:function(goods){
+    let goodsHistory = [];
+    if(wx.getStorageSync('GOODS_HISTORY') != ""){
+      goodsHistory = wx.getStorageSync('GOODS_HISTORY');
+      // console.log('原历史',goodsHistory);
+    }
+    goodsHistory.unshift(goods);
+    console.log("浏览历史", goodsHistory);
+    wx.setStorageSync('GOODS_HISTORY', goodsHistory);
+  },
+
   //切换goodsNav
   changeNav:function(e){
    // console.log(e);
     let nav = e.currentTarget.dataset.nav;
     this.setData({curNav:nav});
   },
+
   toHelpPage:function(){
     wx.navigateTo({
       url: '/pages/mine/help/help',
@@ -175,6 +188,7 @@ Page({
       },
     })
   },
+
   toCartTab:function(){
     wx.switchTab({
       url: '/pages/cart/cart',
@@ -191,7 +205,7 @@ Page({
     user:null,
     appUrl:null,
     goods:{},
-    goodsNav:['商品详情','商品评论'],
+    goodsNav:['商品详情','商品评价'],
     curNav:0,
     buyNum:1,
   },
@@ -206,8 +220,10 @@ Page({
     eventChannel.on('goods', function (data) {
       let goods = data;
       that.setData({ goods: goods });
-      console.log(goods);
+      // console.log(goods);
+      that.saveHistory(goods);
     });
+
 
   },
 

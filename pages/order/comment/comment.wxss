@@ -17,3 +17,34 @@
     width: 160rpx;
     height: 160rpx;
 }
+
+.comment-bottom{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    background: white;  
+}
+.comment-bottom-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 85rpx;
+}
+.comment-bottom-left{
+    width: 500rpx;
+    justify-content: start;
+    padding-left: 20rpx;
+
+}
+
+.comment-bottom-right{
+    width: 250rpx;
+    background: #ff0094;
+    color: white;
+}
+
