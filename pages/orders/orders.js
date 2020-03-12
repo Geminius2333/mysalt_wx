@@ -61,6 +61,21 @@ Page({
     })
   },
 
+  //跳转到单一订单详情
+  toOrdersDetailPage:function(e){
+    let ordersIndex = e.currentTarget.dataset.ordersIndex;
+    // let ordersId = e.currentTarget.dataset.ordersId;
+    let orders = this.data.ordersList[ordersIndex];
+    console.log("ordersIndex=="+ordersIndex);
+    // console.log("ordersId=="+ordersId);
+    wx.navigateTo({
+      url:'ordersDetail/ordersDetail',
+      success:res =>{
+        res.eventChannel.emit("orders",orders);
+      }
+    })
+  },
+
   //跳转到评价页面
   toCommentPage:function(e){
     let index = e.currentTarget.dataset;

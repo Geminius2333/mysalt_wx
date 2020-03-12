@@ -1,0 +1,52 @@
+<!--pages/orders/ordersDetail/ordersDetail.wxml-->
+<wxs module="DateFormat" src="../../../utils/dateFormat.wxs"></wxs>
+<view class="container">
+    <!-- <view class="content-box">
+        <view>下单</view>
+        <view>支付</view>
+        <view>配送</view>
+        <view>完成</view>
+    </view> -->
+    <view class="content-box">
+        <view class="content-item">物流公司：{{orders.ordersLogisticsCompany.name}}</view>
+        <view class="content-item flex-row-between" >物流编号：{{orders.trackingNo}} 
+            <text class="btn" bindtap="toLogisticsProgram" data-tracking-no="{{orders.trackingNo}}">查询</text>
+        </view>
+        <view class="content-item">收货人名：{{orders.ordersRecAddress.name}}  {{orders.ordersRecAddress.phone}}</view>
+        <view class="content-item">
+            <view>收获地址：{{orders.ordersRecAddress.recAddressArea.city.province.name}}
+                {{orders.ordersRecAddress.recAddressArea.city.name}} {{orders.ordersRecAddress.recAddressArea.name}}
+            </view> \n
+            <text space="emsp" decode="true">&emsp;&emsp;&emsp;&emsp;&emsp;{{orders.ordersRecAddress.address}}</text>
+        </view>
+    </view>
+    <view class="content-box">
+        <view class="content-item">订单编号：{{orders.id}}</view>
+        <view class="content-item">下单时间：{{DateFormat.getLocalDate(orders.addTime)}}</view>
+        <view class="content-item">订单状态：<text class="status-text">{{orders.ordersStatus.status}}</text></view>
+    </view>
+    <view class="content-box">
+        <view class="content-item">
+            <view class="ordersDetail-list">
+                <view class="ordersDetail-item {{ordersDetailIndex+1 < orders.ordersDetailList.length?'border-bottom-line':''}}" wx:for="{{orders.ordersDetailList}}" wx:key="{{orders.id}}" 
+                    wx:for-index="ordersDetailIndex" wx:for-item="ordersDetail">
+                    <view class="goods-box-left">
+                        <image class="goods-img"  wx:if="{{ordersDetail.ordersDetailGoods.goodsImgList.length > 0}}"
+                            src="{{appUrl+ordersDetail.ordersDetailGoods.goodsImgList[0].img}}" mode="aspectFill"> 
+                        </image>
+                    </view>
+                    <view class="goods-box-right">
+                        <text>{{ordersDetail.ordersDetailGoods.title}}</text>
+                        <text>规格：{{"个"}} x {{ordersDetail.number}}</text>
+                        <text class="text-red">￥{{ordersDetail.price}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="content-box">
+        <view class="content-item border-bottom-line">商品费用：￥{{goodsCost}}</view>
+        <view class="content-item border-bottom-line">物流费用：￥{{logisticsCost}}</view>
+        <view class="content-item">总计：{{goodsCost+logisticsCost}}</view>
+    </view>
+</view>

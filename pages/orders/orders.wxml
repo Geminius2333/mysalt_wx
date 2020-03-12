@@ -50,7 +50,7 @@
                         <view class="orders-bottom-item">
                             <view></view>
                             <view class="orders-bottom-item-btn-list">
-                                <view class="orders-bottom-item-btn" data-status="{{-1}}" data-id="{{orders.id}}"
+                                <view class="orders-bottom-item-btn" data-status="{{-1}}" data-orders-id="{{orders.id}}" data-orders-index="{{ordersIndex}}"
                                     bindtap="{{orders.status==1?'updateOrdersStatus':'toOrdersDetailPage'}}">
                                     {{orders.status==1?'取消':'查看详情'}}
                                 </view>

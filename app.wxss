@@ -34,3 +34,23 @@ page{
   width: 350rpx;
   height: 350rpx;
 }
+
+.text-red{
+  color: red;
+}
+
+.text-orange{
+  color: orange;
+}
+
+.text-primay{
+  color: #0094ff;
+}
+
+.text-second{
+  color: #ff0094;
+}
+
+.text-lightpurple{
+  color: #9400ff;
+}

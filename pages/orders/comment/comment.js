@@ -160,7 +160,7 @@ Page({
     let that = this;
     this.setData({user:app.globalData.user,appUrl:app.globalData.url});
     this.setData({['formData.user']:this.data.user.id});
-    const eventChannel = this.getOpenerEventChannel()
+    const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('ordersDetail',function(data){
       console.log(data);
       that.setData({ordersDetail:data,goods:data.ordersDetailGoods});

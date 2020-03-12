@@ -4,7 +4,7 @@ const app = getApp();
 Page({
   //跳转到添加订单页面
   toOrderPage:function(e){
-    console.log("跳转到order页面");
+    console.log("跳转到orders页面");
     let orderDetailList = new Array();
     let cartList = this.data.cartList;
     //console.log(cartList);
@@ -19,7 +19,7 @@ Page({
       wx.showToast({title:"还没有选择商品",icon:'none',duration:1000});
     }else{
       wx.navigateTo({
-        url: '/pages/order/add/add',
+        url: '/pages/orders/add/add',
         success: function (res) {
           // success
           res.eventChannel.emit('orderDetailList', { data: orderDetailList });

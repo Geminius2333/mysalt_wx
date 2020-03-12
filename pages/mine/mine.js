@@ -93,8 +93,8 @@ Page({
     }
     else{
       wx.navigateTo({
-         url:'/pages/order/order',
-        // url: '/pages/order/add/add',
+         url:'/pages/orders/orders',
+        // url: '/pages/orders/add/add',
         success: function (res) {
           // success
           res.eventChannel.emit('nav', { data: nav });
@@ -145,7 +145,7 @@ Page({
       setting:'/pages/mine/setting/setting',
       history:'/pages/mine/history/history',
       help:'/pages/mine/help/help',
-      orders:'../order/order',
+      orders:'../orders/orders',
       userInfo:'/pages/mine/setting/userInfo/userInfo',
       logs:'/pages/logs/logs'
     },

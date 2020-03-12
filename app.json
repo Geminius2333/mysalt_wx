@@ -1,4 +1,7 @@
 {
+  "navigateToMiniProgramAppIdList":[
+    "wxfaeec4255298e6c6"
+  ],
   "pages": [
     "pages/mine/mine",
     "pages/mine/history/history",
@@ -9,9 +12,10 @@
     "pages/mine/login/login",
     "pages/mine/register/register",
     "pages/index/index",
-    "pages/order/order",
-    "pages/order/add/add",
-    "pages/order/comment/comment",
+    "pages/orders/orders",
+    "pages/orders/ordersDetail/ordersDetail",
+    "pages/orders/add/add",
+    "pages/orders/comment/comment",
     "pages/recAddress/recAddress",
     "pages/recAddress/add/add",
     "pages/recAddress/edit/edit",
