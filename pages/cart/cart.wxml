@@ -13,14 +13,14 @@
           <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
           购物车是空的
         </view>
-        <view class="cart-item" wx:for="{{cartList}}" wx:key="{{cart.id}}" wx:for-item="cart" wx:for-index="index">
+        <view class="cart-item" wx:for="{{cartList}}" wx:key="id" wx:for-item="cart" wx:for-index="index">
           <checkbox value="{{index}}" checked="{{cart.checked}}"></checkbox>
           <view>
             <image class="cart-item-img" src="{{appUrl+cart.cartGoods.goodsImgList[0].img}}" mode="aspectFill"></image>
           </view>
           <view class="cart-item-info">
             <view class="cart-item-info-list">
-              <text>{{cart.cartGoods.name}}</text>
+              <text>{{cart.cartGoods.title}}</text>
             </view>
             <view class="cart-item-info-list">
               <text class="cart-item-info-price"

@@ -1,3 +1,11 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-icon":"../../../components/icon/icon",
+    "mp-dialog": "../../../components/dialog/dialog"
+  },
+  "navigationBarBackgroundColor": "#0094ff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "足迹",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
 }

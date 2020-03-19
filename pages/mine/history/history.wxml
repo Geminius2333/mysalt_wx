@@ -1,2 +1,21 @@
 <!--pages/mine/history/history.wxml-->
-<text>pages/mine/history/history.wxml</text>
+<view class="container">
+    <view class="main">
+        <view wx:if="{{goodsHistory!=''}}">
+            <view  class="history-item border-line-default" wx:for="{{goodsHistory}}" wx:for-item="goods" 
+                data-goods-id="{{goods.id}}" data-index="{{index}}" bindtap="toGoodsPage" bindlongpress="longPressHistoryItem">
+                <text>{{index+1}}.{{goods.title}}</text>
+            </view>
+            <view class="text-second">
+                <text>长按单项删除</text>
+            </view>
+        </view>
+        <!-- 没有浏览记录 -->
+        <view wx:if="{{goodsHistory==''}}" class="history-item border-line-default display-flex-column display-flex-center">
+            <text>没有浏览记录</text>
+        </view>
+    </view>
+    <mp-dialog title="注意" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+        <view>确认删除当前记录？</view>
+    </mp-dialog>
+</view>

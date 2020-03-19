@@ -87,6 +87,10 @@ text{
 
 }
 
+.item-info-title{
+  width: 300rpx;
+}
+
 
 .del-price{
   text-decoration: line-through;

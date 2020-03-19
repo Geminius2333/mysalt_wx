@@ -3,13 +3,13 @@
 <view class="container">
     <!-- 顶部导航栏 -->
     <view class="nav-top">
-        <view class="nav-top-item {{curNav==index?'active':''}}" wx:for="{{navTop}}" wx:for-item="navTop" wx:key="{{index}}"
+        <view class="nav-top-item {{curNav==index?'active':''}}" wx:for="{{navTop}}" wx:for-item="navTop" wx:key="index"
             bindtap="switchNavTop" data-nav="{{index}}">
             {{navTop}}           
         </view>              
     </view>
     <!-- 内容盒子 -->
-    <view class="orders" wx:for="{{navTop}}" wx:if="{{curNav==navIndex}}" wx:key="{{navIndex}}" wx:for-index="navIndex"> 
+    <view class="orders" wx:for="{{navTop}}" wx:if="{{curNav==navIndex}}" wx:key="navIndex" wx:for-index="navIndex"> 
         <view wx:if="{{ordersList!=null}}">
             <view class="none-img-view" wx:if="{{ordersList.length==0 || Orders.showNoneImg(navIndex,ordersList)}}">
                 <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
@@ -17,14 +17,14 @@
             </view>
         </view>
         <view  wx:for="{{ordersList}}" wx:for-item="orders" wx:for-index="ordersIndex"  
-                wx:key="{{orders.id}}"  >
+                wx:key="ordersIndex"  >
             <block  wx:if="{{navIndex==0||orders.status==navIndex}}">
                 <view class="orders-item">
                     <view class="orders-top">
                         <text class="orders-top-id">订单编号：{{orders.id}}</text>
-                        <text class="orders-top-status">{{orders.status > 0 ? navTop[orders.status] : orders.ordersStatus.status}}</text>
+                        <text class="orders-top-status">{{orders.ordersStatus.status}}</text>
                     </view>
-                    <view class="orders-detail" wx:for="{{orders.ordersDetailList}}" wx:for-index="ordersDetailIndex" wx:key="{{item.id}}">
+                    <view class="orders-detail" wx:for="{{orders.ordersDetailList}}" wx:for-index="ordersDetailIndex" wx:key="id">
                         <view>
                             <image class="orders-detail-item-img" src="{{appUrl+item.ordersDetailGoods.goodsImgList[0].img}}"
                                 mode="aspectFill"></image>
@@ -54,10 +54,10 @@
                                     bindtap="{{orders.status==1?'updateOrdersStatus':'toOrdersDetailPage'}}">
                                     {{orders.status==1?'取消':'查看详情'}}
                                 </view>
-                                <view wx:if="{{orders.status!=-1 && orders.status!=2 && orders.status!=4}}"
+                                <view wx:if="{{orders.status==1||orders.status==3}}"
                                     data-status="{{orders.status+1}}" data-id="{{orders.id}}" bindtap="showDialog"
                                     class="orders-bottom-item-btn">
-                                    {{ordersBtn[orders.status]}}
+                                    {{orders.status==1?'支付':'收货'}}
                                 </view>
                             </view>
                         </view>

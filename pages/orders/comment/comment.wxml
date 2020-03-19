@@ -2,22 +2,13 @@
 <view class="container">
     <!-- 商品信息 -->
     <view class="goods-view">
-        <image class="goods-img" src="{{appUrl+goods.goodsImgList[0].img}}"
-             mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+        <image class="goods-img" src="{{appUrl+goods.goodsImgList[0].img}}" mode="aspectFit|aspectFill|widthFix"  />
         <text>{{goods.title}}</text>
     </view>
     <!-- 评论内容 -->
     <view class="comment-cotent">
         <mp-form id="form" rules="{{rules}}" models="{{formData}}">
             <mp-cells>
-                <!-- <view class="weui-cells weui-cells_after-title">
-                    <view class="weui-cell weui-cell_switch">
-                        <view class="weui-cell__bd">是否匿名</view>
-                        <view class="weui-cell__ft">
-                            <switch bindchange="formSwitchChange" data-field="isAnonymous"  />
-                        </view>
-                    </view>
-                </view> -->
                 <mp-cell title="商品评分" ext-class="">
                     <radio-group class="radio-group" bindchange="radioChange">
                         <radio class="radio" wx:for-items="{{[1,2,3,4,5]}}" wx:key="{{index}}" value="{{item}}" checked="{{index==4}}">

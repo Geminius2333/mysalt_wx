@@ -24,6 +24,9 @@
         <view class="content-item">订单编号：{{orders.id}}</view>
         <view class="content-item">下单时间：{{DateFormat.getLocalDate(orders.addTime)}}</view>
         <view class="content-item">订单状态：<text class="status-text">{{orders.ordersStatus.status}}</text></view>
+        <view class="content-item">订单备注：
+            <text class="wrap-text">{{orders.remarks}}</text>
+        </view>
     </view>
     <view class="content-box">
         <view class="content-item">

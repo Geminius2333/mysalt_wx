@@ -63,3 +63,9 @@
 .goods-box-right text{
     padding-bottom: 10rpx;
 }
+
+.wrap-text{
+    display: flex;
+    word-break: break-all;
+    background-color: #f7e8aa;
+}

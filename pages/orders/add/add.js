@@ -58,6 +58,20 @@ Page({
     })
 
   },
+
+  //订单备注更新
+  formInputChange:function(e){
+    // console.log(e);
+    let { field } = e.currentTarget.dataset;
+    //更新表单
+    this.setData({
+      [`orders.${field}`]: e.detail.value
+    });
+    //更新字数
+    // this.setData({commentFontCount:e.detail.cursor});
+    // console.log(this.data.orders);
+  },
+
   //跳转到订单
   toOrdersPage:function(e){
     wx.navigateTo({

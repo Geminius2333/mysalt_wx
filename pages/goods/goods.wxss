@@ -147,6 +147,11 @@
     font-size: 13px;
 }
 
+.comment-img{
+    width: 200rpx;
+    height: 160rpx;
+}
+
 
 
 /* 评论结束 */

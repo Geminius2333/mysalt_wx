@@ -106,7 +106,6 @@ Page({
     appUrl:null,
     user:null,
     navTop:['全部','待付款','待发货','待收货','待评价'],
-    ordersBtn:['取消','立即支付','','确认收货','评价','售后'],
     curNav:0,
     ordesList:{},
     ordersDetailList:{},

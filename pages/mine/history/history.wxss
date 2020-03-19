@@ -1,1 +1,13 @@
 /* pages/mine/history/history.wxss */
+.container{
+    padding: 0;
+}
+
+.main{
+    width: 750rpx;
+    background-color: white;
+}
+
+.history-item{
+    padding:20rpx 20rpx;
+}

@@ -19,7 +19,7 @@
     </view>
     <!-- 商品显示 -->
     <view class="cart">
-        <view class="cart-item" wx:for="{{cartList}}" wx:key="{{cart.id}}" wx:for-item="cart" wx:for-index="index">
+        <view class="cart-item" wx:for="{{cartList}}" wx:key="id" wx:for-item="cart" wx:for-index="index">
             <view>
                 <image class="cart-item-img" src="{{appUrl+cart.cartGoods.goodsImgList[0].img}}" mode="aspectFill"></image>
             </view>
@@ -47,7 +47,10 @@
             <text>配送费用：</text>
             <text class="text-price" selectable="false" space="false" decode="false">￥{{Fix.toFix(logisticsPrice,2)}}</text>
         </view>
-
+        <view class="order-info-item">
+            <textarea bindinput="formInputChange" maxlength="150" data-field="remarks" class="weui-textarea"
+            placeholder="订单备注" style="height: 3.3em" />
+        </view>
     </view>
 
     <!-- 底部 -->

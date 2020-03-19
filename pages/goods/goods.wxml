@@ -1,9 +1,10 @@
 <!--pages/goods/goods.wxml-->
 <wxs module="DateFormat" src="../../utils/dateFormat.wxs"></wxs>
 <view class="container">
+    <mp-toptips msg="{{toptips.msg}}" type="{{toptips.type}}" show="{{toptips.show}}" duration="{{1000}}"></mp-toptips>
     <view class="goods-head">
         <swiper class="swiper" indicator-dots autoplay interval="2000" duration="500" circular style="height:500rpx">
-            <swiper-item wx:for="{{goods.goodsImgList}}" wx:for-item="goodsImg" wx:key="goodsImg.id">
+            <swiper-item wx:for="{{goods.goodsImgList}}" wx:for-item="goodsImg" wx:key="index">
                 <image class="swiper-img" src="{{appUrl+goodsImg.img}}" mode="aspectFill"></image>
             </swiper-item>
         </swiper>
@@ -42,7 +43,7 @@
     </view>
     <view class="goods-body">
        <view  class="goods-body-nav">
-           <view class="nav-item {{curNav==index?'active':''}}" wx:for="{{goodsNav}}" wx:key="{{index}}" bindtap="changeNav" data-nav="{{index}}">
+           <view class="nav-item {{curNav==index?'active':''}}" wx:for="{{goodsNav}}" wx:key="index" bindtap="changeNav" data-nav="{{index}}">
                 <text>{{item}}</text>
            </view>
        </view>
@@ -57,7 +58,7 @@
         </view>   
         <!-- 评价 -->
         <view wx:if="{{curNav==1}}">
-            <view class="comment-view" wx:for="{{commentList}}" wx:key="{{comment.id}}" wx:for-item="comment">
+            <view class="comment-view" wx:for="{{commentList}}" wx:key="index" wx:for-item="comment">
                 <view class="comment-top">
                     <view class="comment-top-left">
                         <image class="comment-user-img" src="{{comment.isAnonymous==false?appUrl+comment.commentUser.img:appUrl+'/img/user/1.jpg'}}"></image>
@@ -67,8 +68,8 @@
                             <text>{{comment.isAnonymous==false?comment.commentUser.username:'匿名用户'}}</text>
                             <!-- <text>评分：{{comment.score}}</text> -->
                             <view>
-                                <mp-icon type="field" icon="star" color="red" wx:for="{{comment.score}}" wx:key="{{index}}"></mp-icon>
-                                <mp-icon type="outline" icon="star" color="red" wx:for="{{5-comment.score}}" wx:key="{{index}}"></mp-icon>
+                                <mp-icon type="field" icon="star" color="red" wx:for="{{comment.score}}" wx:key="index"></mp-icon>
+                                <mp-icon type="outline" icon="star" color="red" wx:for="{{5-comment.score}}" wx:key="index"></mp-icon>
                             </view>
                         </view>
                         <view class="comment-top-right-item">
@@ -79,8 +80,9 @@
                 <view class="comment-content">
                     {{comment.comment}}
                 </view>
-                <view class="comment-bottom">
-                    图片
+                <view class="comment-bottom border-line-default">
+                    <image class="comment-img" wx:for="{{comment.commentImgList}}" wx:key="index"
+                     wx:for-item="commentImg" src="{{appUrl+commentImg.img}}" mode="aspectFill"></image>
                 </view>
             </view>
             <text>没有更多数据了</text>

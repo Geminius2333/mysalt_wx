@@ -54,3 +54,22 @@ page{
 .text-lightpurple{
   color: #9400ff;
 }
+
+.border-line-default{
+  border-bottom: solid 1px #eee;
+}
+
+.display-flex-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.display-flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.display-flex-center{
+  align-items: center;
+  justify-content: center;
+}

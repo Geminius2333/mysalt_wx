@@ -40,6 +40,7 @@ Page({
 
   //加入购物车
   addToCart:function(e){
+    let that = this;
     if(this.data.user==null){
       wx.showToast({
         title:'还没有登录',
@@ -59,12 +60,11 @@ Page({
         },
         success: res => {
           var msg = res.data;
-          //console.log(msg.data)
+          console.log(msg)
           if (msg.flag) {
-            wx.showToast({
-              title: '已加入购物车',
-              duration: 500,
-            })
+            that.setData({toptips:{msg:'已加入购物车',type:'success',show:true}})
+          }else{
+            that.setData({toptips:{msg:'购物车中已有该商品',type:'error',show:true}})
           }
         }
       });
@@ -167,6 +167,17 @@ Page({
     if(wx.getStorageSync('GOODS_HISTORY') != ""){
       goodsHistory = wx.getStorageSync('GOODS_HISTORY');
       // console.log('原历史',goodsHistory);
+    }
+    for(let i in goodsHistory){
+      console.log("goodsHistory[i]=="+JSON.stringify(goodsHistory[i].id));
+      console.log("goods=="+JSON.stringify(goods.id));
+      if(goodsHistory[i].id==goods.id){
+        goodsHistory.splice(i,1);
+        break;
+      }
+    }
+    if(goodsHistory.length>20){
+      goodsHistory.pop();
     }
     goodsHistory.unshift(goods);
     console.log("浏览历史", goodsHistory);
