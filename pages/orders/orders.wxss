@@ -20,7 +20,7 @@
 
 .nav-top .nav-top-item.active{
     color: black;
-    border-bottom: solid 3px black;
+    border-bottom: solid 3px #971009;
 }
 
 /* 订单 */

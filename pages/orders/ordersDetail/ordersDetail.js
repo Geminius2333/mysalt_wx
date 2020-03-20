@@ -2,6 +2,16 @@
 const app = getApp();
 Page({
 
+  toLogisticsPage:function(){
+    let orders = this.data.orders
+    wx.navigateTo({
+      url:'/pages/orders/logistics/logistics',
+      success:function(res){
+        console.log("跳转到物流页面");
+        res.eventChannel.emit("orders",orders);
+      }
+    })
+  },
 
   toLogisticsProgram:function(e){
     let trackingNo = e.currentTarget.dataset.trackingNo;
@@ -55,7 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // this.getLogisticsInfo();
   },
 
   /**

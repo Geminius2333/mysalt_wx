@@ -14,6 +14,7 @@
     "pages/index/index",
     "pages/orders/orders",
     "pages/orders/ordersDetail/ordersDetail",
+    "pages/orders/logistics/logistics",
     "pages/orders/add/add",
     "pages/orders/comment/comment",
     "pages/recAddress/recAddress",

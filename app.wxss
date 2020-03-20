@@ -11,12 +11,10 @@ page{
 
 .container {
   height: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
   box-sizing: border-box;
 } 
 
@@ -34,31 +32,47 @@ page{
   width: 350rpx;
   height: 350rpx;
 }
-
+/* text start */
 .text-red{
   color: red;
 }
-
 .text-orange{
   color: orange;
 }
-
-.text-primay{
+.text-success{
+  color: #2fbab9;
+}
+.text-primary{
   color: #0094ff;
 }
-
 .text-second{
   color: #ff0094;
 }
-
 .text-lightpurple{
   color: #9400ff;
 }
+.text-lightgray{
+  color: #888;
+}
+.text-bold{
+  font-style: bold;
+}
+.text-sm{
+  font-size: small;
+}
+.text-lg{
+  font-size: large;
+}
+.text-xl{
+  font-size: x-large;
+}
+/* text end  */
 
 .border-line-default{
   border-bottom: solid 1px #eee;
 }
 
+/* display start */
 .display-flex-row{
   display: flex;
   flex-direction: row;
@@ -73,3 +87,59 @@ page{
   align-items: center;
   justify-content: center;
 }
+/* display end  */
+
+/*common start*/
+.m-10{
+  margin: 20rpx;
+}
+.m-20{
+  margin: 40rpx;
+}
+.m-l-10{
+  margin-left: 20rpx;
+}
+.m-t-20{
+  margin-top: 40rpx;
+}
+.m-r-10{
+  margin-right: 20rpx;
+}
+.m-r-20{
+  margin-right: 40rpx;
+}
+.m-b-10{
+  margin-bottom: 20rpx;
+}
+.m-b-20{
+  margin-bottom: 40rpx;
+}
+
+.p-10{
+  padding: 20rpx;
+}
+.p-20{
+  padding: 40rpx;
+}
+.p-l-10{
+  padding-left: 20rpx;
+}
+.p-t-20{
+  padding-top: 20rpx;
+}
+.p-r-10{
+  padding-right: 20rpx;
+}
+.p-r-20{
+  padding-right: 40rpx;
+}
+.p-b-10{
+  padding-bottom: 20rpx;
+}
+.p-b-20{
+  padding-bottom: 40rpx;
+}
+
+
+
+

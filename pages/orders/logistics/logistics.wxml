@@ -1,0 +1,45 @@
+<!--pages/orders/logistics/logistics.wxml-->
+<view class="container">
+    <view class="content-box display-flex-row">
+        <image class="expLogo m-l-10" src="{{logisticsInfo.logo}}"></image>
+        <view class="display-flex-column m-l-10">
+            <view class="text-lg text-bold">
+                <text >物流状态：</text>
+                <text class="text-primary"> {{deliveryStatus[logisticsInfo.deliverystatus]}}</text>
+            </view>
+            <view class="text-sm text-lightgray">
+                <text>物流公司：</text>
+                <text>{{logisticsInfo.expName}}</text>
+            </view>
+            <view class="text-sm text-lightgray">
+                <text>物流编号：</text>
+                <text> {{logisticsInfo.number}}</text>
+            </view>
+            <view class="text-sm text-lightgray">
+                <text>公司电话：</text>
+                <text class="text-red"> {{logisticsInfo.expPhone}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="content-box">
+        <view class="display-flex-row m-l-10 m-b-10"> 
+            <text>收货人名：</text>
+            <text>{{orders.ordersRecAddress.name}} {{orders.ordersRecAddress.phone}}</text>
+        </view>
+        <view class="display-flex-row m-l-10 m-b-10 text-sm">
+            <text>收货地址：</text>
+            <text>{{orders.ordersRecAddress.recAddressArea.city.province.name}} {{orders.ordersRecAddress.recAddressArea.city.name}} {{orders.ordersRecAddress.recAddressArea.name}}
+                  {{orders.ordersRecAddress.address}}
+            </text>
+        </view>
+    </view>
+    <view class="content-box">
+        <view class="display-flex-row m-10" wx:for="{{logisticsInfo.list}}" wx:for-key="index"> 
+            <view class="{{index==0?'status-box-active':'status-box'}}"></view>
+            <view class="display-flex-column m-l-10">
+                <text class="text-sm text-bold {{index==0?'text-success':''}}">{{item.status}}</text>
+                <text class="text-sm text-lightgray">{{item.time}}</text>
+            </view>
+        </view>
+    </view>
+</view>

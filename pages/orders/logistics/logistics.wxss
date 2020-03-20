@@ -1,0 +1,25 @@
+/* pages/orders/logistics/logistics.wxss */
+.container{
+    padding: 0;
+}
+
+.content-box{
+    width: 710rpx;
+    margin-bottom: 20rpx;
+    padding: 20rpx;
+    background-color: white;
+}
+
+.expLogo{
+    width:180rpx;
+    height: 180rpx;
+}
+
+.status-box{
+    border-left: solid 2px #888;
+}
+
+.status-box-active{
+    border-left: solid 2px #2fbab9;
+}
+
