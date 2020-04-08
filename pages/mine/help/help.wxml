@@ -1,6 +1,6 @@
 <!--pages/mine/help/help.wxml-->
 <view class="container">
-    <view class="help-item">
+    <view class="help-item border-bottom-default">
         <view class="item-title">
             {{help.title}}
         </view>
@@ -8,5 +8,11 @@
             {{help.detail}}
         </view>
     </view>
+    <view class="p-20">
+        <button type="primary" open-type='contact' bindcontact="handleContact">
+          联系客服
+        </button>
+    </view>
+    
       
 </view>

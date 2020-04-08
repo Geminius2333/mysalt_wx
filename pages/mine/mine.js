@@ -84,6 +84,31 @@ Page({
     // })
   },
 
+  //获取订单量信息
+  getOrdersCountInfo:function(){
+    let that = this;
+    wx.request({
+      url:app.globalData.url+'/orders/user/getOrdersCountByStatus',
+      data:{'userId':that.data.user.id},
+      success:res=>{
+        console.log(res.data);
+        let msg = res.data;
+        let data = msg.data;
+        that.setData({waitDispOrdersCount:data[2].count,waitRecOrdersCount:data[3].count})
+      },
+      fail:res=>{
+        console.log(res);
+      }
+    });
+    this.setData({waitDispOrdersCount:2,waitRecOrdersCount:3});
+  },
+
+  showNotLoginToast:function(){
+    if(this.data.user==null){
+      wx.showToast({title:"还没有登录！",icon:"none",duration:500});
+    }
+  },
+
   //跳转到订单页面
   toOrderPage:function(e){
     console.log(this.data.user);
@@ -95,7 +120,7 @@ Page({
       wx.navigateTo({
          url:'/pages/orders/orders',
         // url: '/pages/orders/add/add',
-        success: function (res) {
+        success:function (res) {
           // success
           res.eventChannel.emit('nav', { data: nav });
         },
@@ -156,6 +181,8 @@ Page({
     },
     //menu-list
     icon:"/resource/icons/mine/baoguo.png",
+    waitDispOrdersCount:null,
+    waitRecOrdersCount:null,
   },
 
   /**
@@ -178,6 +205,9 @@ Page({
    */
   onShow: function () {
     this.setData({ user: app.globalData.user});
+    if(this.data.user!=null){
+      this.getOrdersCountInfo();
+    }
     //console.log(user);
   },
 

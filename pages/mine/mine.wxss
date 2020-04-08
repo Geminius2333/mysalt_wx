@@ -50,6 +50,7 @@
 
 
 .order-menu-item{
+  position: relative;
   display: flex;
   flex-direction: column;
   /* width: 140rpx; */

@@ -77,9 +77,9 @@ text{
 }
 
 .item-image{
-  width:300rpx;
+  width:100%;
   height: 300rpx;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 .item-info{

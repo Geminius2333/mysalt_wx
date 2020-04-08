@@ -53,4 +53,5 @@
         <view class="content-item border-bottom-line">物流费用：￥{{logisticsCost}}</view>
         <view class="content-item">总计：{{goodsCost+logisticsCost}}</view>
     </view>
+
 </view>

@@ -3,7 +3,8 @@
     "mp-cells": "/components/cells/cells",
     "mp-cell": "/components/cell/cell",
     "mp-slideview": "/components/slideview/slideview",
-    "mp-icon": "/components/icon/icon"
+    "mp-icon": "/components/icon/icon",
+    "mp-badge": "/components/badge/badge"
   }, 
   "navigationBarBackgroundColor": "#0094ff",
   "navigationBarTextStyle": "black",

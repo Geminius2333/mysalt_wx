@@ -36,9 +36,9 @@
     <view class="content-box">
         <view class="display-flex-row m-10" wx:for="{{logisticsInfo.list}}" wx:for-key="index"> 
             <view class="{{index==0?'status-box-active':'status-box'}}"></view>
-            <view class="display-flex-column m-l-10">
-                <text class="text-sm text-bold {{index==0?'text-success':''}}">{{item.status}}</text>
-                <text class="text-sm text-lightgray">{{item.time}}</text>
+            <view class="display-flex-column m-l-10 {{index==0?'text-success':''}}">
+                <text class="text-sm text-bold ">{{item.status}}</text>
+                <text class="text-sm {{index==0?'text-success':'text-lightgray'}}">{{item.time}}</text>
             </view>
         </view>
     </view>

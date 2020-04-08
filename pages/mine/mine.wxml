@@ -11,7 +11,7 @@
     <view><text id="user-name-text">{{user.username}}</text></view>
   </view>
   <view class="order">
-    <mp-cell link hover url="{{user==null?pages.none:pages.orders}}" value="我的订单" extClass="order-head"></mp-cell>
+    <mp-cell link hover url="{{user==null?pages.none:pages.orders}}" value="我的订单" extClass="order-head" bindtap="showNotLoginToast"></mp-cell>
     <view class="order-menu">
 
       <view class="order-menu-item" bindtap="toOrderPage" data-nav="1">
@@ -19,10 +19,12 @@
         <text class="order-menu-item-text">待付款</text>
       </view>
       <view class="order-menu-item" bindtap="toOrderPage" data-nav="2">
+        <mp-badge class="badge-postion" wx:if="{{waitDispOrdersCount  > 0}}" content="{{waitDispOrdersCount}}"/>
         <i class="icon iconfont order-menu-icon  icondaifahuo"></i>
         <text  class="order-menu-item-text">待发货</text>
       </view>
       <view class="order-menu-item" bindtap="toOrderPage" data-nav="3">
+        <mp-badge class="badge-postion" wx:if="{{waitDispOrdersCount  > 0}}" content="{{waitRecOrdersCount}}"/>
         <i class="icon iconfont order-menu-icon  iconwuliu"></i>
         <text  class="order-menu-item-text">待收货</text>
       </view>
@@ -39,23 +41,22 @@
   <view style="height:25rpx;width:750rpx;background:#e3e3e3"></view>
   <view class="menu-list">
     <mp-cells>
-      <mp-cell link hover url="{{user==null?pages.none:pages.recAddress}}" value="我的地址">
+      <mp-cell link hover url="{{user==null?pages.none:pages.recAddress}}" value="我的地址" bindtap="showNotLoginToast">
         <!-- <image class="cell-img" slot="title" src="{{icon}}" ></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="location" color="#ff0094" size="{{25}}"></mp-icon>
       </mp-cell>   
-      <mp-cell link hover url="{{user==null?pages.none:pages.history}}" value="我的足迹">
+      <mp-cell link hover url="{{user==null?pages.none:pages.history}}" value="我的足迹" bindtap="showNotLoginToast">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="time" color="#9400ff" size="{{25}}"></mp-icon>
       </mp-cell>
-      <mp-cell link hover url="{{user==null?pages.none:pages.setting}}" value="设置">
+      <mp-cell link hover url="{{user==null?pages.none:pages.setting}}" value="设置" bindtap="showNotLoginToast">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="setting" color="#0094ff" size="{{25}}"></mp-icon>
       </mp-cell>
-      <mp-cell link hover url="{{user==null?pages.none:pages.help}}" value="我的帮助">
+      <mp-cell link hover url="{{pages.help}}" value="我的帮助">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"  ></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="help" color="green" size="{{25}}"></mp-icon>
       </mp-cell>  
-      <mp-cell link hover url="{{pages.logs}}" value="日志" wx:if="{{true}}"></mp-cell>
     </mp-cells>
   </view>
   <button bindtap="wxPay">测试支付</button>

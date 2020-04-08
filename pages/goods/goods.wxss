@@ -91,7 +91,7 @@
     color: #999999;
 }
 .nav-item.active{
-    border-bottom: solid 3px black;
+    border-bottom: solid 3px #971009;
     color: black;
 }
 

@@ -1,5 +1,10 @@
 // pages/mine/help/help.js
 Page({
+  handleContact(e) {
+    console.log(e)
+    console.log(e.detail.path)
+    console.log(e.detail.query)
+  },
 
   /**
    * 页面的初始数据

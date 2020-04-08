@@ -84,9 +84,9 @@ Page({
         console.log(msg)
         that.setData({commentList:msg.data.commentList,commentCount:msg.data.commentCount});
         if(that.data.commetnCount>999){
-          that.setData({['goodsNav[1]']:"商品评价（999+）"})
+          that.setData({['goodsNav[1]']:"商品评价(999+)"})
         }else{
-          let str = "商品评价（"+that.data.commentCount+"）";
+          let str = "商品评价("+that.data.commentCount+")";
           that.setData({['goodsNav[1]']:str})
         }
       },

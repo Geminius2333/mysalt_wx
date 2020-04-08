@@ -67,6 +67,7 @@
         </view>  
     </view>
 
+
     <mp-dialog title="注意" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
         <view>确认更新状态吗</view>
     </mp-dialog>

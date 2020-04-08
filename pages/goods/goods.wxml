@@ -90,11 +90,14 @@
     </view>
 
     <view class="goods-bottom">
-        <view class="column-view bottom-normal" bindtap="toHelpPage">
-            <mp-icon icon="help"></mp-icon>
-            帮助
+        <view class="column-view bottom-normal">
+            <!-- <mp-icon icon="help"></mp-icon>
+            帮助 -->
+          <button type="primary" size="mini" open-type='contact' bindcontact="handleContact">
+            客服
+          </button>
         </view>    
-        <view class="column-view bottom-normal" bindtap="toCartTab">
+        <view class="column-view bottom-normal bg-color-ee" bindtap="toCartTab">
             <mp-icon icon="shop"></mp-icon>
             购物车
         </view>

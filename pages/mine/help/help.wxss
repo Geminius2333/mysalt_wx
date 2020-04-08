@@ -9,6 +9,10 @@
     width: 730rpx;
 }
 
+.btn{
+  width: 100%
+}
+
 .item-title{
     padding: 10rpx 0;
 }

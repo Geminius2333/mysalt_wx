@@ -5,7 +5,8 @@ const MD5 = require("../../../utils/md5.js");
 Page({
   
   //微信登录
-  loginByWx:function(){
+  loginByWx:function(e){
+    console.log(e);
     let that = this;
     let wxUserInfo={};
     //获取用户信息
@@ -15,40 +16,43 @@ Page({
         wxUserInfo = res.userInfo;
         // console.log(wxUserInfo)
         that.setData({wxUserInfo:wxUserInfo});
-      },
-    });
-    console.log(that.data.wxUserInfo)
-    //获取code
-    wx.login({
-      success: function(res){
-        // success
-        var code = res.code;
-        // console.log(code);
-        if(code){
-          //发送code到服务器
-          wx.request({
-            url: app.globalData.url+"/wx/login",
-            data: {code,wxUserInfo:that.data.wxUserInfo},
-            method: 'POST',
-            success: function(res){
-              // success
-              let msg = res.data;
-              let user = msg.data;
-              console.log(msg)
-              app.globalData.user = user;
-              that.setData({user:user});
-              wx.switchTab({
-                url: '/pages/mine/mine',
+        //登录
+        wx.login({
+          success: function(res){
+            var code = res.code;
+            // console.log(code);
+            if(code){
+              //发送code到服务器
+              wx.request({
+                url: app.globalData.url+"/wx/login",
+                data: {code,wxUserInfo:that.data.wxUserInfo},
+                method: 'POST',
+                success: function(res){
+                  // success
+                  let msg = res.data;
+                  let user = msg.data;
+                  console.log(msg)
+                  app.globalData.user = user;
+                  that.setData({user:user});
+                  wx.switchTab({
+                    url: '/pages/mine/mine',
+                  })
+                },
               })
-            },
-          })
-        }
+            }
+          },
+          fail: function() {
+            // fail
+            console.log("获取code失败："+res.errorMsg);
+          },
+        });
       },
-      fail: function() {
-        // fail
-        console.log("获取code失败："+res.errorMsg);
+      //用户取消授权
+      fail:function(res){
+        console.log('fail:',res.errMsg);
       },
     });
+
   },
 
   //用户登录
