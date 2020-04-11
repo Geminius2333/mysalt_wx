@@ -37,10 +37,10 @@ App({
   globalData: {
     user: null,
     //本地
-    url:"https://localhost/salt",
+    // url:"https://localhost/salt",
     //局域网
     // url:"https://192.168.137.1/salt",
     //服务器
-    //  url:"https://geminiussalt.top/salt"
+     url:"https://geminiussalt.top/salt"
   }
 })

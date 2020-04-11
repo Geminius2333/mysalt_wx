@@ -22,23 +22,56 @@ Page({
       complete: function() {
         // complete
       }
-    })
-    
+    }) 
+  },
+
+  uploadCommentImage:function(commentId){
+    let that = this;
+    let formData = {commentId:commentId};
+    let images = this.data.files;
+    console.log('上传图片', images)
+    // 文件上传的函数，返回一个promise
+    return new Promise((resolve, reject) => {
+      console.log("图片上传！");
+      for(let i=0;i<images.length;i++){
+        let imgUrl = images[i].url;
+        console.log("上传图片路径：",imgUrl);
+        const upload_task = wx.uploadFile({
+          url:app.globalData.url+'/comment/uploadCommentImage',
+          filePath:imgUrl,
+          name:'image',
+          formData:{commentId},
+          success:res=>{
+            console.log(res.data);
+          },
+          fail:res=>{
+            console.log(res)
+          }
+        })
+      }; 
+      setTimeout(() => {
+          reject('some error')
+      }, 5000)
+    });
+
   },
 
   addComment:function(e){
+    this.uploadCommentImage('123456');
     let that = this;
     let postTime = new Date();
     this.setData({['formData.postTime']:postTime,['formData.goods']:this.data.goods.id});
     console.log(this.data.formData);
     wx.request({
-      url: app.globalData.url+'/comment/add',
+      // url: app.globalData.url+'/comment/add',
+      url:'',
       data: that.data.formData,
       method: 'POST',
       success: function(res){
         // success
         let msg = res.data;
         console.log(msg)
+        that.uploadCommentImage(msg.data);
         that.updateOrdersDetailIsComment();
         wx.navigateBack({
           delta: 1, // 回退前 delta(默认为1) 页面
@@ -47,8 +80,9 @@ Page({
           },
         })
       },
-      fail: function() {
+      fail: function(res) {
         // fail
+        console.log("评价失败：",res);
         wx.showToast({
           title:'评论失败',
           icon:'none',
@@ -68,8 +102,7 @@ Page({
   },
 
   deleteImage:function(e){
-    console.log(e)
-
+    console.log("删除图片：",e)
     let files = this.data.files;
     files.splice(e.detail.index,1);
     this.setData({
@@ -79,42 +112,28 @@ Page({
   },
 
   chooseImage: function (e) {
-    console.log(e)
+    console.log("选择图片：",e);
+    let tempFilePaths = e.detail.tempFilePaths;
     var that = this;
-    // wx.chooseImage({
-    //   sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-    //   sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-    //   success: function (res) {
-    //     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-    //     that.setData({
-    //       files: that.data.files.concat(res.tempFilePaths)
-    //     });
-
-    //     console.log(res)
-    //   }
-    // })
-    let files = that.data.files;
-    let urlList = e.detail.tempFilePaths;
-    for(let i = 0;i<urlList.length;i++){
-      files.push({url:urlList[i]})
+    for(let i=0;i<tempFilePaths.length;i++){
+      that.setData({
+        files: that.data.files.concat({url:tempFilePaths[i]})
+      });
     }
-    that.setData({
-      files: files
-    });
-    console.log(that.data.files)
+    // console.log("files:",that.data.files)
   },
 
-  selectFile:function(files) {
-    console.log('files', files)
+  selectFiles:function(files) {
+    console.log('selectFiles:', files)
     // 返回false可以阻止某次文件上传
   },
-
+  //评分
   radioChange:function(e){
     let score = e.detail.value;
-    console.log(score);
+    // console.log(score);
     this.setData({['formData.score']:score});
   },
-
+  //匿名
   formSwitchChange:function(e){
     console.log(e)
     let flag = false;
@@ -132,15 +151,13 @@ Page({
     });
     //更新字数
     this.setData({commentFontCount:e.detail.cursor});
-    console.log(this.data.formData.comment)
+    // console.log(this.data.formData.comment)
   },
   /**
    * 页面的初始数据
    */
   data: {
-    files: [{
-      url:'https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/417.jpg?2'
-    }],
+    files: [],
     user:null,
     ordersDetail:null,
     goods:null,

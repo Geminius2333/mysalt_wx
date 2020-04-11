@@ -60,4 +60,5 @@
     </mp-cells>
   </view>
   <button bindtap="wxPay">测试支付</button>
+  <button bindtap="Test">test</button>
 </view>

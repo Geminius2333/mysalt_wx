@@ -22,7 +22,7 @@ Page({
       extraData: {
         foo: 'bar'
       },
-      envVersion: 'develop',
+      envVersion: 'release',
       success(res) {
         // 打开成功
         console.log(res)

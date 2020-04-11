@@ -27,7 +27,7 @@
                         </view>
                      </view>
                     <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" bindselect="chooseImage" binddelete="deleteImage"
-                        upload="{{uplaodFile}}" select="selectFiles" files="{{files}}" max-count="4" delete="{{true}}">
+                        upload="{{uploadCommentImage}}" select="selectFiles" files="{{files}}" max-count="4" delete="{{true}}">
                     </mp-uploader>
                 </mp-cell>
 
