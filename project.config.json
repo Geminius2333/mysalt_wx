@@ -32,7 +32,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
 	"appid": "wxe97214b81562b89d",
-	"projectname": "salt_app",
+	"projectname": "salt_wx",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

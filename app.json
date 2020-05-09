@@ -1,9 +1,9 @@
 {
+
   "navigateToMiniProgramAppIdList":[
     "wxfaeec4255298e6c6",
     "wx113f2407af0ed4da",
     "wx6c2423928b92ca14"
-    
   ],
   "pages": [
     "pages/mine/mine",

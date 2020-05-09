@@ -132,7 +132,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #111111;
+  background-color: #ff0094;
   width: 130rpx;
   color: white;
   padding:0 10rpx;

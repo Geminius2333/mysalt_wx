@@ -5,11 +5,23 @@ const app = getApp();
 Page({
   Test:function(){
     console.log("test");
-    wx.request({
-      url:app.globalData.url+'/comment/test',
-      data:{id:'123456'},
+    let timeStamp = '1490840662';
+    let nonceStr = '5K8264ILTKCH16CQ2502SI8ZNMTM67VS';
+    let packageStr = 'wx2017033010242291fcfe0db70013231072';
+    let paySignTemp = 'appId=wxe97214b81562b89d&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111'
+    let paySign = md5.hexMD5(paySignTemp).toUpperCase();
+    console.log(paySign)
+    wx.requestPayment({
+      timeStamp:timeStamp,
+      nonceStr:nonceStr,
+      package:packageStr,
+      signType:'MD5',
+      paySign:paySign,
       success:(res)=>{
-        console.log(res);
+
+      },
+      fail:(err)=>{
+        console.log(err);
       }
     })
   },
@@ -30,34 +42,32 @@ Page({
       "OpenId": "o0Rq-4ihlwkZEktbh_eo-z7S0s9M",//openId
       "SubAppId": "wxe97214b81562b89d",//小程序appid
     };
-    utilPay.beePay({
-      "secret": "wD7Ct61VJePUad1KyA2Iz5EYKLO2b8",//支付秘钥
-      "success": function (res) {
-        console.log(res);
-      },
-      "fail": function (res) {
-        console.log(res);
-      },
-      "payinfo": payinfo
-    });
-
-    var shop_no = "20191024308978649d";//门店号，小蜜蜂服务平台分配 
-    var outTradeNo = shop_no + Date.parse(new Date());
     wx.navigateToMiniProgram({
-      appId: 'wx113f2407af0ed4da',
-      path: 'pages/pay/index',
+      appId: 'wx6c2423928b92ca14',
+      path: 'pages/index/index',
       extraData: {
-        "shop_no": shop_no,
-        "secret": "wD7Ct61VJePUad1KyA2Iz5EYKLO2b8",//支付秘钥，小蜜蜂服务平台分配 
-        "totalAmount": 0.1 * 100, //金额单位：分
-        "outTradeNo": outTradeNo
+        'aid': '1',
+        'name': '盐吧商城支付',
+        'pay_type': 'jsapi',
+        'price': '0.02',
+        'order_id': 'm-5',
+        'notify_url': 'https://abc.com/notify',
+        'sign': md5.hexMD5('盐吧商城支付' + 'jsapi' + '0.02' + 'm-5' + 'https://abc.com/notify' + 'app secret'),
       },
-      envVersion: 'release',
+      //envVersion: 'develop',
+      fail(res) {
+        wx.showToast({
+          title: res.errMsg,
+          icon: 'none',
+        });
+      },
       success(res) {
-        // 打开成功
-        console.log(res);
-      }
-    })
+        wx.showToast({
+          title: 'ok',
+          icon: 'none',
+        });
+      },
+    });
   },
 
   //获取订单量信息
