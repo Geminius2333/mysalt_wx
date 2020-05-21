@@ -41,8 +41,9 @@ Page({
       user:this.data.user.id,
       status:1,
       recAddress:this.data.recAddress.id,
+      remarks:this.data.orders.remarks
     };  
-    console.log(orders);
+    console.log("新的订单==",orders);
     wx.request({
       url: app.globalData.url+'/orders/add',
       data: {orders:orders,orderDetailList:orderDetailList},
@@ -75,7 +76,7 @@ Page({
   //跳转到订单
   toOrdersPage:function(e){
     wx.navigateTo({
-      url: '/pages/order/order',
+      url: '/pages/orders/orders',
       success: function(res){
         // success
       },
@@ -84,10 +85,18 @@ Page({
 
   //跳转到收货地址
   toRecAddressPage:function(e){
+    let that = this;
     wx.navigateTo({
       url: '/pages/recAddress/recAddress',
+      events:{
+        returnAddress:function(data){
+          console.log("返回的地址：",data);
+          that.setData({recAddress:data});
+        }
+      },
       success: function(res){
         // success   
+        res.eventChannel.emit('getAddress', { data: true })
       },
     })
   },
@@ -168,8 +177,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-    this.getDeftAddress();
+    if(this.data.recAddress==null){
+      this.getDeftAddress();
+    }
     this.countOrderPrice();
   },
 

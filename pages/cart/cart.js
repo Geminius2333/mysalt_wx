@@ -195,8 +195,23 @@ Page({
   inputChange:function(e){
     var index = e.target.dataset.index;
     var value = e.detail.value;
+    let cart = this.data.cartList[index];
+    let goods = cart.cartGoods;
+    let number = cart.number;
     var key = "cartList["+index+"].number";
-    this.setData({[key]:value});
+    if (value > goods.number) {
+      wx.showToast({
+        title: '数量超过库存！',
+        icon: 'none',
+        duration: 1000,
+      })
+      if(number==""||number==0){
+        number = 1;
+      }
+      this.setData({ [key]:cart.number });
+    } else {
+      this.setData({ [key]: value });
+    }
     this.updateCountPrice();
   },
   // 增加商品数量
@@ -204,8 +219,19 @@ Page({
     var index = e.target.dataset.index;
     // console.log("购物车index:"+index);
     var number = this.data.cartList[index].number;
+    console.log(this.data.cartList[index]);
+    let goods = this.data.cartList[index].cartGoods;
     var key = "cartList["+index+"].number";
-    this.setData({[key]:number+1});   
+    if(number+1>goods.number){
+      wx.showToast({
+        title: '数量超过库存！',
+        icon:'none',
+        duration:1000,
+      })
+    }else{
+      this.setData({ [key]: number + 1 });   
+    }
+
     // console.log("购物车当前数量number:" + this.data.cartList[index].number); 
     this.updateCountPrice();
   },

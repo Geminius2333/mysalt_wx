@@ -105,31 +105,32 @@
 }
 
 /* 评论开始 */
-.comment-view{
+.comment-item-view{
     display: flex;
     flex-direction: column;
-    /* background: #d3d3d3; */
+    background: white;
     padding: 0 10px;
     margin-bottom: 10px;
 }
 
-.comment-view .comment-top{
+.comment-item-view .comment-top{
     display: flex;
     flex-direction: row;
     border-bottom: solid 1px #eeeeee;
+    padding: 5px 0px;
 }
 
-.comment-view .comment-top .comment-user-img{
+.comment-item-view .comment-top .comment-user-img{
     width: 100rpx;
     height: 100rpx;
     border-radius: 45px;
 }
 
-.comment-view .comment-top .comment-top-right{
+.comment-item-view .comment-top .comment-top-right{
     width: 100%;
 }
 
-.comment-view .comment-top .comment-top-right .comment-top-right-item{
+.comment-item-view .comment-top .comment-top-right .comment-top-right-item{
    display: flex;
    justify-content: space-between;
    font-size: 15px;
@@ -142,7 +143,7 @@
     font-size: 12px;
 }
 
-.comment-view .comment-content{
+.comment-item-view .comment-content{
     margin:5px;
     font-size: 13px;
 }

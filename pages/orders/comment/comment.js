@@ -63,8 +63,7 @@ Page({
     this.setData({['formData.postTime']:postTime,['formData.goods']:this.data.goods.id});
     console.log(this.data.formData);
     wx.request({
-      // url: app.globalData.url+'/comment/add',
-      url:'',
+      url: app.globalData.url+'/comment/add',
       data: that.data.formData,
       method: 'POST',
       success: function(res){
@@ -173,15 +172,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("评价页面加载")
     let that = this;
     this.setData({user:app.globalData.user,appUrl:app.globalData.url});
     this.setData({['formData.user']:this.data.user.id});
     const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('ordersDetail',function(data){
+    eventChannel.on('comment',function(data){
+      console.log("评价页面一打开")
       console.log(data);
       that.setData({ordersDetail:data,goods:data.ordersDetailGoods});
     })
+
   },
 
   /**

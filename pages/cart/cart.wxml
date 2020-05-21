@@ -6,10 +6,10 @@
     <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
     <button class="login-btn" type="primary" bindtap="toLoginPageClick">点击登录</button>  
   </view>
-  <scroll-view scroll-y="true">
+  <scroll-view scroll-y="true" wx:if="{{user != null}}">
       <!-- 购物车 -->
       <checkbox-group class="checkbox-group" bindchange="checkboxChange">
-        <view wx:if="{{cartList.length==0}}" class="none-img-view">
+        <view wx:if="{{cartList.length==0 && user != null}}" class="none-img-view">
           <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
           购物车是空的
         </view>

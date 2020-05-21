@@ -7,7 +7,7 @@
         <view>配送</view>
         <view>完成</view>
     </view> -->
-    <view class="content-box">
+    <view wx:if="{{orders.status > 2}}" class="content-box">
         <view class="content-item">物流公司：{{orders.ordersLogisticsCompany.name}}</view>
         <view class="content-item flex-row-between" >物流编号：{{orders.trackingNo}} 
             <!-- <text class="btn" bindtap="toLogisticsProgram" data-tracking-no="{{orders.trackingNo}}">查询</text> -->

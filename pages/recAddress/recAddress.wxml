@@ -6,16 +6,18 @@
       没有收获地址
     </view>
     <radio-group bindchange="changeDeftAddress">
-          <view class="content-item {{item.id==user.deftAddress?'content-item-default':''}}" wx:for="{{recAddressList}}">
-            <view class="content-item-text">
-              <text class="content-text-name">{{item.name}}</text>
-              <text class="content-text-phone">{{item.phone}}</text>
-            </view>
-            <view class="content-item-text content-item-text-border">
-              <text class="">{{item.recAddressArea.city.province.name}}</text>
-              <text class="">{{item.recAddressArea.city.name}}</text>
-              <text class="">{{item.recAddressArea.name}}</text>
-              <text>{{item.address}}</text>
+          <view class="content-item {{item.id==user.deftAddress?'content-item-default':''}}" wx:for="{{recAddressList}}" >
+            <view bindtap="{{selectedAddress?'returnAddress':''}}" data-index="{{index}}" data-item="{{item}}">
+              <view class="content-item-text">
+                <text class="content-text-name">{{item.name}}</text>
+                <text class="content-text-phone">{{item.phone}}</text>
+              </view>
+              <view class="content-item-text content-item-text-border">
+                <text class="">{{item.recAddressArea.city.province.name}}</text>
+                <text class="">{{item.recAddressArea.city.name}}</text>
+                <text class="">{{item.recAddressArea.name}}</text>
+                <text>{{item.address}}</text>
+              </view>
             </view>
             <view class="content-item-edit">
               <label>

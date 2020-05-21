@@ -31,20 +31,21 @@ Page({
   toGoodsPage:function(e){
     let goodsId = e.currentTarget.dataset.goodsId;
     console.log(goodsId);
-    wx.request({
-      url:app.globalData.url+'/goods/'+goodsId,
-      method:'GET',
+    // wx.request({
+    //   url:app.globalData.url+'/goods/'+goodsId,
+    //   method:'GET',
+    //   success:function(res){
+    //     let msg = res.data;
+    //     let goods = msg.data;
+    //      if(goods != null && goods != undefined){
+
+    //     }
+    //   }
+    // });
+    wx.navigateTo({
+      url:'/pages/goods/goods',
       success:function(res){
-        let msg = res.data;
-        let goods = msg.data;
-         if(goods != null && goods != undefined){
-          wx.navigateTo({
-            url:'/pages/goods/goods',
-            success:function(res){
-              res.eventChannel.emit("goods",goods);
-            }
-          });
-        }
+        res.eventChannel.emit("goods",goodsId);
       }
     });
   },
@@ -66,7 +67,6 @@ Page({
    */
   onLoad: function (options) {
     this.setData({appUrl:app.globalData.url,user:app.globalData.user});
-    console.log(this.data.goodsHistory);
   },
 
   /**
@@ -81,6 +81,7 @@ Page({
    */
   onShow: function () {
     this.setData({goodsHistory:wx.getStorageSync("GOODS_HISTORY")});
+    console.log(this.data.goodsHistory);
   },
 
   /**

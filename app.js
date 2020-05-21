@@ -41,7 +41,7 @@ App({
     //局域网
     // url:"https://192.168.137.1/salt",
     //服务器
-    //  url:"https://geminiussalt.top/salt"
+    //  url:"https://geminiussalt.top/salt",
     otherMiniprogram:[
       { id: 'wx6c2423928b92ca14', name:'xorpay'}
     ]

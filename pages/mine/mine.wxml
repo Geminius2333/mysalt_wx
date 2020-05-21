@@ -45,7 +45,7 @@
         <!-- <image class="cell-img" slot="title" src="{{icon}}" ></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="location" color="#ff0094" size="{{25}}"></mp-icon>
       </mp-cell>   
-      <mp-cell link hover url="{{user==null?pages.none:pages.history}}" value="我的足迹" bindtap="showNotLoginToast">
+      <mp-cell link hover url="{{pages.history}}" value="我的足迹" bindtap="showNotLoginToast">
         <!-- <image class="cell-img" slot="title" src="{{icon}}"></image> -->
         <mp-icon extClass="cell-icon" slot="icon" icon="time" color="#9400ff" size="{{25}}"></mp-icon>
       </mp-cell>

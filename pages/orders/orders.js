@@ -1,6 +1,60 @@
 // pages/order/order.js
+const utilPay = require('../../utils/beePay.js');
+const md5 = require('../../utils/md5.js');
 const app = getApp();
 Page({
+
+  //支付
+  payTest:function(e){
+    console.log("支付")
+    let that = this;
+    wx.navigateToMiniProgram({
+      appId: 'wx6c2423928b92ca14',
+      path: 'pages/index/index',
+      extraData: {
+        'aid': '1',
+        'name': '盐吧商城支付',
+        'pay_type': 'jsapi',
+        'price': '0.02',
+        'order_id': 'm-5',
+        'notify_url': 'https://abc.com/notify',
+        'sign': md5.hexMD5('盐吧商城支付' + 'jsapi' + '0.02' + 'm-5' + 'https://abc.com/notify' + 'app secret'),
+      },
+      //envVersion: 'develop',
+      fail(res) {
+        wx.showToast({
+          title: res.errMsg,
+          icon: 'none',
+        });
+      },
+      success(res) {
+        wx.showToast({
+          title: 'ok',
+          icon: 'none',
+        });
+        let ordersId = e.currentTarget.dataset.id;
+        let status = e.currentTarget.dataset.status;
+        that.setData({'formData.id':ordersId,'formData.status':status});
+        console.log(that.data.formData);
+        that.updateOrdersStatus();
+      },
+    });
+  },
+
+  //跳转到商品页面
+  toGoodsPage: function (e) {
+    let goodsId = e.currentTarget.dataset.goodsId;
+    // console.log(goods);
+    // console.log(e);
+    wx.navigateTo({
+      url: '/pages/goods/goods',
+      success: function (res) {
+        // success
+        res.eventChannel.emit('goods', goodsId);
+      },
+    })
+  },
+
   //点击对话框按钮
   tapDialogButton: function (e) {
     let index = e.detail.index;
@@ -82,14 +136,23 @@ Page({
     // console.log(index)
     let ordersDetail = this.data.ordersList[index.ordersIndex].ordersDetailList[index.ordersDetailIndex];
     console.log(ordersDetail)
-    console.log("跳转到评论页面");
+    // wx.navigateTo({
+    //   url: 'comment/comment',
+    //   success:res=>{
+    //     res.eventChannel.emit('comment',ordersDetail);
+    //   }
+    // })
     wx.navigateTo({
-      url: 'comment/comment',
-      success: function(res){
-        // success
-        res.eventChannel.emit('ordersDetail',ordersDetail);
-      },
+      url:'comment/comment',
+      success:res =>{
+        res.eventChannel.emit("comment",ordersDetail);
+      }
     })
+  },
+
+  //支付
+  payOrders:function(){
+    console.log("支付订单==");
   },
 
   //切换topbar

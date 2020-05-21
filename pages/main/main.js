@@ -25,6 +25,19 @@ Page({
     })
   },
 
+  //获取随机商品图片
+  getRandGoodsImg:function(){
+    let that = this;
+    wx.request({
+      url: app.globalData.url+'/goodsImg/getRandGoodsImg',
+      success:(res)=>{
+        let msg = res.data;
+        console.log(msg);
+        that.setData({swiperImgs:msg.data});
+      }
+    })
+  },
+
   //获取商品信息
   getPageInfo:function(){
     var that = this;
@@ -62,7 +75,7 @@ Page({
   },
 
   toGoodsPage:function(e){
-    // let goodsId = e.currentTarget.dataset.goodsId;
+    let goodsId = e.currentTarget.dataset.goodsId;
     let index = e.currentTarget.dataset.index;
     let goods = this.data.pageInfo.list[index];
     // console.log(goods);
@@ -71,7 +84,7 @@ Page({
       url: '/pages/goods/goods',
       success: function(res){
         // success
-        res.eventChannel.emit('goods', goods);
+        res.eventChannel.emit('goods', goodsId);
       },
     })
   },
@@ -122,6 +135,7 @@ Page({
     ],
     //商品
     pageInfo: null,
+    now:null,
   },
 
 
@@ -143,7 +157,7 @@ Page({
         })
       }
     });
-
+    this.getRandGoodsImg();
 
 
   },
@@ -163,6 +177,7 @@ Page({
     this.getPageInfo();
     this.setData({user:app.globalData.user});
     //console.log(this.data.user);
+    this.setData({now:new Date().toLocaleDateString()})
   },
 
   /**

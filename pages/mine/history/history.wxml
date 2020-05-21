@@ -5,6 +5,13 @@
             <view  class="history-item border-line-default" wx:for="{{goodsHistory}}" wx:for-item="goods" 
                 data-goods-id="{{goods.id}}" data-index="{{index}}" bindtap="toGoodsPage" bindlongpress="longPressHistoryItem">
                 <text>{{index+1}}.{{goods.title}}</text>
+                <view class="orders-detail" bindtap="toGoodsPage" data-goods-id="{{item.ordersDetailGoods.id}}">
+                    <view >
+                        <image wx:if="{{goods!=null}}"  class="img" wx:for="{{goods.goodsImgList}}" wx:for-item="img" wx:for-index="imgIndex"
+                            src="{{appUrl+img.img}}" mode="aspectFill">
+                        </image>
+                    </view>
+                </view>
             </view>
             <view class="text-second">
                 <text>长按单项删除</text>

@@ -10,7 +10,7 @@
       <swiper class="swiper" indicator-dots="{{homeSwiper.indicatorDots}}" autoplay="true" interval="{{homeSwiper.interval}}"
         duration="{{homeSwiper.duration}}" circular="{{homeSwiper.circular}}" style="height:{{homeSwiper.height}}">
         <swiper-item wx:for="{{swiperImgs}}" wx:key="item.name">
-          <image class="swiper-img" src="{{item.url}}" mode="widthFit"></image>
+          <image wx:if="{{item.img != null}}" class="swiper-img" src="{{appUrl+item.img}}" mode="aspectFill" bindtap="toGoodsPage" data-goods-id="{{item.goods}}"></image>
         </swiper-item>
       </swiper>
     </view>  
@@ -23,7 +23,9 @@
           <view><text class="item-info-title">{{item.title}}</text></view>
           <view class="display-flex-row display-flex-center">
             <text class="del-price" wx:if="{{item.goodsDiscount.isActive==1}}">￥{{item.price}}</text>
-            <text class="{{item.goodsDiscount.isActive==1?'text-red':'text-lightgray'}}">￥{{item.goodsDiscount.isActive==1?item.goodsDiscount.price:item.price}}</text>
+            <text  class="{{item.goodsDiscount.isActive==1?'text-red':'text-lightgray'}}">
+              ￥{{item.goodsDiscount.isActive==1?item.goodsDiscount.price:item.price}}
+            </text>
           </view>
           <!-- <view><text>销量：{{item.sales}}</text></view> -->
           <!-- <button class="add-cart-btn" wx:if="{{user != null}}" bindtap="addToCart" data-goods-id="{{item.id}}">加入购物车</button> -->
@@ -32,4 +34,5 @@
     </view>
   </view>
   <text>-----没有更多了哦-----</text>
+
 </view>

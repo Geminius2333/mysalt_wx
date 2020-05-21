@@ -25,7 +25,9 @@
   flex-direction:column;
   width:750rpx;
   height: 150px;
-  background: #88aeda;
+  background-image: url(https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/417.jpg?2);
+    background-repeat: no-repeat;
+  background-size: 100%;
   justify-content: center;
   text-align: center;
 }

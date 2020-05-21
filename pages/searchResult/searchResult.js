@@ -20,7 +20,7 @@ Page({
         // success
         let msg = res.data;
         that.setData({ goodsList: msg.data });
-        console.log(that.data.goodsList);
+        console.log("msg",msg);
       },
       fail: function () {
         // fail
@@ -57,7 +57,7 @@ Page({
       url: '/pages/goods/goods',
       success: function (res) {
         // success
-        res.eventChannel.emit('goods', goods);
+        res.eventChannel.emit('goods', goods.id);
       },
     })
   },
@@ -135,6 +135,7 @@ Page({
         title: data,
       })
       that.setData({keyword:keyword});
+      that.getSearchList();
     })
     eventChannel.on('searchGoodsType',function(data){
       let goodsType = data;
@@ -143,6 +144,7 @@ Page({
         title: goodsType.name,
       })
       that.setData({goodsType:goodsType,keyword:''});
+      that.getSearchList();
     })
     this.setData({appUrl:app.globalData.url,user:app.globalData.user})
   },

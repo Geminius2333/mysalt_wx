@@ -5,9 +5,18 @@
 
 .main{
     width: 750rpx;
-    background-color: white;
+    background-color: #f5f5f5;
 }
 
 .history-item{
-    padding:20rpx 20rpx;
+    padding: 5px;
+    margin: 10px;
+    background: white;
+    
+}
+
+.img{
+    width: 100px;
+    height: 100px;
+    margin: 0px 5rpx;
 }

@@ -1,6 +1,6 @@
 <!--pages/goods/goods.wxml-->
 <wxs module="DateFormat" src="../../utils/dateFormat.wxs"></wxs>
-<view class="container">
+<view class="container" wx:if="{{goods.status==1}}">
     <mp-toptips msg="{{toptips.msg}}" type="{{toptips.type}}" show="{{toptips.show}}" duration="{{1000}}"></mp-toptips>
     <view class="goods-head">
         <swiper class="swiper" indicator-dots autoplay interval="2000" duration="500" circular style="height:500rpx">
@@ -57,8 +57,8 @@
             </view>
         </view>   
         <!-- 评价 -->
-        <view wx:if="{{curNav==1}}">
-            <view class="comment-view" wx:for="{{commentList}}" wx:key="index" wx:for-item="comment">
+        <view wx:if="{{curNav==1}}" style="background:#f5f5f5">
+            <view class="comment-item-view" wx:for="{{commentList}}" wx:key="index" wx:for-item="comment">
                 <view class="comment-top">
                     <view class="comment-top-left">
                         <image class="comment-user-img" src="{{comment.isAnonymous==false?appUrl+comment.commentUser.img:appUrl+'/img/user/1.jpg'}}"></image>
@@ -105,5 +105,12 @@
         <view class="bottom-normal bottom-buy"  bindtap="addOrder"> 立即购买 </view>
     </view>
     
+</view>
+
+<view class="container" wx:if="{{goods.status!=1}}">
+    <view wx:if="{{user == null}}" style="display:flex;flex-direction: column;padding-top: 300rpx;text-align: center;">
+        <image class="none-img" src="/resource/images/noneImg.png" mode="aspectFit" />
+        <text class="login-btn" type="primary">货物不见啦！</text>  
+    </view>
 </view>
   

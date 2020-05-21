@@ -2,7 +2,7 @@
 <view class="container">
     <!-- 商品信息 -->
     <view class="goods-view">
-        <image class="goods-img" src="{{appUrl+goods.goodsImgList[0].img}}" mode="aspectFit|aspectFill|widthFix"  />
+        <image wx:if="{{goods.goodsImgList[0].img!=null}}" class="goods-img" src="{{appUrl+goods.goodsImgList[0].img}}" mode="aspectFit|aspectFill|widthFix"  />
         <text>{{goods.title}}</text>
     </view>
     <!-- 评论内容 -->
@@ -11,7 +11,7 @@
             <mp-cells>
                 <mp-cell title="商品评分" ext-class="">
                     <radio-group class="radio-group" bindchange="radioChange">
-                        <radio class="radio" wx:for-items="{{[1,2,3,4,5]}}" wx:key="{{index}}" value="{{item}}" checked="{{index==4}}">
+                        <radio class="radio" wx:for-items="{{[1,2,3,4,5]}}" wx:key="index" value="{{item}}" checked="{{index==4}}">
                             <text>{{item}}</text>
                         </radio>
                     </radio-group>

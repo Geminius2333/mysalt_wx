@@ -50,6 +50,23 @@ Page({
     })
   },
 
+  //返回地址
+  returnAddress:function(e){
+    console.log(e)
+    let that = this;
+    let returnAddress = this.data.returnAddress;
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.emit("returnAddress", e.currentTarget.dataset.item);
+    wx.navigateBack({
+      success:function(res){
+        that.setData({selectedAddress:false});
+      },
+      complete:function(res){
+        that.setData({ selectedAddress: false });
+      }
+    })
+  },
+
   //跳转编辑页面
   toEditPage:function(e){
     //console.log(e)
@@ -114,12 +131,18 @@ Page({
     recAddressList:null,
     user:null,
     appUrl:null,
+    selectedAddress:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('getAddress', function (data) {
+      that.setData({'selectedAddress':true});
+    })
   },
 
   /**

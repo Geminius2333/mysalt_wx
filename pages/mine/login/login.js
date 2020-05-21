@@ -158,7 +158,7 @@ Page({
     vcodeBtn:'getVcode',
     vcodeText:'获取验证码',
     formData:{
-      phone:'15558970281',
+      phone:'15558970280',
     },
     wxUserInfo:{},
     hasUserInfo: false,

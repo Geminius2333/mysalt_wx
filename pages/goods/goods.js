@@ -103,6 +103,7 @@ Page({
   getGoodsInfo:function(){
     let that = this;
     let id = this.data.goodsId;
+    console.log("请求商品信息=="+id);
     wx.request({
       url: app.globalData.url+'/goods/'+id,
       data: {},
@@ -112,6 +113,8 @@ Page({
         let msg = res.data;
         console.log(msg);
         that.setData({goods:msg.data});
+        that.saveHistory(msg.data);
+        that.getGoodsComment();
       },
       fail: function() {
         // fail
@@ -229,10 +232,12 @@ Page({
     let that = this;
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('goods', function (data) {
-      let goods = data;
-      that.setData({ goods: goods });
-      // console.log(goods);
-      that.saveHistory(goods);
+      let goodsId = data;
+      // that.setData({ goods: goods });
+      that.setData({goodsId:goodsId});
+      console.log("onLoad商品ID==",goodsId);
+      // that.saveHistory(goods);
+      that.getGoodsInfo();
     });
 
 
@@ -250,8 +255,8 @@ Page({
    */
   onShow: function () {
     this.setData({user:app.globalData.user});
-    //this.getGoodsInfo();
     this.getGoodsComment();
+    this.getGoodsInfo();
   },
 
   /**
